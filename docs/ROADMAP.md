@@ -14,7 +14,7 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 | Website | Search, app details and reports, switch planner, project pages, strict security headers |
 | JSON API | Static, versioned, open CORS under `/api/v1/` |
 | Install data | Sourced, per-distribution install routes for all alternatives (13 methods, from `apt` to `nix`, plus Flatpak, Snap, AppImage and project downloads) |
-| Hosting | GitHub Pages on `main`, own server (Docker, nginx, rsync) on version tags |
+| Hosting | GitHub Pages and own server (Docker, nginx, rsync), both published only when a version tag is pushed |
 | Governance basics | MIT + CC0, contributing guide, code of conduct, issue and PR templates |
 | Data health | Generated dashboard with category coverage, review queues and dated source-link snapshots; weekly reports and checks before deployment |
 

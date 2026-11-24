@@ -1,12 +1,12 @@
 name: CI
 
-# Checks every pull request and every push to main: validates the data, runs
-# the tests and builds the site. Nothing is published from here.
+# Checks every pull request: validates the data, runs the tests and builds the
+# site. Nothing is published from here and pushes to main do not trigger it.
+# Releases are checked again by the Deploy workflow (version tags).
 
 on:
   pull_request:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read

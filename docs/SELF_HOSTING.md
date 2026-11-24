@@ -83,7 +83,7 @@ docker compose -f deploy/docker-compose.yml up -d --build
 
 ## Option B: Plain nginx with automatic deploys
 
-The repository can publish `dist/` to your server through SSH and rsync whenever you push a **version tag** such as `v0.3.0` (job `server` in [`deploy.yml`](../.github/workflows/deploy.yml)). Pushes to `main` only update GitHub Pages, so your own server changes only when you cut a release. It is **off by default**.
+The repository can publish `dist/` to your server through SSH and rsync whenever you push a **version tag** such as `v0.3.0` (job `server` in [`deploy.yml`](../.github/workflows/deploy.yml)). Pushes to `main` build and deploy nothing, so your own server (and GitHub Pages) change only when you cut a release. It is **off by default**.
 
 ### 1. Prepare the server (one time)
 
@@ -163,7 +163,9 @@ You should see `Content-Security-Policy` in the headers, JSON from the API and `
 | Page loads, then "Could not load the database" | `/api/` not reachable: wrong `root`, or the deploy did not run. Check `curl .../api/v1/index.json` |
 | Page is unstyled or blank, console shows CSP errors | A proxy in front adds its own Content-Security-Policy, or a script/style was added inline. Keep code and styles in separate files |
 | Certificate request fails | DNS not resolving yet, or port 80/443 closed |
-| The `Own server` job is skipped | Variable `SELF_HOST_DEPLOY` is not `true` (the default), or the run was a push to `main` (only tags and manual runs deploy to your server) |
+| The `Own server` job is skipped | Variable `SELF_HOST_DEPLOY` is not `true` (the default) |
+| The `GitHub Pages` job fails with “Tag … is not allowed to deploy to github-pages” | Settings → Environments → `github-pages` → Deployment branches and tags: add the tag rule `v*` |
+| Nothing runs after a push to `main` | Expected. Only version tags (`v*`) and manual runs build and deploy |
 | rsync "Host key verification failed" | `DEPLOY_KNOWN_HOSTS` is missing or does not match the server |
 
 ## Rollback

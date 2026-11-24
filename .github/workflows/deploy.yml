@@ -1,15 +1,17 @@
 name: Deploy
 
-# Publishes the website and JSON API.
-#   - push to main          -> GitHub Pages (continuous)
-#   - tag v* (e.g. v0.3.0)  -> your own server over SSH + rsync (a release)
-#   - manual run            -> both
-# GitHub Pages one-time setup: Settings -> Pages -> Source: "GitHub Actions".
+# Builds and publishes the website and JSON API. Only version tags build.
+# Pushes to main do not run this workflow.
+#   - tag v* (e.g. v0.3.3)  -> GitHub Pages, and your own server if enabled
+#   - manual run            -> same, from the ref you choose (use a tag)
+# GitHub Pages one-time setup:
+#   1. Settings -> Pages -> Source: "GitHub Actions".
+#   2. Settings -> Environments -> github-pages -> Deployment branches and tags:
+#      add the tag rule "v*" (the default only allows main, which would block tags).
 # Own server setup (off until the variable SELF_HOST_DEPLOY is "true"): docs/SELF_HOSTING.md
 
 on:
   push:
-    branches: [main]
     tags: ["v*"]
   workflow_dispatch:
 
@@ -27,7 +29,6 @@ jobs:
   # A separate job gives the artifact time to become visible.
   build:
     name: Build site
-    if: ${{ github.ref_type == 'branch' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -68,7 +69,7 @@ jobs:
 
   server:
     name: Own server
-    if: ${{ vars.SELF_HOST_DEPLOY == 'true' && (github.ref_type == 'tag' || github.event_name == 'workflow_dispatch') }}
+    if: ${{ vars.SELF_HOST_DEPLOY == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

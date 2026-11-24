@@ -116,7 +116,7 @@ npm run check:links # optional network check; writes JSON and Markdown reports t
 npm run dev        # build and preview the website at http://localhost:4173
 ```
 
-Requires Node.js 20+. `npm run build` writes the website and the static JSON API to `dist/` (`api/v1/index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed. Merges to `main` deploy it to GitHub Pages.
+Requires Node.js 20+. `npm run build` writes the website and the static JSON API to `dist/` (`api/v1/index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed. Version tags (`v*`) build and deploy it; pushes to `main` do not.
 
 `npm run check` stays offline. `npm run check:links` checks structured homepages, source links and download URLs; then `npm run build` includes that snapshot in `/api/v1/health.json` and the Data health page. Missing, mismatched and stale snapshots are labelled explicitly. The weekly workflow stores reports as artifacts, and deployments run a new link check before publishing. See [data health checks](docs/DATA_HEALTH.md) for status meanings and options.
 
@@ -140,7 +140,7 @@ The site is plain HTML, CSS and JavaScript (no framework). The build only adds t
 
 The website is plain static files, so it can be served from anywhere:
 
-- **GitHub Pages**: deployed automatically on merges to `main` (one-time setup: Settings → Pages → Source: *GitHub Actions*).
+- **GitHub Pages**: deployed when you push a version tag such as `v0.3.3` (one-time setup: Settings → Pages → Source: *GitHub Actions*, and in Settings → Environments → `github-pages` add the tag rule `v*`).
 - **Your own server**: ready-made Docker image, nginx config with strict security headers, and an optional rsync deploy that runs when you push a version tag (`git tag v0.3.0 && git push origin v0.3.0`). The public instance runs at **[linux-alternatives.itasel.org](https://linux-alternatives.itasel.org)**, so people who are not contributors can browse and search without a GitHub account.
 
 ```bash
@@ -157,7 +157,7 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 **Done**
 
 - [x] **v0.1 Foundation**: data model, JSON Schemas, validation, build, CI on every PR, MIT + CC0 licenses, contributing guide, issue and PR templates
-- [x] **v0.2 Website and hosting**: search, app details and reports, switch planner, project pages, JSON API, Docker/nginx kit, [live site](https://linux-alternatives.itasel.org), GitHub Pages on `main`, own-server deploy on version tags
+- [x] **v0.2 Website and hosting**: search, app details and reports, switch planner, project pages, JSON API, Docker/nginx kit, [live site](https://linux-alternatives.itasel.org), GitHub Pages and own-server deploy on version tags
 - [x] Sourced per-distribution install routes for every alternative
 - [x] Data health dashboard and scheduled source-link reports
 
