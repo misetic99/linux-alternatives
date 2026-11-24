@@ -27,6 +27,9 @@ write("apps.json", result.apps);
 write("alternatives.json", result.alternatives);
 for (const app of result.apps) write(`apps/${app.id}.json`, app);
 
+// The static website is served next to the API, so relative URLs work on GitHub Pages.
+fs.cpSync(path.join(REPO_ROOT, "site"), path.join(REPO_ROOT, "dist"), { recursive: true });
+
 console.log(
-  `✔ Built ${result.apps.length} app(s), ${result.alternatives.length} alternative(s) → dist/api/v1/`
+  `✔ Built ${result.apps.length} app(s), ${result.alternatives.length} alternative(s) → dist/ (site + api/v1/)`
 );

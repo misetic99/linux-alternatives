@@ -120,6 +120,19 @@ test("invalid YAML and bad file names are reported, not thrown", () => {
   assert.ok(errors.some((e) => e.includes("file name must be lowercase")));
 });
 
+test("install refs cannot smuggle shell characters", () => {
+  const bad = ALT.replace("ref: foo", 'ref: "foo; rm -rf ~"');
+  const dir = makeData({ "alternatives/foo.yaml": bad });
+  assert.ok(validateData(dir).length > 0);
+});
+
+test("download refs must be http(s) URLs", () => {
+  const url = ALT.replace("method: apt", "method: download").replace("ref: foo", "ref: https://example.org/foo.AppImage");
+  assert.deepEqual(validateData(makeData({ "alternatives/foo.yaml": url })), []);
+  const nonUrl = ALT.replace("method: apt", "method: download");
+  assert.ok(validateData(makeData({ "alternatives/foo.yaml": nonUrl })).length > 0);
+});
+
 test("summariseReports: no reports means untested", () => {
   assert.deepEqual(summariseReports([]), { status: "untested", report_count: 0 });
 });

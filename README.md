@@ -109,10 +109,11 @@ Details are in [CONTRIBUTING.md](CONTRIBUTING.md). Please also read our [Code of
 
 ```bash
 npm install
-npm run check      # validate data + run tests + build dist/api/v1/*.json
+npm run check      # validate data + run tests + build the site and JSON API
+npm run dev        # build and preview the website at http://localhost:4173
 ```
 
-Requires Node.js 20+. `npm run build` writes the static JSON API to `dist/api/v1/` (`index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed.
+Requires Node.js 20+. `npm run build` writes the website and the static JSON API to `dist/` (`api/v1/index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed. Merges to `main` deploy it to GitHub Pages.
 
 ## 🗺️ Roadmap
 
@@ -120,7 +121,7 @@ Requires Node.js 20+. `npm run build` writes the static JSON API to `dist/api/v1
 - [x] **v0.1** Repository skeleton: `data/`, JSON Schemas, validation, build, CI on every PR
 - [x] Licenses (MIT for code, CC0 for data), contributing guide, issue and PR templates
 - [ ] **v0.1** Seed the database with the 50–100 most requested apps (3 unverified seeds so far)
-- [ ] **v0.2** Static search site on GitHub Pages
+- [x] **v0.2** Static search site (deploys to GitHub Pages)
 - [ ] **v0.2** `good first issue` backlog
 - [ ] **v0.3** Published packages: `npm` and `PyPI` with a typed API
 - [ ] **v0.3** Public announcement (r/linux, Lemmy, distro forums)
@@ -132,7 +133,7 @@ Requires Node.js 20+. `npm run build` writes the static JSON API to `dist/api/v1
 data/       ← the source of truth (YAML, one file per app / alternative / report)
 schema/     ← JSON Schema that every file must pass
 tools/      ← validate + build scripts (YAML → dist/api/v1/*.json)
-site/       ← static search website            (planned)
+site/       ← static search website (plain HTML/CSS/JS, no build step)
 packages/   ← npm and PyPI wrappers            (planned)
 ```
 

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>linux-alternatives: Windows apps → Linux</title>
+  <meta name="description" content="Open database of Windows apps, their Linux alternatives and Wine/Proton compatibility.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Open database · CC0</p>
+      <h1>Coming from Windows?<br><span class="accent">Find what replaces your apps.</span></h1>
+      <p class="lead">Linux alternatives with honest ratings, plus real Wine and Proton compatibility reports. Built by the community, free to reuse.</p>
+      <label class="search">
+        <span class="sr">Search apps</span>
+        <input id="q" type="search" placeholder="Search Windows apps, e.g. AutoCAD, Photoshop, Excel…" autocomplete="off" autofocus>
+      </label>
+      <div id="chips" class="chips" role="group" aria-label="Filter by category"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p id="count" class="count" aria-live="polite"></p>
+    <div id="results" class="grid"></div>
+    <p id="empty" class="empty" hidden>
+      Nothing found. <a href="https://github.com/misetic99/linux-alternatives/issues/new/choose">Request this app</a> or add it yourself, it takes one small file.
+    </p>
+    <p id="error" class="empty" hidden>Could not load the database. Try reloading the page.</p>
+  </main>
+
+  <footer class="wrap foot">
+    <p>
+      Data is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, code is MIT.
+      <a href="https://github.com/misetic99/linux-alternatives">Contribute on GitHub</a> ·
+      <a href="api/v1/index.json">JSON API</a>
+    </p>
+    <p class="fine">Product names belong to their owners. This project is not affiliated with any vendor. Entries marked “unverified” have not been checked yet.</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

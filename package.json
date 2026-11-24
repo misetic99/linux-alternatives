@@ -9,6 +9,7 @@
   "scripts": {
     "validate": "node tools/validate.mjs",
     "build": "node tools/build.mjs",
+    "dev": "npm run build && node tools/serve.mjs",
     "test": "node --test \"tools/*.test.mjs\"",
     "check": "npm run validate && npm test && npm run build"
   },

@@ -49,11 +49,14 @@ Requires Node.js 20 or newer.
 npm install
 npm run validate   # check data/ against schema/ and cross-file rules
 npm test           # unit tests for the tooling
-npm run build      # generate dist/api/v1/*.json (never committed)
-npm run check      # all of the above
+npm run build      # generate dist/ (website + api/v1/*.json), never committed
+npm run dev        # build, then preview the website at http://localhost:4173
+npm run check      # validate + test + build
 ```
 
-Layout: `data/` (the database), `schema/` (JSON Schemas), `tools/` (validate and build), `docs/` (architecture).
+Layout: `data/` (the database), `schema/` (JSON Schemas), `tools/` (validate and build), `site/` (the website), `docs/` (architecture).
+
+Website rules: render community data with `textContent`, never `innerHTML`, and only build install commands from refs that match the safe pattern in `schema/alternative.schema.json`.
 Schema changes need a note in the PR on how existing data is affected.
 
 ## Licensing
