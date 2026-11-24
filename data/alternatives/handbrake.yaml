@@ -1,0 +1,103 @@
+# License and package reference: https://archlinux.org/packages/extra/x86_64/handbrake/
+id: handbrake
+name: HandBrake
+homepage: https://handbrake.fr/
+license: GPL-2.0-only
+description: Video conversion application with encoding presets and batch processing.
+install:
+  - method: apt
+    ref: handbrake
+    sources:
+      - https://packages.debian.org/trixie/handbrake
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: handbrake
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/handbrake
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: handbrake
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/handbrake
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: pacman
+    ref: handbrake
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/handbrake/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: apk
+    ref: handbrake
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: handbrake
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/ha/handbrake/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: media-video/handbrake
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-video/handbrake
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: handbrake
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/handbrake/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: handbrake
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/h/handbrake/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: handbrake-jz
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/handbrake-jz
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
+  - method: flatpak
+    ref: fr.handbrake.ghb
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/fr.handbrake.ghb
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://handbrake.fr/downloads.php
+    distros:
+      - any
+    sources:
+      - https://handbrake.fr/downloads.php
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: corel-paintshop-pro
+name: Corel PaintShop Pro
+vendor: Corel
+category: graphics
+homepage: https://www.paintshoppro.com/en/products/paintshop-pro/
+verified: false
+alternatives:
+  - id: gimp
+    fit: partial
+    notes: Suggested for raster photo editing. Existing Corel PaintShop Pro data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.paintshoppro.com/en/products/paintshop-pro/
+      - https://www.gimp.org/features/

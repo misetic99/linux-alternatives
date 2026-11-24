@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: adobe-character-animator
+name: Adobe Character Animator
+vendor: Adobe
+category: graphics
+homepage: https://www.adobe.com/products/character-animator.html
+verified: false
+alternatives:
+  - id: synfig
+    fit: minimal
+    notes: Suggested for authored 2D animation rather than a documented real-time capture workflow. Existing Adobe Character Animator data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.adobe.com/products/character-animator.html
+      - https://www.synfig.org/

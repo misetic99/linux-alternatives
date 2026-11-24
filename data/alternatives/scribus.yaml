@@ -6,5 +6,89 @@ homepage: https://www.scribus.net/
 license: GPL-2.0-or-later
 description: Page layout application for desktop publishing and PDF preparation.
 install:
+  - method: apt
+    ref: scribus
+    sources:
+      - https://packages.debian.org/trixie/scribus
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: scribus
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/scribus
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: scribus
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/scribus
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: scribus
+    sources:
+      - https://packages.fedoraproject.org/pkgs/scribus/scribus/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: scribus
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/scribus/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: scribus
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/scribus
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: scribus
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: scribus
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/sc/scribus/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: xbps
+    ref: scribus
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/scribus/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: scribus
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/s/scribus/
+    notes: Solus Shannon binary repository, x86_64.
   - method: flatpak
     ref: net.scribus.Scribus
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/net.scribus.Scribus
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://www.scribus.net/
+    distros:
+      - any
+    sources:
+      - https://www.scribus.net/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: sourcetree
+name: Sourcetree
+vendor: Atlassian
+category: development
+homepage: https://www.sourcetreeapp.com/
+verified: false
+alternatives:
+  - id: git-cola
+    fit: partial
+    notes: Suggested for graphical Git repository work; Mercurial support is outside this recommendation. Existing Sourcetree data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.sourcetreeapp.com/
+      - https://git-cola.github.io/

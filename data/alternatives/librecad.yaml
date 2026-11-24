@@ -6,5 +6,98 @@ description: 2D CAD application.
 install:
   - method: apt
     ref: librecad
+    sources:
+      - https://packages.debian.org/trixie/librecad
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: librecad
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/librecad
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: librecad
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/librecad
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: librecad
+    sources:
+      - https://packages.fedoraproject.org/pkgs/librecad/librecad/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: librecad
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/librecad/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: librecad
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/librecad
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: nix
+    ref: librecad
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/li/librecad/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: media-gfx/librecad
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-gfx/librecad
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: snap
+    ref: librecad
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/librecad
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.librecad.librecad
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.librecad.librecad
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://librecad.org/
+    distros:
+      - any
+    sources:
+      - https://librecad.org/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
+  - method: appimage
+    ref: https://librecad.org/
+    distros:
+      - any
+    sources:
+      - https://librecad.org/
+    notes: The project page lists AppImage builds. Check architecture, release requirements and FUSE support. This link opens the official page; it does not download or execute a file automatically.

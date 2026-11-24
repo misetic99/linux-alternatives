@@ -5,6 +5,7 @@ import vm from "node:vm";
 
 const source = fs.readFileSync(new URL("../site/plan-core.js", import.meta.url), "utf8");
 const context = {};
+vm.runInNewContext(fs.readFileSync(new URL("../site/install-core.js", import.meta.url), "utf8"), context);
 vm.runInNewContext(source, context);
 const { buildPlan, buildScript, parseHash, toHash, clean } = context.PlanCore;
 

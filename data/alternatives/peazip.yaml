@@ -6,5 +6,47 @@ homepage: https://peazip.github.io/
 license: LGPL-3.0-only
 description: Archive manager for extracting archives and creating formats including ZIP and 7Z.
 install:
+  - method: pacman
+    ref: peazip
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/peazip/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: peazip
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/peazip
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: nix
+    ref: peazip
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/pe/peazip/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
   - method: flatpak
     ref: io.github.peazip.PeaZip
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/io.github.peazip.PeaZip
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://peazip.github.io/peazip-linux.html
+    distros:
+      - any
+    sources:
+      - https://peazip.github.io/peazip-linux.html
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
+  - method: appimage
+    ref: https://peazip.github.io/peazip-linux.html
+    distros:
+      - any
+    sources:
+      - https://peazip.github.io/peazip-linux.html
+    notes: The project page lists AppImage builds. Check architecture, release requirements and FUSE support. This link opens the official page; it does not download or execute a file automatically.

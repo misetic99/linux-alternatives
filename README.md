@@ -95,7 +95,7 @@ You do **not** need to write code.
 3. **Validate locally** (optional): `npm install && npm run validate`. CI runs the same check on every PR.
 4. **Open a pull request.** A maintainer reviews it, usually the same week.
 
-> The database currently contains **45 unverified seed entries** (`verified: false`). Fit ratings are initial estimates, not tested migration results. Check the sources and notes before relying on an entry.
+> The database currently contains **95 unverified seed entries** (`verified: false`). Fit ratings are initial estimates, not tested migration results. Check the sources and notes before relying on an entry.
 
 Just ran an app under Wine or Proton? Open a **compatibility report** using the issue template, or add a report file directly.
 
@@ -117,7 +117,7 @@ npm run dev        # build and preview the website at http://localhost:4173
 
 Requires Node.js 20+. `npm run build` writes the website and the static JSON API to `dist/` (`api/v1/index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed. Merges to `main` deploy it to GitHub Pages.
 
-Expand an app's details on the site to see its official links and compatibility reports, newest first. Each report shows the tested app and runner versions, distribution, date, reporter, adjustments and notes. Alternative entries also expose their source links when provided.
+Open an app's details to compare alternatives, choose a distribution and see every sourced installation option. Native packages are labelled with their distribution and repository requirements; Flatpak, Snap, AppImage and project downloads show their prerequisites. Availability is not a tested support guarantee. Cards keep the same size while the full details and compatibility reports open in a dialog.
 
 ### The website
 
@@ -151,7 +151,7 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 - [x] Project vision and architecture proposal
 - [x] **v0.1** Repository skeleton: `data/`, JSON Schemas, validation, build, CI on every PR
 - [x] Licenses (MIT for code, CC0 for data), contributing guide, issue and PR templates
-- [ ] **v0.1** Seed the database with the 50–100 most requested apps (45 unverified seeds so far)
+- [ ] **v0.1** Seed the database with the 50–100 most requested apps (95 unverified seeds so far; review still needed)
 - [x] **v0.2** Static search site (deploys to GitHub Pages)
 - [x] **v0.2** Self-hosting kit (Docker, nginx, optional rsync deploy) for linux-alternatives.itasel.org
 - [x] Live on [linux-alternatives.itasel.org](https://linux-alternatives.itasel.org)

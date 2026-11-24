@@ -196,10 +196,38 @@ h3 { font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 8px; }
 
 /* ---------- App cards (search results) ---------- */
 .count { margin: 8px 0 14px; color: var(--text-3); font-size: 14px; }
-.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); align-items: start; }
-.card { padding: 20px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-lg); animation: rise .45s var(--ease) both; transition: border-color .25s var(--ease); }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); align-items: stretch; }
+.card { min-width: 0; height: 370px; display: flex; flex-direction: column; padding: 20px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-lg); animation: rise .45s var(--ease) both; transition: border-color .25s var(--ease); }
 .card:hover { border-color: var(--line-2); }
-.card h2 { margin: 0; font-size: 18px; letter-spacing: -0.01em; }
+.card h2 { margin: 0; height: 48px; flex: none; font-size: 18px; line-height: 24px; letter-spacing: -0.01em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.card > .meta { height: 42px; flex: none; overflow: hidden; }
+.card > .row { min-height: 54px; align-content: start; flex: none; }
+.card-preview { flex: 1; min-height: 0; }
+.card-label { margin: 0 0 6px; color: var(--text-3); font-size: 12px; }
+.card-alternatives { margin: 0; padding: 0; list-style: none; }
+.card-alternatives li { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; margin-bottom: 4px; }
+.card-alternatives li > span:first-child { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.card-alternatives .fine { flex: none; }
+.card-preview > .fine { margin: 4px 0; }
+.card-open { flex: none; margin-top: 12px; min-height: 48px; width: 100%; font-size: 13px; }
+.catalog-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin: 20px 0; }
+.catalog-toolbar label { font-size: 14px; font-weight: 600; }
+.catalog-toolbar > .fine { flex-basis: 100%; margin: 0; }
+select { max-width: 100%; padding: 10px 12px; font: inherit; font-size: 14px; color: var(--text); background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); }
+.app-dialog { width: min(1040px, calc(100% - 24px)); max-height: 90dvh; padding: 0; color: var(--text); background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r-lg); }
+.app-dialog::backdrop { background: rgb(0 0 0 / 72%); }
+.dialog-head { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 22px; background: var(--bg-2); border-bottom: 1px solid var(--line); }
+.dialog-head h2 { margin: 0; font-size: 22px; overflow-wrap: anywhere; }
+.dialog-head .btn { flex: none; }
+.dialog-body { padding: 20px 22px; }
+.detail-alternatives { display: grid; gap: 20px; }
+.detail-alternatives > .alt { padding: 18px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); min-width: 0; }
+.install-panel { margin-top: 16px; }
+.install-panel h4 { margin: 0 0 8px; font-size: 14px; }
+.install-route { margin-top: 10px; padding: 12px; border: 1px solid var(--line); border-radius: var(--r); }
+.install-route h5 { margin: 0 0 6px; font-size: 13px; }
+.install-route > a { display: inline-block; margin: 4px 12px 4px 0; font-size: 13px; }
+.copy-command { margin: 6px 12px 6px 0; padding: 5px 8px; font: inherit; font-size: 12px; border: 1px solid var(--line-2); background: var(--bg-2); color: var(--text); border-radius: var(--r); cursor: pointer; }
 .card .meta, .meta { margin: 2px 0 12px; color: var(--text-2); font-size: 14px; }
 .row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 
@@ -211,7 +239,6 @@ h3 { font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 8px; }
 @media (prefers-color-scheme: light) { .s-gold { color: var(--partial); } }
 
 .alt { padding: 12px 0; border-top: 1px solid var(--line); }
-.alt:first-of-type { border-top: 0; padding-top: 0; }
 .alt-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .alt-name { font-weight: 700; }
 .alt p { margin: 6px 0 0; font-size: 14px; color: var(--text-2); }

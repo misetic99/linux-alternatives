@@ -1,0 +1,82 @@
+# License and package reference: https://packages.fedoraproject.org/pkgs/synfigstudio/synfigstudio/
+id: synfig
+name: Synfig Studio
+homepage: https://www.synfig.org/
+license: GPL-2.0-or-later
+description: 2D animation editor using vector and bitmap artwork.
+install:
+  - method: apt
+    ref: synfigstudio
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/synfigstudio
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: dnf
+    ref: synfigstudio
+    sources:
+      - https://packages.fedoraproject.org/pkgs/synfigstudio/synfigstudio/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: synfigstudio
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/synfigstudio/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: nix
+    ref: synfigstudio
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/sy/synfigstudio/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: xbps
+    ref: synfigstudio
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/synfigstudio/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: synfigstudio
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/s/synfigstudio/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: synfigstudio
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/synfigstudio
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
+  - method: flatpak
+    ref: org.synfig.SynfigStudio
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.synfig.SynfigStudio
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://www.synfig.org/download-stable/
+    distros:
+      - any
+    sources:
+      - https://www.synfig.org/download-stable/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

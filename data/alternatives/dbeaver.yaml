@@ -5,5 +5,57 @@ homepage: https://dbeaver.io/
 license: Apache-2.0
 description: "Database client for SQL and many database engines."
 install:
+  - method: pacman
+    ref: dbeaver
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/dbeaver/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: xbps
+    ref: dbeaver
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/dbeaver/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: dbeaver
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/d/dbeaver/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: dbeaver-ce
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/dbeaver-ce
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: io.dbeaver.DBeaverCommunity
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/io.dbeaver.DBeaverCommunity
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://dbeaver.io/download/
+    distros:
+      - any
+    sources:
+      - https://dbeaver.io/download/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

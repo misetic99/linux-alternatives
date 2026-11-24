@@ -6,5 +6,50 @@ homepage: https://natrongithub.github.io/
 license: GPL-2.0-or-later
 description: Node-based 2D compositor with keying, tracking and rotoscoping tools.
 install:
+  - method: nix
+    ref: natron
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/na/natron/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: eopkg
+    ref: natron
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/n/natron/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: natron
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/natron
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: fr.natron.Natron
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/fr.natron.Natron
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://natrongithub.github.io/
+    distros:
+      - any
+    sources:
+      - https://natrongithub.github.io/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

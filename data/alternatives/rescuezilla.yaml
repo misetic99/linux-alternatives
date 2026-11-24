@@ -8,3 +8,8 @@ description: Disk imaging and restoration tool supplied as a bootable Linux envi
 install:
   - method: download
     ref: https://rescuezilla.com/download
+    distros:
+      - live
+    sources:
+      - https://rescuezilla.com/download
+    notes: Download a bootable live image and start it separately from your installed system. This route is not a package installed into the selected distribution.

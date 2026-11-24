@@ -24,27 +24,46 @@
         "additionalProperties": false,
         "required": ["method", "ref"],
         "properties": {
-          "method": { "enum": ["apt", "dnf", "pacman", "flatpak", "snap", "appimage", "download"] },
+          "method": { "enum": ["apt", "dnf", "pacman", "zypper", "apk", "xbps", "eopkg", "emerge", "nix", "flatpak", "snap", "appimage", "download"] },
           "ref": {
             "description": "Package name, Flatpak app ID, or download URL.",
             "type": "string",
             "minLength": 1
-          }
+          },
+          "distros": {
+            "description": "Sourced installation availability, not a tested compatibility guarantee. any means a distribution-independent runtime; live means bootable media.",
+            "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": { "$ref": "#/$defs/distro" }
+          },
+          "sources": {
+            "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": { "type": "string", "format": "uri", "pattern": "^https?://" }
+          },
+          "notes": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "classic": { "description": "Snap classic confinement, only when required by the store entry.", "type": "boolean" }
         },
-        "if": { "properties": { "method": { "not": { "const": "download" } } } },
-        "then": {
-          "properties": {
-            "ref": {
-              "type": "string",
-              "description": "Package names and Flatpak IDs only: no spaces or shell characters.",
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+        "allOf": [
+          {
+            "if": { "properties": { "method": { "enum": ["download", "appimage"] } } },
+            "then": { "properties": { "ref": { "type": "string", "format": "uri", "pattern": "^https?://\\S+$" } } },
+            "else": {
+              "if": { "properties": { "method": { "const": "emerge" } } },
+              "then": { "properties": { "ref": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9+._-]*/[A-Za-z0-9][A-Za-z0-9+._-]*$" } } },
+              "else": { "properties": { "ref": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$" } } }
             }
+          },
+          { "if": { "properties": { "classic": {} }, "required": ["classic"] }, "then": { "properties": { "method": { "const": "snap" } } } },
+          {
+            "if": { "properties": { "method": { "enum": ["apt", "dnf", "pacman", "zypper", "apk", "xbps", "eopkg", "emerge", "nix"] } } },
+            "then": { "properties": { "distros": { "type": "array", "items": { "not": { "enum": ["any", "live"] } } } } }
           }
-        },
-        "else": {
-          "properties": { "ref": { "type": "string", "pattern": "^https?://\\S+$" } }
-        }
+        ]
       }
+    }
+  },
+  "$defs": {
+    "distro": {
+      "enum": ["any", "live", "debian", "ubuntu", "linux-mint", "pop-os", "fedora", "arch", "manjaro", "opensuse-tumbleweed", "opensuse-leap", "alpine", "nixos", "gentoo", "void", "solus", "rhel", "rocky", "almalinux", "centos-stream", "mageia", "elementary", "zorin", "kali", "kde-neon", "endeavouros", "garuda", "nobara", "bazzite", "other"]
     }
   }
 }

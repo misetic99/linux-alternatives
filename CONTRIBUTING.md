@@ -41,6 +41,16 @@ Same vocabulary as WineHQ and ProtonDB: `platinum` (perfect out of the box), `go
 - **Use your own words.** Do not paste text from other databases or vendor marketing pages.
 - **Slugs.** Lowercase, hyphens only, no version numbers in app ids (`autocad`, not `autocad-2024`; put the version in reports).
 
+## Installation availability
+
+Each alternative lists installation routes with `method` and `ref`. Add `distros`, `sources` and a short `notes` field to every route. Native package availability must come from that distribution's repository or the project's installation guide. Do not infer Ubuntu availability from Debian, RHEL availability from Fedora, or derivative availability from Arch.
+
+Use distribution ids from `schema/alternative.schema.json`. `any` means a distribution-independent runtime or project download, with prerequisites explained in `notes`; it does not mean the vendor tested every distribution. `live` is for bootable media that runs separately from the installed system. State release, repository and architecture restrictions where known. Missing availability is unknown, not unsupported.
+
+Supported package managers are `apt`, `dnf`, `pacman`, `zypper`, `apk`, `xbps`, `eopkg`, `emerge` and `nix`, plus `flatpak` and `snap`. Package refs must pass the schema's safe pattern. Only Portage atoms allow a single category/name slash. Set `classic: true` only for Snap packages whose store entry requires classic confinement. `download` and `appimage` refs must be HTTP(S) URLs; the site renders them as links and never assembles download-and-run commands.
+
+The metadata fields are optional and all previously committed entries remain valid. This catalog supplies the metadata for every route. AppImage refs now use HTTP(S) URLs; there were no AppImage refs in the previous catalog. External entries using a bare AppImage filename must migrate to a project download URL. Fit ratings and installation availability are separate from tested Wine/Proton reports.
+
 ## Development
 
 Requires Node.js 20 or newer.

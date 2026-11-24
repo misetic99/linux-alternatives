@@ -3,13 +3,7 @@
 
 globalThis.PlanCore = (() => {
   const FIT_RANK = { full: 0, good: 1, partial: 2, minimal: 3 };
-  const SAFE_REF = /^[A-Za-z0-9][A-Za-z0-9._+-]*$/;
-  const INSTALL_CMD = {
-    apt: (r) => `sudo apt install ${r}`,
-    dnf: (r) => `sudo dnf install ${r}`,
-    pacman: (r) => `sudo pacman -S ${r}`,
-    snap: (r) => `sudo snap install ${r}`,
-  };
+  const { SAFE_REF, command } = globalThis.InstallCore;
 
   /** One printable line of plain text: safe to put in a shell comment. */
   function clean(value) {
@@ -26,7 +20,7 @@ globalThis.PlanCore = (() => {
   }
 
   function flatpakRef(alt) {
-    const hit = ((alt && alt.install) || []).find((i) => i.method === "flatpak" && SAFE_REF.test(i.ref));
+    const hit = ((alt && alt.install) || []).find((i) => i.method === "flatpak" && command(i) !== null);
     return hit ? hit.ref : null;
   }
   const hasFlatpak = (alt) => flatpakRef(alt) !== null;
@@ -78,9 +72,9 @@ globalThis.PlanCore = (() => {
         }
         continue;
       }
-      const other = (alt.install || []).find((i) => INSTALL_CMD[i.method] && SAFE_REF.test(i.ref));
+      const other = (alt.install || []).map(command).find(Boolean);
       lines.push(other
-        ? `# no Flatpak listed; alternative install: ${INSTALL_CMD[other.method](other.ref)}`
+        ? `# no Flatpak listed; alternative install: ${other}`
         : "# no safe install command listed; see the project homepage");
     }
     if (installs === 0) lines.push("", "# Nothing to install with Flatpak for this selection.");

@@ -5,5 +5,99 @@ homepage: https://www.thunderbird.net/
 license: MPL-2.0
 description: "Email client with calendar and contacts."
 install:
+  - method: apt
+    ref: thunderbird
+    sources:
+      - https://packages.debian.org/trixie/thunderbird
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: thunderbird
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/thunderbird
+    notes: Ubuntu 24.04 LTS (Noble), main repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: thunderbird
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/thunderbird
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: thunderbird
+    sources:
+      - https://packages.fedoraproject.org/pkgs/thunderbird/thunderbird/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: thunderbird
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/thunderbird/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: apk
+    ref: thunderbird
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: emerge
+    ref: mail-client/thunderbird
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/mail-client/thunderbird
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: thunderbird
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/thunderbird/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: thunderbird
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/t/thunderbird/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: thunderbird
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/thunderbird
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.mozilla.Thunderbird
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.mozilla.Thunderbird
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://www.thunderbird.net/en-US/thunderbird/all/
+    distros:
+      - any
+    sources:
+      - https://www.thunderbird.net/en-US/thunderbird/all/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

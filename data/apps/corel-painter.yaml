@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: corel-painter
+name: Corel Painter
+vendor: Corel
+category: graphics
+homepage: https://www.painterartist.com/en/product/painter/
+verified: false
+alternatives:
+  - id: krita
+    fit: partial
+    notes: Suggested for digital painting and brush-based illustration. Existing Corel Painter data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.painterartist.com/en/product/painter/
+      - https://krita.org/en/features/

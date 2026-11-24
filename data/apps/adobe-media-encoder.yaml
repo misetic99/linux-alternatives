@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: adobe-media-encoder
+name: Adobe Media Encoder
+vendor: Adobe
+category: video
+homepage: https://www.adobe.com/products/media-encoder.html
+verified: false
+alternatives:
+  - id: handbrake
+    fit: partial
+    notes: Suggested for transcoding video files. Existing Adobe Media Encoder data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.adobe.com/products/media-encoder.html
+      - https://handbrake.fr/features.php

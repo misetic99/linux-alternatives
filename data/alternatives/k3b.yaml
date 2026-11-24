@@ -8,3 +8,97 @@ description: Optical disc authoring application with disc copying and audio CD e
 install:
   - method: apt
     ref: k3b
+    sources:
+      - https://packages.debian.org/trixie/k3b
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: k3b
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/k3b
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: k3b
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/k3b
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: k3b
+    sources:
+      - https://packages.fedoraproject.org/pkgs/k3b/k3b/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: k3b
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/k3b/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: k3b
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/k3b
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: k3b
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: emerge
+    ref: kde-apps/k3b
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/kde-apps/k3b
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: k3b
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/k3b/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: k3b
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/k/k3b/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: k3b
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/k3b
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
+  - method: download
+    ref: https://apps.kde.org/k3b/
+    distros:
+      - any
+    sources:
+      - https://apps.kde.org/k3b/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

@@ -6,5 +6,121 @@ homepage: https://www.audacityteam.org/
 license: GPL-3.0-only
 description: Audio application for recording, editing and mixing multiple tracks.
 install:
+  - method: apt
+    ref: audacity
+    sources:
+      - https://packages.debian.org/trixie/audacity
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: audacity
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/audacity
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: audacity
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/audacity
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: audacity
+    sources:
+      - https://packages.fedoraproject.org/pkgs/audacity/audacity/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: audacity
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/audacity/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: audacity
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/audacity
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: audacity
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: audacity
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/au/audacity/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: media-sound/audacity
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-sound/audacity
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: audacity
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/audacity/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: audacity
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/a/audacity/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: audacity
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/audacity
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.audacityteam.Audacity
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.audacityteam.Audacity
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://www.audacityteam.org/download/linux/
+    distros:
+      - any
+    sources:
+      - https://www.audacityteam.org/download/linux/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
+  - method: appimage
+    ref: https://www.audacityteam.org/download/linux/
+    distros:
+      - any
+    sources:
+      - https://www.audacityteam.org/download/linux/
+    notes: The project page lists AppImage builds. Check architecture, release requirements and FUSE support. This link opens the official page; it does not download or execute a file automatically.

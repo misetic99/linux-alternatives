@@ -6,5 +6,119 @@ description: Digital painting and illustration.
 install:
   - method: apt
     ref: krita
+    sources:
+      - https://packages.debian.org/trixie/krita
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: krita
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/krita
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: krita
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/krita
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: krita
+    sources:
+      - https://packages.fedoraproject.org/pkgs/krita/krita/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: krita
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/krita/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: krita
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/krita
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: krita
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: krita
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/kr/krita/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: media-gfx/krita
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-gfx/krita
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: krita
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/krita/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: krita
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/k/krita/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: krita
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/krita
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.kde.krita
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.kde.krita
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://krita.org/en/download/
+    distros:
+      - any
+    sources:
+      - https://krita.org/en/download/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
+  - method: appimage
+    ref: https://krita.org/en/download/
+    distros:
+      - any
+    sources:
+      - https://krita.org/en/download/
+    notes: The project page lists AppImage builds. Check architecture, release requirements and FUSE support. This link opens the official page; it does not download or execute a file automatically.

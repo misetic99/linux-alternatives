@@ -6,5 +6,114 @@ homepage: https://remmina.org/
 license: GPL-2.0-or-later
 description: Remote connection client supporting protocols including RDP, SSH and VNC.
 install:
+  - method: apt
+    ref: remmina
+    sources:
+      - https://packages.debian.org/trixie/remmina
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: remmina
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/remmina
+    notes: Ubuntu 24.04 LTS (Noble), main repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: remmina
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/remmina
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: remmina
+    sources:
+      - https://packages.fedoraproject.org/pkgs/remmina/remmina/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: remmina
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/remmina/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: remmina
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/remmina
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: remmina
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: remmina
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/re/remmina/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: net-misc/remmina
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/net-misc/remmina
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: remmina
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/remmina/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: remmina
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/r/remmina/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: remmina
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/remmina
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.remmina.Remmina
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.remmina.Remmina
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://remmina.org/how-to-install-remmina/
+    distros:
+      - any
+    sources:
+      - https://remmina.org/how-to-install-remmina/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

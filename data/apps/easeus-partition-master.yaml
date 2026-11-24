@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: easeus-partition-master
+name: EaseUS Partition Master
+vendor: EaseUS
+category: utilities
+homepage: https://www.easeus.com/partition-manager/
+verified: false
+alternatives:
+  - id: gparted
+    fit: partial
+    notes: Suggested for creating, moving and resizing partitions. Existing EaseUS Partition Master data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.easeus.com/partition-manager/
+      - https://gparted.org/features.php

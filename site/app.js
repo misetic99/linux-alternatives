@@ -9,17 +9,10 @@ const STATUS_LABEL = {
   bronze: "Compatibility: bronze", borked: "Compatibility: borked", untested: "Compatibility: untested",
 };
 const RUNNER_LABEL = { wine: "Wine", proton: "Proton", bottles: "Bottles", crossover: "CrossOver", vm: "Virtual machine", other: "Other runner" };
-const SAFE_REF = /^[A-Za-z0-9][A-Za-z0-9._+-]*$/;
-const INSTALL_CMD = {
-  apt: (r) => `sudo apt install ${r}`,
-  dnf: (r) => `sudo dnf install ${r}`,
-  pacman: (r) => `sudo pacman -S ${r}`,
-  flatpak: (r) => `flatpak install flathub ${r}`,
-  snap: (r) => `sudo snap install ${r}`,
-};
+const Install = globalThis.InstallCore;
 
 const $ = (id) => document.getElementById(id);
-const state = { apps: [], query: "", category: "all" };
+const state = { apps: [], query: "", category: "all", distro: "all", dialog: null };
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -33,7 +26,7 @@ function badge(text, className) {
 }
 
 function isHttp(url) {
-  return typeof url === "string" && /^https?:\/\//i.test(url);
+  return Install.isHttp(url);
 }
 
 function externalLink(label, url) {
@@ -115,7 +108,59 @@ function formats(link) {
   return parts.join(" · ");
 }
 
-function renderAlternative(link) {
+function distroSelect(id) {
+  const select = el("select");
+  select.id = id;
+  const all = el("option", null, "All distributions");
+  all.value = "all";
+  select.append(all);
+  for (const [key, label] of Object.entries(Install.DISTROS)) {
+    if (key === "any") continue;
+    const option = el("option", null, label);
+    option.value = key;
+    select.append(option);
+  }
+  select.value = state.distro;
+  return select;
+}
+
+function renderInstall(alt) {
+  const section = el("section", "install-panel");
+  section.append(el("h4", null, "Installation options"));
+  const routes = Install.routes(alt, state.distro);
+  if (!routes.length) {
+    section.append(el("p", "meta", `No sourced installation option is listed for ${Install.distroLabel(state.distro)}. This does not mean the application is unsupported.`));
+    if (isHttp(alt.homepage)) section.append(externalLink("Check the project website", alt.homepage));
+    return section;
+  }
+  for (const route of routes) {
+    const row = el("div", "install-route");
+    const distros = route.distros?.length ? route.distros.map(Install.distroLabel).join(", ") : "Distribution not specified";
+    row.append(el("h5", null, `${Install.METHODS[route.method]} · ${distros}`));
+    const cmd = Install.command(route);
+    if (cmd) {
+      row.append(el("code", "cmd", cmd));
+      const copy = el("button", "copy-command", "Copy command");
+      copy.type = "button";
+      copy.setAttribute("aria-label", `Copy ${Install.METHODS[route.method]} command for ${alt.name}`);
+      copy.addEventListener("click", async () => {
+        try { await navigator.clipboard.writeText(cmd); copy.textContent = "Copied"; }
+        catch { copy.textContent = "Select and copy the command above"; }
+      });
+      row.append(copy);
+    } else {
+      row.append(externalLink(route.method === "appimage" ? "Download AppImage" : "Open download instructions", route.ref));
+    }
+    if (route.method === "flatpak") row.append(externalLink("Set up Flatpak and Flathub", "https://flathub.org/en/setup"));
+    if (route.notes) row.append(el("p", "fine", route.notes));
+    const sources = renderSources(route.sources);
+    if (sources) row.append(sources);
+    section.append(row);
+  }
+  return section;
+}
+
+function renderAlternative(link, installations) {
   const alt = link.alternative;
   const box = el("div", "alt");
 
@@ -130,10 +175,16 @@ function renderAlternative(link) {
   }
   head.append(badge(FIT_LABEL[link.fit] || link.fit, `f-${link.fit}`));
   box.append(head);
+  if (alt.description) box.append(el("p", null, alt.description));
 
   const line = [alt.license, formats(link), link.shortcuts ? `${link.shortcuts} shortcuts` : ""]
     .filter(Boolean).join(" · ");
   if (line) box.append(el("p", null, line));
+
+  const install = el("div");
+  install.append(renderInstall(alt));
+  installations.push({ alt, container: install });
+  box.append(install);
 
   if (link.missing && link.missing.length) {
     const ul = el("ul");
@@ -144,9 +195,48 @@ function renderAlternative(link) {
   const sources = renderSources(link.sources);
   if (sources) box.append(sources);
 
-  const install = (alt.install || []).find((i) => INSTALL_CMD[i.method] && SAFE_REF.test(i.ref));
-  if (install) box.append(el("code", "cmd", INSTALL_CMD[install.method](install.ref)));
   return box;
+}
+
+function openApp(app) {
+  if (!state.dialog) {
+    state.dialog = el("dialog", "app-dialog");
+    document.body.append(state.dialog);
+  }
+  const dialog = state.dialog;
+  dialog.setAttribute("aria-labelledby", "dialog-title");
+  const header = el("div", "dialog-head");
+  const title = el("h2", null, app.name);
+  title.id = "dialog-title";
+  const close = el("button", "btn btn-ghost btn-sm", "Close");
+  close.type = "button";
+  close.autofocus = true;
+  close.setAttribute("aria-label", "Close app details");
+  close.addEventListener("click", () => dialog.close());
+  header.append(title, close);
+
+  const body = el("div", "dialog-body");
+  body.append(el("p", "meta", `${app.vendor} · ${app.category}`));
+  if (!app.verified) body.append(el("p", "fine", "Unverified comparison. Review sources and migration notes."));
+  const controls = el("div", "catalog-toolbar dialog-toolbar");
+  const label = el("label", null, "Installation options for");
+  label.htmlFor = "detail-distro";
+  const select = distroSelect("detail-distro");
+  controls.append(label, select);
+  body.append(controls, el("p", "fine", "Installation availability is not a tested support guarantee. Check release, architecture and runtime requirements."));
+  const alternatives = el("div", "detail-alternatives");
+  const installations = [];
+  for (const link of app.alternatives) alternatives.append(renderAlternative(link, installations));
+  if (!app.alternatives.length) alternatives.append(el("p", "meta", "No alternatives listed yet."));
+  select.addEventListener("change", (event) => {
+    state.distro = event.target.value;
+    $("distro").value = state.distro;
+    for (const { alt, container } of installations) container.replaceChildren(renderInstall(alt));
+  });
+  body.append(alternatives, renderDetails(app));
+  dialog.replaceChildren(header, body);
+  dialog.showModal();
+  dialog.scrollTop = 0;
 }
 
 function renderCard(app) {
@@ -161,10 +251,23 @@ function renderCard(app) {
   if (!app.verified) row.append(badge("unverified", "muted"));
   card.append(row);
 
-  if (app.wine.summary) card.append(el("p", "meta", app.wine.summary));
-  if (app.alternatives.length === 0) card.append(el("p", "meta", "No alternatives listed yet."));
-  for (const link of app.alternatives) card.append(renderAlternative(link));
-  card.append(renderDetails(app));
+  const preview = el("div", "card-preview");
+  preview.append(el("p", "card-label", `${app.alternatives.length} Linux alternative${app.alternatives.length === 1 ? "" : "s"}`));
+  const names = el("ul", "card-alternatives");
+  for (const link of app.alternatives.slice(0, 3)) {
+    const line = el("li");
+    line.append(el("span", null, link.alternative.name), el("span", "fine", FIT_LABEL[link.fit] || link.fit));
+    names.append(line);
+  }
+  preview.append(names);
+  if (app.alternatives.length > 3) preview.append(el("p", "fine", `+${app.alternatives.length - 3} more in details`));
+  card.append(preview);
+  const view = el("button", "btn btn-ghost card-open", "Alternatives & install options");
+  view.type = "button";
+  view.setAttribute("aria-haspopup", "dialog");
+  view.setAttribute("aria-label", `View alternatives and installation options for ${app.name}`);
+  view.addEventListener("click", () => openApp(app));
+  card.append(view);
   return card;
 }
 
@@ -250,6 +353,10 @@ async function main() {
   }
   renderStats();
   renderChips();
+  const distro = $("distro");
+  const choices = distroSelect("distro");
+  distro.replaceChildren(...choices.children);
+  distro.addEventListener("change", (event) => { state.distro = event.target.value; });
   state.query = initialQuery();
   $("q").value = state.query;
   $("q").addEventListener("input", (e) => { state.query = e.target.value; syncUrl(); render(); });

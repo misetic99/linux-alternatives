@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: total-commander
+name: Total Commander
+vendor: Ghisler Software
+category: utilities
+homepage: https://www.ghisler.com/
+verified: false
+alternatives:
+  - id: doublecmd
+    fit: partial
+    notes: Suggested for two-pane file management and archive browsing. Existing Total Commander data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.ghisler.com/
+      - https://doublecmd.sourceforge.io/

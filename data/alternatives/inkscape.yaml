@@ -7,5 +7,100 @@ homepage: https://inkscape.org/
 license: GPL-3.0-or-later
 description: Vector drawing application with SVG editing and PDF and PNG export.
 install:
+  - method: apt
+    ref: inkscape
+    sources:
+      - https://packages.debian.org/trixie/inkscape
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: inkscape
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/inkscape
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: inkscape
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/inkscape
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: inkscape
+    sources:
+      - https://packages.fedoraproject.org/pkgs/inkscape/inkscape/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: inkscape
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/inkscape/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: inkscape
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/inkscape
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: inkscape
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: emerge
+    ref: media-gfx/inkscape
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-gfx/inkscape
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: inkscape
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/inkscape/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: inkscape
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/i/inkscape/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: inkscape
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/inkscape
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.inkscape.Inkscape
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.inkscape.Inkscape
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.

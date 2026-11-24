@@ -6,5 +6,100 @@ homepage: https://obsproject.com/
 license: GPL-2.0-or-later
 description: Video capture and live streaming application with scenes and multiple input sources.
 install:
+  - method: apt
+    ref: obs-studio
+    sources:
+      - https://packages.debian.org/trixie/obs-studio
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: obs-studio
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/obs-studio
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: obs-studio
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/obs-studio
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: obs-studio
+    sources:
+      - https://packages.fedoraproject.org/pkgs/obs-studio/obs-studio/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: obs-studio
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/obs-studio/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: obs-studio
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/obs-studio
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: obs-studio
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: emerge
+    ref: media-video/obs-studio
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-video/obs-studio
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: eopkg
+    ref: obs-studio
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/o/obs-studio/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: obs-studio
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/obs-studio
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: com.obsproject.Studio
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/com.obsproject.Studio
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://obsproject.com/download
+    distros:
+      - any
+    sources:
+      - https://obsproject.com/download
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

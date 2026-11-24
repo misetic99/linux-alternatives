@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { validateData, buildDist, summariseReports, REPO_ROOT } from "./lib.mjs";
+import { validateData, buildDist, summariseReports, loadData, REPO_ROOT } from "./lib.mjs";
 
 function makeData(files) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "la-test-"));
@@ -159,4 +159,37 @@ test("buildDist resolves alternatives and derives wine status", () => {
 test("buildDist refuses invalid data", () => {
   const dir = makeData({ "apps/bar.yaml": APP });
   assert.throws(() => buildDist(dir), /invalid/);
+});
+
+test("catalog installation routes carry distribution scope and source links", () => {
+  const { entries } = loadData(path.join(REPO_ROOT, "data"));
+  for (const { kind, data } of entries) {
+    if (kind !== "alternative") continue;
+    for (const route of data.install) {
+      assert.ok(route.distros?.length, `${data.id}: missing distribution scope`);
+      assert.ok(route.sources?.length, `${data.id}: missing installation sources`);
+      assert.ok(route.notes, `${data.id}: missing installation requirements`);
+    }
+  }
+});
+
+test("new installation metadata rejects unknown distributions and unsafe Portage atoms", () => {
+  for (const entry of [
+    { method: "apt", ref: "foo", distros: ["any"] },
+    { method: "apt", ref: "foo", classic: true },
+    { method: "apt", ref: "foo", distros: ["unknown-distro"] },
+    { method: "emerge", ref: "category/foo;reboot", distros: ["gentoo"] },
+    { method: "download", ref: "javascript:alert(1)" },
+  ]) {
+    const content = `id: foo\nname: Foo\nhomepage: https://example.org\nlicense: MIT\ninstall: ${JSON.stringify([entry])}\n`;
+    assert.ok(validateData(makeData({ "alternatives/foo.yaml": content })).length > 0, JSON.stringify(entry));
+  }
+  for (const entry of [
+    { method: "emerge", ref: "media-gfx/foo", distros: ["gentoo"] },
+    { method: "snap", ref: "foo", classic: true },
+    { method: "appimage", ref: "https://example.org/Foo.AppImage", distros: ["any"] },
+  ]) {
+    const content = `id: foo\nname: Foo\nhomepage: https://example.org\nlicense: MIT\ninstall: ${JSON.stringify([entry])}\n`;
+    assert.deepEqual(validateData(makeData({ "alternatives/foo.yaml": content })), [], JSON.stringify(entry));
+  }
 });

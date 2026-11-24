@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: luminar-neo
+name: Luminar Neo
+vendor: Skylum
+category: graphics
+homepage: https://skylum.com/luminar
+verified: false
+alternatives:
+  - id: darktable
+    fit: partial
+    notes: Suggested for raw photo development and manual image adjustments. Existing Luminar Neo data, settings and specialized workflows have not been tested.
+    sources:
+      - https://skylum.com/luminar
+      - https://www.darktable.org/about/

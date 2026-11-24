@@ -7,7 +7,16 @@ homepage: https://example.org
 license: GPL-3.0-or-later   # SPDX identifier, or "proprietary"
 description: One short sentence.
 install:
-  - method: apt             # apt | dnf | pacman | flatpak | snap | appimage | download
+  - method: apt             # apt | dnf | pacman | zypper | apk | xbps | eopkg | emerge | nix
     ref: package-name
+    distros: [debian]       # exact ids from the schema; do not assume related distributions
+    sources: [https://packages.debian.org/trixie/package-name]
+    notes: Debian 13 repository; check release and architecture availability.
   - method: flatpak
     ref: org.example.App
+    distros: [any]          # runtime availability, not vendor certification
+    sources: [https://flathub.org/en/apps/org.example.App]
+    notes: Requires Flatpak and the Flathub repository.
+# Also supported: snap (classic: true only when required), appimage and download.
+# AppImage and download refs are HTTP(S) URLs, displayed as links, never executed.
+# Use distros: [live] for a bootable environment that runs separately from the installed OS.

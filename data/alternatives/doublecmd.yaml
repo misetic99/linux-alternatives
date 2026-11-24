@@ -1,0 +1,49 @@
+# License and package reference: https://archlinux.org/packages/extra/x86_64/doublecmd-qt6/
+id: doublecmd
+name: Double Commander
+homepage: https://doublecmd.sourceforge.io/
+license: GPL-2.0-or-later
+description: Two-pane file manager with archive browsing and an integrated file viewer.
+install:
+  - method: apt
+    ref: doublecmd-gtk
+    sources:
+      - https://packages.debian.org/trixie/doublecmd-gtk
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: doublecmd-qt
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/doublecmd-qt
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: doublecmd-gtk
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/doublecmd-gtk
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: pacman
+    ref: doublecmd-qt6
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/doublecmd-qt6/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: eopkg
+    ref: doublecmd
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/d/doublecmd/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: download
+    ref: https://doublecmd.sourceforge.io/
+    distros:
+      - any
+    sources:
+      - https://doublecmd.sourceforge.io/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.

@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: aomei-partition-assistant
+name: AOMEI Partition Assistant
+vendor: AOMEI
+category: utilities
+homepage: https://www.diskpart.com/
+verified: false
+alternatives:
+  - id: gparted
+    fit: partial
+    notes: Suggested for creating, moving and resizing partitions. Existing AOMEI Partition Assistant data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.diskpart.com/
+      - https://gparted.org/features.php

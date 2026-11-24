@@ -5,5 +5,89 @@ homepage: https://www.gnucash.org/
 license: GPL-2.0-or-later
 description: "Double-entry accounting for personal and small business finances."
 install:
+  - method: apt
+    ref: gnucash
+    sources:
+      - https://packages.debian.org/trixie/gnucash
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: gnucash
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/gnucash
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: gnucash
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/gnucash
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: gnucash
+    sources:
+      - https://packages.fedoraproject.org/pkgs/gnucash/gnucash/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: gnucash
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/gnucash/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: gnucash
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/gnucash
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: gnucash
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: gnucash
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/gn/gnucash/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: app-office/gnucash
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/app-office/gnucash
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: gnucash
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/gnucash/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: gnucash
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/g/gnucash/
+    notes: Solus Shannon binary repository, x86_64.
   - method: flatpak
     ref: org.gnucash.GnuCash
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.gnucash.GnuCash
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.

@@ -1,0 +1,125 @@
+# License and package reference: https://archlinux.org/packages/extra/x86_64/digikam/
+id: digikam
+name: digiKam
+homepage: https://www.digikam.org/
+license: GPL-2.0-or-later
+description: Photo organizer with metadata tools, raw image support and image editing.
+install:
+  - method: apt
+    ref: digikam
+    sources:
+      - https://packages.debian.org/trixie/digikam
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: digikam
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/digikam
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: digikam
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/digikam
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: digikam
+    sources:
+      - https://packages.fedoraproject.org/pkgs/digikam/digikam/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: digikam
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/digikam/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: digikam
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/digikam
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: digikam
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: digikam
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/di/digikam/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: media-gfx/digikam
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-gfx/digikam
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: digikam
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/digikam/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: digikam
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/d/digikam/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: digikam
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/digikam
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
+  - method: flatpak
+    ref: org.kde.digikam
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.kde.digikam
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://www.digikam.org/download/
+    distros:
+      - any
+    sources:
+      - https://www.digikam.org/download/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
+  - method: appimage
+    ref: https://www.digikam.org/download/
+    distros:
+      - any
+    sources:
+      - https://www.digikam.org/download/
+    notes: The project page lists AppImage builds. Check architecture, release requirements and FUSE support. This link opens the official page; it does not download or execute a file automatically.

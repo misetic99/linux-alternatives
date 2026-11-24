@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: greenshot
+name: Greenshot
+vendor: Greenshot contributors
+category: utilities
+homepage: https://getgreenshot.org/
+verified: false
+alternatives:
+  - id: flameshot
+    fit: partial
+    notes: Suggested for screenshots and annotations. Existing Greenshot data, settings and specialized workflows have not been tested.
+    sources:
+      - https://getgreenshot.org/
+      - https://flameshot.org/

@@ -119,6 +119,18 @@ erDiagram
 
 The app's summary status is **derived** at build time from its reports (the most common status among its reports; ties go to the most recent report), not typed by hand. A curated `wine.summary` text can still be written for context. This keeps the headline number honest as reports accumulate.
 
+### Installation routes
+
+An alternative's `install` array contains all sourced installation options, rather than a single preferred command. Each route can carry `distros` (distribution ids), `sources` (repository or project URLs), `notes` (release, architecture and setup requirements), and Snap-only `classic` confinement. These optional additions preserve existing data and API consumers. New native methods are Zypper, APK, XBPS, eopkg, Portage and Nix, alongside APT, DNF, Pacman, Flatpak and Snap.
+
+AppImage refs are now HTTP(S) project or download URLs. No previous catalog entries used this method, so the existing dataset needs no conversion. External entries using bare filenames must switch to URLs before validation. Download URLs are not package references and are never used as command arguments.
+
+Distribution labels describe installation availability, not tested vendor support. Native routes are scoped to their sources; they are not automatically inherited by related distributions. `any` denotes a cross-distribution runtime or download requiring the documented prerequisites. `live` denotes a separately booted environment. Unlisted availability remains unknown. Repository and upstream installation sources are retained in the generated JSON.
+
+`site/install-core.js` shares the method labels, distribution vocabulary, route filtering and fixed command templates between the catalog and switch planner. The schema and runtime allow only safe package refs; Portage has a separate category/name pattern. Download and AppImage URLs are rendered as links, never interpolated into shell commands. The planner still exports a Flatpak script and places native alternatives only in comments.
+
+Catalog cards have the same fixed height and contain only names, status and a short alternative preview. A native modal dialog holds the full comparison, distribution selector, installation options, source links and compatibility reports. Long notes and command lists do not resize the search grid.
+
 ### Identity and naming
 
 - `id` is a lowercase slug, equal to the filename (`adobe-photoshop` is `adobe-photoshop.yaml`).

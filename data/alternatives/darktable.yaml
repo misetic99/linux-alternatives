@@ -5,5 +5,121 @@ homepage: https://www.darktable.org/
 license: GPL-3.0-or-later
 description: "RAW photo workflow and non-destructive editor."
 install:
+  - method: apt
+    ref: darktable
+    sources:
+      - https://packages.debian.org/trixie/darktable
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: darktable
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/darktable
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: darktable
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/darktable
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: darktable
+    sources:
+      - https://packages.fedoraproject.org/pkgs/darktable/darktable/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: darktable
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/darktable/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: darktable
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/darktable
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: darktable
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: darktable
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/da/darktable/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: media-gfx/darktable
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-gfx/darktable
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: darktable
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/darktable/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: darktable
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/d/darktable/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: darktable
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/darktable
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.darktable.Darktable
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.darktable.Darktable
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://www.darktable.org/install/
+    distros:
+      - any
+    sources:
+      - https://www.darktable.org/install/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
+  - method: appimage
+    ref: https://www.darktable.org/install/
+    distros:
+      - any
+    sources:
+      - https://www.darktable.org/install/
+    notes: The project page lists AppImage builds. Check architecture, release requirements and FUSE support. This link opens the official page; it does not download or execute a file automatically.

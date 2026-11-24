@@ -6,5 +6,43 @@ homepage: https://joplinapp.org/
 license: AGPL-3.0-or-later
 description: Note organizer with notebooks, attachments, Markdown editing and a web clipper.
 install:
+  - method: snap
+    ref: joplin-desktop
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/joplin-desktop
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: net.cozic.joplin_desktop
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/net.cozic.joplin_desktop
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://joplinapp.org/help/install/
+    distros:
+      - any
+    sources:
+      - https://joplinapp.org/help/install/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
+  - method: appimage
+    ref: https://joplinapp.org/help/install/
+    distros:
+      - any
+    sources:
+      - https://joplinapp.org/help/install/
+    notes: The project page lists AppImage builds. Check architecture, release requirements and FUSE support. This link opens the official page; it does not download or execute a file automatically.

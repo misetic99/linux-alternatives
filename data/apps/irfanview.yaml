@@ -1,0 +1,14 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: irfanview
+name: IrfanView
+vendor: Irfan Skiljan
+category: graphics
+homepage: https://www.irfanview.com/
+verified: false
+alternatives:
+  - id: gwenview
+    fit: partial
+    notes: Suggested for viewing and browsing image collections. Existing IrfanView data, settings and specialized workflows have not been tested.
+    sources:
+      - https://www.irfanview.com/
+      - https://apps.kde.org/gwenview/

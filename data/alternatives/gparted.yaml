@@ -1,0 +1,92 @@
+# License and package reference: https://archlinux.org/packages/extra/x86_64/gparted/
+id: gparted
+name: GParted
+homepage: https://gparted.org/
+license: GPL-2.0-or-later
+description: Graphical partition editor for creating, moving and resizing partitions.
+install:
+  - method: apt
+    ref: gparted
+    sources:
+      - https://packages.debian.org/trixie/gparted
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: gparted
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/gparted
+    notes: Ubuntu 24.04 LTS (Noble), main repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: gparted
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/gparted
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: gparted
+    sources:
+      - https://packages.fedoraproject.org/pkgs/gparted/gparted/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: gparted
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/gparted/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: gparted
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/gparted
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: gparted
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: gparted
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/gp/gparted/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: sys-block/gparted
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/sys-block/gparted
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: gparted
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/gparted/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: gparted
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/g/gparted/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: download
+    ref: https://gparted.org/download.php
+    distros:
+      - live
+    sources:
+      - https://gparted.org/download.php
+    notes: Download a bootable live image and start it separately from your installed system. This route is not a package installed into the selected distribution.

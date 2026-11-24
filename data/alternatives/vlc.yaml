@@ -6,5 +6,114 @@ homepage: https://www.videolan.org/vlc/
 license: GPL-2.0-or-later
 description: Audio and video player with support for local files, discs and network streams.
 install:
+  - method: apt
+    ref: vlc
+    sources:
+      - https://packages.debian.org/trixie/vlc
+    distros:
+      - debian
+    notes: Debian 13 (Trixie), main repository; availability can differ by release and architecture.
+  - method: apt
+    ref: vlc
+    distros:
+      - ubuntu
+    sources:
+      - https://packages.ubuntu.com/noble/vlc
+    notes: Ubuntu 24.04 LTS (Noble), universe repository; enable Universe where indicated. Other releases and derivatives may differ.
+  - method: apt
+    ref: vlc
+    distros:
+      - linux-mint
+    sources:
+      - https://community.linuxmint.com/software/view/vlc
+    notes: Listed in the Linux Mint software directory. Package versions and availability depend on the selected Mint release and configured repositories.
+  - method: dnf
+    ref: vlc
+    sources:
+      - https://packages.fedoraproject.org/pkgs/vlc/vlc/
+    distros:
+      - fedora
+    notes: Fedora repositories; this does not imply availability in RHEL or its derivatives.
+  - method: pacman
+    ref: vlc
+    distros:
+      - arch
+    sources:
+      - https://archlinux.org/packages/extra/x86_64/vlc/
+    notes: Official Arch Linux Extra repository, x86_64; derivatives may ship different versions.
+  - method: zypper
+    ref: vlc
+    distros:
+      - opensuse-tumbleweed
+    sources:
+      - https://download.opensuse.org/tumbleweed/repo/oss/repodata/repomd.xml
+      - https://software.opensuse.org/package/vlc
+    notes: openSUSE Tumbleweed OSS repository; this is not a claim about Leap releases.
+  - method: apk
+    ref: vlc
+    distros:
+      - alpine
+    sources:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/community/x86_64/APKINDEX.tar.gz
+    notes: Alpine latest-stable, community repository, x86_64; enable this repository before installing.
+  - method: nix
+    ref: vlc
+    distros:
+      - nixos
+    sources:
+      - https://raw.githubusercontent.com/NixOS/nixpkgs/nixos-unstable/pkgs/by-name/vl/vlc/package.nix
+    notes: nixpkgs unstable package expression. Requires Nix with nix-command and flakes enabled; the selected nixpkgs registry determines the version.
+  - method: emerge
+    ref: media-video/vlc
+    distros:
+      - gentoo
+    sources:
+      - https://packages.gentoo.org/packages/media-video/vlc
+    notes: Gentoo package tree; architecture keywords, USE flags and unmasking requirements depend on your system.
+  - method: xbps
+    ref: vlc
+    distros:
+      - void
+    sources:
+      - https://raw.githubusercontent.com/void-linux/void-packages/master/srcpkgs/vlc/template
+    notes: Void Linux package template. Binary availability, libc and architecture must match your configured repository.
+  - method: eopkg
+    ref: vlc
+    distros:
+      - solus
+    sources:
+      - https://packages.getsol.us/shannon/v/vlc/
+    notes: Solus Shannon binary repository, x86_64.
+  - method: snap
+    ref: vlc
+    distros:
+      - ubuntu
+      - debian
+      - linux-mint
+      - fedora
+      - arch
+      - manjaro
+      - opensuse-tumbleweed
+      - opensuse-leap
+      - kde-neon
+      - zorin
+      - elementary
+    sources:
+      - https://snapcraft.io/vlc
+      - https://snapcraft.io/docs/installing-snapd
+    notes: Requires snapd and the Snap Store. Linux Mint and other distributions may require explicit Snap enablement.
   - method: flatpak
     ref: org.videolan.VLC
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.videolan.VLC
+      - https://flathub.org/en/setup
+    notes: Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture.
+  - method: download
+    ref: https://www.videolan.org/vlc/
+    distros:
+      - any
+    sources:
+      - https://www.videolan.org/vlc/
+    notes: Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries.
