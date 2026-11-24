@@ -1,0 +1,15 @@
+# Initial fit estimate based on the linked pages; not tested.
+id: solidworks
+name: "SolidWorks"
+vendor: "Dassault Systemes"
+category: cad
+homepage: https://www.solidworks.com/
+verified: false
+
+alternatives:
+  - id: freecad
+    fit: partial
+    notes: "Suggested for parametric 3D modelling. Migration of SolidWorks parts, assemblies and drawings has not been tested."
+    sources:
+      - https://www.solidworks.com/
+      - https://www.freecad.org/

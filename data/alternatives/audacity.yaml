@@ -1,0 +1,10 @@
+# License: https://github.com/audacity/audacity/blob/master/LICENSE.txt
+# Package: https://flathub.org/en/apps/org.audacityteam.Audacity
+id: audacity
+name: Audacity
+homepage: https://www.audacityteam.org/
+license: GPL-3.0-only
+description: Audio application for recording, editing and mixing multiple tracks.
+install:
+  - method: flatpak
+    ref: org.audacityteam.Audacity

@@ -1,0 +1,19 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: adobe-acrobat-reader
+name: Adobe Acrobat Reader
+aliases: [Acrobat Reader, Adobe Reader]
+vendor: Adobe
+category: office
+homepage: https://www.adobe.com/acrobat/pdf-reader.html
+verified: false
+
+alternatives:
+  - id: okular
+    fit: good
+    file_formats:
+      import: [pdf]
+    notes: Suggested for viewing and annotating PDF documents. Form and signature workflows have not been tested against Acrobat Reader.
+    sources:
+      - https://www.adobe.com/acrobat/pdf-reader.html
+      - https://okular.kde.org/
+      - https://okular.kde.org/formats/

@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/io.dbeaver.DBeaverCommunity
+id: dbeaver
+name: "DBeaver Community"
+homepage: https://dbeaver.io/
+license: Apache-2.0
+description: "Database client for SQL and many database engines."
+install:
+  - method: flatpak
+    ref: io.dbeaver.DBeaverCommunity

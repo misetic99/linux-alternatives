@@ -1,0 +1,15 @@
+# Initial fit estimate based on the linked pages; not tested.
+id: winscp
+name: "WinSCP"
+vendor: "WinSCP project"
+category: utilities
+homepage: https://winscp.net/
+verified: false
+
+alternatives:
+  - id: filezilla
+    fit: partial
+    notes: "Suggested for FTP, FTPS and SFTP file transfers. Scripting and saved-session migration have not been tested."
+    sources:
+      - https://winscp.net/
+      - https://filezilla-project.org/

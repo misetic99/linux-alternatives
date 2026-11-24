@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.kde.filelight
+id: filelight
+name: "Filelight"
+homepage: https://apps.kde.org/filelight/
+license: GPL-2.0-or-later
+description: "Disk usage viewer with a radial map."
+install:
+  - method: flatpak
+    ref: org.kde.filelight

@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: windows-media-player
+name: Windows Media Player
+aliases: [WMP, Windows Media Player Legacy]
+vendor: Microsoft
+category: video
+homepage: https://support.microsoft.com/en-us/windows/apps/windowsmediaplayer/codecs-faq
+verified: false
+
+alternatives:
+  - id: vlc
+    fit: good
+    notes: Suggested for local audio and video playback. Windows Media Player library migration has not been tested.
+    sources:
+      - https://support.microsoft.com/en-us/windows/apps/windowsmediaplayer/codecs-faq
+      - https://github.com/videolan/vlc/blob/master/README.md

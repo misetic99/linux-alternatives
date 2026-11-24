@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked pages; not tested.
+id: quickbooks
+name: "QuickBooks"
+aliases: ["QuickBooks Desktop"]
+vendor: "Intuit"
+category: accounting
+homepage: https://quickbooks.intuit.com/
+verified: false
+
+alternatives:
+  - id: gnucash
+    fit: partial
+    notes: "Suggested for double-entry bookkeeping. Company file import and local tax or payroll requirements have not been tested."
+    sources:
+      - https://quickbooks.intuit.com/
+      - https://www.gnucash.org/

@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.darktable.Darktable
+id: darktable
+name: "darktable"
+homepage: https://www.darktable.org/
+license: GPL-3.0-or-later
+description: "RAW photo workflow and non-destructive editor."
+install:
+  - method: flatpak
+    ref: org.darktable.Darktable

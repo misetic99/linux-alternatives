@@ -1,0 +1,10 @@
+# License: https://github.com/scribusproject/scribus/blob/master/scribus.appdata.xml.in
+# Package: https://flathub.org/en/apps/net.scribus.Scribus
+id: scribus
+name: Scribus
+homepage: https://www.scribus.net/
+license: GPL-2.0-or-later
+description: Page layout application for desktop publishing and PDF preparation.
+install:
+  - method: flatpak
+    ref: net.scribus.Scribus

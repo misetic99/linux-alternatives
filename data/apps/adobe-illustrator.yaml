@@ -1,0 +1,20 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: adobe-illustrator
+name: Adobe Illustrator
+aliases: [Illustrator]
+vendor: Adobe
+category: graphics
+homepage: https://www.adobe.com/products/illustrator.html
+verified: false
+
+alternatives:
+  - id: inkscape
+    fit: partial
+    file_formats:
+      import: [svg, pdf, png]
+      export: [svg, pdf, png]
+    notes: Suggested for vector drawing and SVG editing. Illustrator document migration and plug-in workflows have not been tested.
+    sources:
+      - https://www.adobe.com/products/illustrator.html
+      - https://inkscape-manuals.readthedocs.io/en/latest/import-other-formats.html
+      - https://inkscape-manuals.readthedocs.io/en/latest/export-other-formats.html

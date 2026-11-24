@@ -1,0 +1,10 @@
+# License: https://github.com/videolan/vlc/blob/master/README.md
+# Package: https://flathub.org/en/apps/org.videolan.VLC
+id: vlc
+name: VLC
+homepage: https://www.videolan.org/vlc/
+license: GPL-2.0-or-later
+description: Audio and video player with support for local files, discs and network streams.
+install:
+  - method: flatpak
+    ref: org.videolan.VLC

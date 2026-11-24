@@ -136,7 +136,7 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 - [x] Project vision and architecture proposal
 - [x] **v0.1** Repository skeleton: `data/`, JSON Schemas, validation, build, CI on every PR
 - [x] Licenses (MIT for code, CC0 for data), contributing guide, issue and PR templates
-- [ ] **v0.1** Seed the database with the 50–100 most requested apps (3 unverified seeds so far)
+- [ ] **v0.1** Seed the database with the 50–100 most requested apps (25 unverified seeds so far)
 - [x] **v0.2** Static search site (deploys to GitHub Pages)
 - [x] **v0.2** Self-hosting kit (Docker, nginx, optional rsync deploy) for linux-alternatives.itasel.org
 - [ ] Go live on linux-alternatives.itasel.org

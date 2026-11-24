@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/io.lmms.LMMS
+id: lmms
+name: "LMMS"
+homepage: https://lmms.io/
+license: GPL-2.0-or-later
+description: "Digital audio workstation for making music."
+install:
+  - method: flatpak
+    ref: io.lmms.LMMS

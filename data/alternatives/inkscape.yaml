@@ -1,0 +1,11 @@
+# License: https://gitlab.com/inkscape/inkscape/-/blob/master/COPYING
+# Complete binaries use GPL-3.0-or-later; individual source files have other licenses.
+# Package: https://github.com/flathub/org.inkscape.Inkscape
+id: inkscape
+name: Inkscape
+homepage: https://inkscape.org/
+license: GPL-3.0-or-later
+description: Vector drawing application with SVG editing and PDF and PNG export.
+install:
+  - method: flatpak
+    ref: org.inkscape.Inkscape

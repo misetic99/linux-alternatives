@@ -1,0 +1,19 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: winrar
+name: WinRAR
+vendor: RARLAB
+category: utilities
+homepage: https://www.rarlab.com/
+verified: false
+
+alternatives:
+  - id: peazip
+    fit: partial
+    file_formats:
+      import: [rar, zip, 7z]
+      export: [zip, 7z]
+    notes: Suggested for archive extraction and ZIP or 7Z creation. Creating RAR archives requires an external RAR executable; it is not provided by PeaZip itself.
+    sources:
+      - https://www.rarlab.com/
+      - https://peazip.github.io/peazip-linux.html
+      - https://peazip.github.io/free-rar.html

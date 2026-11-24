@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.flameshot.Flameshot
+id: flameshot
+name: "Flameshot"
+homepage: https://flameshot.org/
+license: GPL-3.0-or-later
+description: "Screenshot tool with annotation."
+install:
+  - method: flatpak
+    ref: org.flameshot.Flameshot

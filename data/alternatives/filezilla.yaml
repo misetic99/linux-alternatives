@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.filezillaproject.Filezilla
+id: filezilla
+name: "FileZilla"
+homepage: https://filezilla-project.org/
+license: GPL-2.0-or-later
+description: "FTP, FTPS and SFTP client."
+install:
+  - method: flatpak
+    ref: org.filezillaproject.Filezilla

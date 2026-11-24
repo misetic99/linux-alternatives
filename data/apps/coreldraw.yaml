@@ -1,0 +1,19 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: coreldraw
+name: CorelDRAW
+vendor: Corel
+category: graphics
+homepage: https://www.coreldraw.com/en/product/coreldraw/
+verified: false
+
+alternatives:
+  - id: inkscape
+    fit: partial
+    file_formats:
+      import: [svg, pdf, png]
+      export: [svg, pdf, png]
+    notes: Suggested for vector illustration and SVG editing. CorelDRAW document migration has not been tested.
+    sources:
+      - https://www.coreldraw.com/en/product/coreldraw/
+      - https://inkscape-manuals.readthedocs.io/en/latest/import-other-formats.html
+      - https://inkscape-manuals.readthedocs.io/en/latest/export-other-formats.html

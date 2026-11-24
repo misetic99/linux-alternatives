@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked pages; not tested.
+id: fl-studio
+name: "FL Studio"
+aliases: ["Fruity Loops", "FruityLoops"]
+vendor: "Image-Line"
+category: audio
+homepage: https://www.image-line.com/fl-studio
+verified: false
+
+alternatives:
+  - id: lmms
+    fit: partial
+    notes: "Suggested for pattern-based music production. FL Studio project and plug-in migration has not been tested."
+    sources:
+      - https://www.image-line.com/fl-studio
+      - https://lmms.io/

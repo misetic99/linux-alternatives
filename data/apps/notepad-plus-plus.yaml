@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: notepad-plus-plus
+name: Notepad++
+aliases: [Notepad Plus Plus, NPP]
+vendor: Notepad++ contributors
+category: development
+homepage: https://notepad-plus-plus.org/
+verified: false
+
+alternatives:
+  - id: kate
+    fit: good
+    notes: Suggested for editing text and source code with tabs, syntax highlighting and search. Notepad++ plug-in workflows have not been tested.
+    sources:
+      - https://github.com/notepad-plus-plus/notepad-plus-plus/blob/master/README.md
+      - https://apps.kde.org/kate/

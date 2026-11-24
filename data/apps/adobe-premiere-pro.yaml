@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: adobe-premiere-pro
+name: Adobe Premiere
+aliases: [Premiere, Premiere Pro, Adobe Premiere Pro]
+vendor: Adobe
+category: video
+homepage: https://www.adobe.com/products/premiere.html
+verified: false
+
+alternatives:
+  - id: kdenlive
+    fit: partial
+    notes: Suggested for timeline-based video editing, effects and subtitles. Premiere project migration has not been tested.
+    sources:
+      - https://www.adobe.com/products/premiere.html
+      - https://docs.kdenlive.org/en/getting_started/introduction.html

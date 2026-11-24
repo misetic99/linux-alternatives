@@ -1,0 +1,19 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: adobe-indesign
+name: Adobe InDesign
+aliases: [InDesign]
+vendor: Adobe
+category: graphics
+homepage: https://www.adobe.com/products/indesign.html
+verified: false
+
+alternatives:
+  - id: scribus
+    fit: partial
+    file_formats:
+      import: [eps]
+      export: [pdf, ps, eps]
+    notes: Suggested for page layout and preparing PDF documents for print. InDesign document migration has not been tested.
+    sources:
+      - https://www.adobe.com/products/indesign.html
+      - https://github.com/scribusproject/scribus/blob/master/scribus.appdata.xml.in

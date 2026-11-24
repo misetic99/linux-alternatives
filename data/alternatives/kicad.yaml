@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.kicad.KiCad
+id: kicad
+name: "KiCad"
+homepage: https://www.kicad.org/
+license: GPL-3.0-or-later
+description: "Schematic capture and PCB layout suite."
+install:
+  - method: flatpak
+    ref: org.kicad.KiCad

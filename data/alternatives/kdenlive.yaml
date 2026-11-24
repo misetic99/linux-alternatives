@@ -1,0 +1,10 @@
+# License: https://github.com/KDE/kdenlive/blob/master/data/org.kde.kdenlive.appdata.xml
+# Package: https://flathub.org/en/apps/org.kde.kdenlive
+id: kdenlive
+name: Kdenlive
+homepage: https://kdenlive.org/
+license: GPL-3.0-only
+description: Timeline video editor with effects, transitions and subtitle tools.
+install:
+  - method: flatpak
+    ref: org.kde.kdenlive

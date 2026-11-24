@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.bleachbit.BleachBit
+id: bleachbit
+name: "BleachBit"
+homepage: https://www.bleachbit.org/
+license: GPL-3.0-or-later
+description: "System cleaner for temporary files and caches."
+install:
+  - method: flatpak
+    ref: org.bleachbit.BleachBit

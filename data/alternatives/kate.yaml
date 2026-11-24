@@ -1,0 +1,10 @@
+# License: https://github.com/KDE/kate/blob/master/apps/kate/data/org.kde.kate.appdata.xml
+# Package: https://flathub.org/en/apps/org.kde.kate
+id: kate
+name: Kate
+homepage: https://kate-editor.org/
+license: LGPL-2.1-or-later
+description: Text and source code editor with tabs, split views and syntax highlighting.
+install:
+  - method: flatpak
+    ref: org.kde.kate

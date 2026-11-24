@@ -1,0 +1,9 @@
+# License and package links: https://www.pinta-project.com/releases/
+id: pinta
+name: Pinta
+homepage: https://www.pinta-project.com/
+license: MIT
+description: Drawing and image editor with selection tools, effects and adjustments.
+install:
+  - method: flatpak
+    ref: com.github.PintaProject.Pinta

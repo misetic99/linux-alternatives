@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.mozilla.Thunderbird
+id: thunderbird
+name: "Thunderbird"
+homepage: https://www.thunderbird.net/
+license: MPL-2.0
+description: "Email client with calendar and contacts."
+install:
+  - method: flatpak
+    ref: org.mozilla.Thunderbird

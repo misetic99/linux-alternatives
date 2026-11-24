@@ -1,0 +1,9 @@
+# License and package: https://flathub.org/en/apps/org.gnucash.GnuCash
+id: gnucash
+name: "GnuCash"
+homepage: https://www.gnucash.org/
+license: GPL-2.0-or-later
+description: "Double-entry accounting for personal and small business finances."
+install:
+  - method: flatpak
+    ref: org.gnucash.GnuCash

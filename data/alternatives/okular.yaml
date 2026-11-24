@@ -1,0 +1,10 @@
+# Code license: https://github.com/KDE/okular/blob/master/shell/org.kde.okular.appdata.xml
+# Package: https://flathub.org/en/apps/org.kde.okular
+id: okular
+name: Okular
+homepage: https://okular.kde.org/
+license: GPL-2.0-or-later
+description: Document viewer with PDF reading and annotation tools.
+install:
+  - method: flatpak
+    ref: org.kde.okular

@@ -1,0 +1,15 @@
+# Initial fit estimate based on the linked pages; not tested.
+id: heidisql
+name: "HeidiSQL"
+vendor: "HeidiSQL project"
+category: development
+homepage: https://www.heidisql.com/
+verified: false
+
+alternatives:
+  - id: dbeaver
+    fit: partial
+    notes: "Suggested for browsing and querying databases. Saved-session migration has not been tested."
+    sources:
+      - https://www.heidisql.com/
+      - https://dbeaver.io/

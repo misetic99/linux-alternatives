@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: paint-net
+name: Paint.NET
+vendor: dotPDN LLC and Rick Brewster
+category: graphics
+homepage: https://paint.net/
+verified: false
+
+alternatives:
+  - id: pinta
+    fit: partial
+    notes: Suggested for drawing, image adjustments and photo editing. Paint.NET document and plug-in workflows have not been tested.
+    sources:
+      - https://paint.net/
+      - https://paint.net/license.html
+      - https://www.pinta-project.com/

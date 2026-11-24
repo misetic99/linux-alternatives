@@ -1,0 +1,10 @@
+# License: https://github.com/peazip/PeaZip/blob/sources/README.md
+# Package: https://peazip.github.io/peazip-linux.html
+id: peazip
+name: PeaZip
+homepage: https://peazip.github.io/
+license: LGPL-3.0-only
+description: Archive manager for extracting archives and creating formats including ZIP and 7Z.
+install:
+  - method: flatpak
+    ref: io.github.peazip.PeaZip
