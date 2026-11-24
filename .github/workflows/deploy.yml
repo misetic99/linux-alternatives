@@ -1,37 +1,69 @@
-name: Deploy to own server
+name: Deploy
 
-# Publishes dist/ to your own web server over SSH + rsync.
-# Disabled until the repository variable SELF_HOST_DEPLOY is set to "true".
-# Setup: docs/SELF_HOSTING.md (Option B).
+# Publishes the website and JSON API.
+#   - push to main          -> GitHub Pages (continuous)
+#   - tag v* (e.g. v0.3.0)  -> your own server over SSH + rsync (a release)
+#   - manual run            -> both
+# GitHub Pages one-time setup: Settings -> Pages -> Source: "GitHub Actions".
+# Own server setup (off until the variable SELF_HOST_DEPLOY is "true"): docs/SELF_HOSTING.md
 
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: deploy-server
+  group: deploy
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    if: ${{ vars.SELF_HOST_DEPLOY == 'true' }}
+  pages:
+    name: GitHub Pages
+    if: ${{ github.ref_type == 'branch' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
 
       - run: npm ci
-      - run: npm run validate
-      - run: npm test
-      - run: npm run build
+      - run: npm run check
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v5
+
+  server:
+    name: Own server
+    if: ${{ vars.SELF_HOST_DEPLOY == 'true' && (github.ref_type == 'tag' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
 
       - name: Sync dist/ to the server
         env:

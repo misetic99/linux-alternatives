@@ -54,7 +54,7 @@ linux-alternatives/
 │  └─ CODE_OF_CONDUCT.md
 ├─ .github/
 │  ├─ ISSUE_TEMPLATE/        # compatibility-report, add-an-app
-│  ├─ workflows/             # ci.yml, deploy-site.yml, deploy-server.yml
+│  ├─ workflows/             # ci.yml, deploy.yml
 │  └─ PULL_REQUEST_TEMPLATE.md
 ├─ CONTRIBUTING.md
 ├─ LICENSE                   # code (MIT)

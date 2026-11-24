@@ -137,7 +137,7 @@ The site is plain HTML, CSS and JavaScript (no framework). The build only adds t
 The website is plain static files, so it can be served from anywhere:
 
 - **GitHub Pages**: deployed automatically on merges to `main` (one-time setup: Settings → Pages → Source: *GitHub Actions*).
-- **Your own server**: ready-made Docker image, nginx config with strict security headers, and an optional rsync deploy workflow. The public instance runs at **[linux-alternatives.itasel.org](https://linux-alternatives.itasel.org)**, so people who are not contributors can browse and search without a GitHub account.
+- **Your own server**: ready-made Docker image, nginx config with strict security headers, and an optional rsync deploy that runs when you push a version tag (`git tag v0.3.0 && git push origin v0.3.0`). The public instance runs at **[linux-alternatives.itasel.org](https://linux-alternatives.itasel.org)**, so people who are not contributors can browse and search without a GitHub account.
 
 ```bash
 # Self-host with Docker (listens on 127.0.0.1:8080, put a TLS proxy in front)

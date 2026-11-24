@@ -1,5 +1,8 @@
 name: CI
 
+# Checks every pull request and every push to main: validates the data, runs
+# the tests and builds the site. Nothing is published from here.
+
 on:
   pull_request:
   push:
@@ -8,25 +11,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
-    name: Validate data, test, build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
 
       - run: npm ci
-
-      - name: Validate data against schemas
-        run: npm run validate
-
-      - name: Run tests
-        run: npm test
-
-      - name: Build JSON API
-        run: npm run build
+      - run: npm run check

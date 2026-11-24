@@ -83,7 +83,7 @@ docker compose -f deploy/docker-compose.yml up -d --build
 
 ## Option B: Plain nginx with automatic deploys
 
-The repository can publish `dist/` to your server on every push to `main` through SSH and rsync ([`deploy-server.yml`](../.github/workflows/deploy-server.yml)). It is **off by default**.
+The repository can publish `dist/` to your server through SSH and rsync whenever you push a **version tag** such as `v0.3.0` (job `server` in [`deploy.yml`](../.github/workflows/deploy.yml)). Pushes to `main` only update GitHub Pages, so your own server changes only when you cut a release. It is **off by default**.
 
 ### 1. Prepare the server (one time)
 
@@ -135,9 +135,16 @@ Repository → Settings → Secrets and variables → Actions.
 
 **Variable** (Variables tab): `SELF_HOST_DEPLOY` = `true`
 
-Then push to `main` or run **Actions → Deploy to own server → Run workflow**. Delete `la-deploy` from your machine afterwards, GitHub keeps the only copy it needs.
+Then publish a release by pushing a tag, or run **Actions → Deploy → Run workflow**:
 
-The workflow runs only on pushes to `main`, never on pull requests from forks, so contributors cannot reach the secrets. Host keys are pinned (`StrictHostKeyChecking=yes`).
+```bash
+git tag v0.3.0
+git push origin v0.3.0
+```
+
+Delete `la-deploy` from your machine afterwards, GitHub keeps the only copy it needs.
+
+The job runs only for tags and manual runs, never on pull requests from forks, so contributors cannot reach the secrets. Host keys are pinned (`StrictHostKeyChecking=yes`). Anyone who can push tags to the repository can trigger a deploy, so keep write access limited and consider protecting `v*` tags in Settings → Rules.
 
 ## Verify
 
@@ -156,10 +163,10 @@ You should see `Content-Security-Policy` in the headers, JSON from the API and `
 | Page loads, then "Could not load the database" | `/api/` not reachable: wrong `root`, or the deploy did not run. Check `curl .../api/v1/index.json` |
 | Page is unstyled or blank, console shows CSP errors | A proxy in front adds its own Content-Security-Policy, or a script/style was added inline. Keep code and styles in separate files |
 | Certificate request fails | DNS not resolving yet, or port 80/443 closed |
-| `deploy-server.yml` shows as skipped | Variable `SELF_HOST_DEPLOY` is not `true` (this is the default) |
+| The `Own server` job is skipped | Variable `SELF_HOST_DEPLOY` is not `true` (the default), or the run was a push to `main` (only tags and manual runs deploy to your server) |
 | rsync "Host key verification failed" | `DEPLOY_KNOWN_HOSTS` is missing or does not match the server |
 
 ## Rollback
 
 Option A: `git checkout <older-commit> && docker compose -f deploy/docker-compose.yml up -d --build`.
-Option B: re-run the workflow on an older commit (Actions → Run workflow → choose the ref), or `git revert` the bad change on `main`.
+Option B: run **Actions → Deploy → Run workflow** and choose an older tag as the ref, or `git revert` the bad change and push a new tag.
