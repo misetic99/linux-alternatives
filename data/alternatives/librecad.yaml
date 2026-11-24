@@ -1,0 +1,10 @@
+id: librecad
+name: LibreCAD
+homepage: https://librecad.org
+license: GPL-2.0-only
+description: 2D CAD application.
+install:
+  - method: apt
+    ref: librecad
+  - method: flatpak
+    ref: org.librecad.librecad

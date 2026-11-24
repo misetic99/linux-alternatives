@@ -1,0 +1,41 @@
+name: Add an app
+description: Request a Windows app to be added, or claim one to add yourself.
+title: "Add app: "
+labels: ["good first issue", "new-app"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping! The easiest way to contribute is a pull request: copy `data/apps/_template.yaml`.
+        If you'd rather not, fill this in and someone else can pick it up.
+  - type: input
+    id: app
+    attributes:
+      label: Windows app
+      description: Name and vendor.
+      placeholder: "AutoCAD (Autodesk)"
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      placeholder: "cad, accounting, graphics, printing, ..."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Linux alternatives you know of
+      description: Which ones, and how well do they replace it? Mention file formats and what is missing.
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Links that back up your claims.
+  - type: checkboxes
+    id: claim
+    attributes:
+      label: Who will write it?
+      options:
+        - label: I will open a pull request for this myself.

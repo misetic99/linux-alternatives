@@ -1,0 +1,19 @@
+# Seed entry: written from general knowledge, not yet verified. Please review and improve.
+id: autocad
+name: AutoCAD
+vendor: Autodesk
+category: cad
+homepage: https://www.autodesk.com/products/autocad/overview
+verified: false
+
+alternatives:
+  - id: librecad
+    fit: partial
+    file_formats:
+      import: [dxf]
+      export: [dxf]
+  - id: freecad
+    fit: partial
+    file_formats:
+      import: [dxf, step, iges, stl]
+      export: [dxf, step, iges, stl]

@@ -7,7 +7,8 @@ For every Windows application: what replaces it on Linux, how well, and whether 
 
 ![Status](https://img.shields.io/badge/status-early%20stage-orange)
 ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
-![Good first issues](https://img.shields.io/badge/good%20first%20issues-open-blue)
+![Code license](https://img.shields.io/badge/code-MIT-blue)
+![Data license](https://img.shields.io/badge/data-CC0-lightgrey)
 ![Data](https://img.shields.io/badge/data-YAML%20%2B%20JSON%20Schema-informational)
 
 [Browse the data](#-how-the-data-looks) · [Contribute](#-contribute-in-5-minutes) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](#-roadmap)
@@ -62,8 +63,8 @@ alternatives:
     notes: Fine for 3D parametric work, weaker for 2D drafting.
 
 wine:
-  status: gold              # platinum | gold | silver | bronze | borked | untested
-  summary: Runs well with a few winetricks verbs.
+  summary: Runs well with a few winetricks verbs.   # optional context
+  # The headline status (platinum … borked, or untested) is derived from reports.
 ```
 
 Compatibility reports live in their own files (`data/reports/<app>/<report>.yaml`), so many people can add reports at the same time without merge conflicts:
@@ -89,8 +90,10 @@ You do **not** need to write code.
 
 1. **Pick an app.** Look at issues labelled `good first issue` ("Add app X") or add one you know.
 2. **Copy the template** `data/apps/_template.yaml` to `data/apps/<app-slug>.yaml` and fill it in.
-3. **Validate locally** (optional): `npm run validate`. CI runs the same check on every PR.
+3. **Validate locally** (optional): `npm install && npm run validate`. CI runs the same check on every PR.
 4. **Open a pull request.** A maintainer reviews it, usually the same week.
+
+> The database currently contains a handful of **unverified seed entries** (`verified: false`) so the format can be exercised. They need your review.
 
 Just ran an app under Wine or Proton? Open a **compatibility report** using the issue template, or add a report file directly.
 
@@ -100,15 +103,25 @@ Ground rules:
 - Keep it neutral. No marketing language, no "X is better than Y" without specifics.
 - One app per PR keeps reviews fast.
 
-A full `CONTRIBUTING.md` and a Code of Conduct are on the roadmap below.
+Details are in [CONTRIBUTING.md](CONTRIBUTING.md). Please also read our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## 🛠️ Develop
+
+```bash
+npm install
+npm run check      # validate data + run tests + build dist/api/v1/*.json
+```
+
+Requires Node.js 20+. `npm run build` writes the static JSON API to `dist/api/v1/` (`index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed.
 
 ## 🗺️ Roadmap
 
 - [x] Project vision and architecture proposal
-- [ ] **v0.1** Repository skeleton: `data/`, JSON Schema, CI validation on every PR
-- [ ] **v0.1** Seed the database with the 50–100 most requested apps
+- [x] **v0.1** Repository skeleton: `data/`, JSON Schemas, validation, build, CI on every PR
+- [x] Licenses (MIT for code, CC0 for data), contributing guide, issue and PR templates
+- [ ] **v0.1** Seed the database with the 50–100 most requested apps (3 unverified seeds so far)
 - [ ] **v0.2** Static search site on GitHub Pages
-- [ ] **v0.2** Issue templates (compatibility report, add-an-app) and `good first issue` backlog
+- [ ] **v0.2** `good first issue` backlog
 - [ ] **v0.3** Published packages: `npm` and `PyPI` with a typed API
 - [ ] **v0.3** Public announcement (r/linux, Lemmy, distro forums)
 - [ ] **v1.0** 20+ outside contributors, stable schema, "Coming from Windows?" widget for distros and themes
@@ -118,16 +131,19 @@ A full `CONTRIBUTING.md` and a Code of Conduct are on the roadmap below.
 ```
 data/       ← the source of truth (YAML, one file per app / alternative / report)
 schema/     ← JSON Schema that every file must pass
-tools/      ← validate + build scripts (YAML → dist/*.json)
-site/       ← static search website
-packages/   ← npm and PyPI wrappers around the built data
+tools/      ← validate + build scripts (YAML → dist/api/v1/*.json)
+site/       ← static search website            (planned)
+packages/   ← npm and PyPI wrappers            (planned)
 ```
 
 Read the [full proposal](docs/ARCHITECTURE.md) for the data model, build pipeline, versioning and governance.
 
 ## 📜 License
 
-License is to be finalised before the first release. The proposal is **MIT for code** and **CC0 or CC BY-SA 4.0 for data**. See the [architecture doc](docs/ARCHITECTURE.md#licensing).
+- **Code** (tools, CI, docs): [MIT](LICENSE)
+- **Data** (`data/`, `schema/`): [CC0 1.0](LICENSE-DATA), public domain, free to reuse with no attribution
+
+Details and contributor terms are in [LICENSING.md](LICENSING.md). Product names belong to their owners; this project is not affiliated with any vendor.
 
 ---
 

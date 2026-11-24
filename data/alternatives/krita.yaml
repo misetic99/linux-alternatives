@@ -1,0 +1,10 @@
+id: krita
+name: Krita
+homepage: https://krita.org
+license: GPL-3.0-or-later
+description: Digital painting and illustration.
+install:
+  - method: apt
+    ref: krita
+  - method: flatpak
+    ref: org.kde.krita

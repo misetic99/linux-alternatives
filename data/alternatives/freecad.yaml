@@ -1,0 +1,10 @@
+id: freecad
+name: FreeCAD
+homepage: https://www.freecad.org
+license: LGPL-2.0-or-later
+description: Parametric 3D CAD modeler.
+install:
+  - method: apt
+    ref: freecad
+  - method: flatpak
+    ref: org.freecad.FreeCAD

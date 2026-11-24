@@ -1,0 +1,10 @@
+id: libreoffice
+name: LibreOffice
+homepage: https://www.libreoffice.org
+license: MPL-2.0
+description: Office suite with word processor, spreadsheet and presentations.
+install:
+  - method: apt
+    ref: libreoffice
+  - method: flatpak
+    ref: org.libreoffice.LibreOffice

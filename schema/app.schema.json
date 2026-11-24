@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "app.schema.json",
+  "title": "Windows application",
+  "description": "One Windows application and the Linux alternatives that replace it. File: data/apps/<id>.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "vendor", "category", "alternatives"],
+  "properties": {
+    "id": { "$ref": "#/$defs/slug" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "aliases": {
+      "description": "Other names people search for (old names, abbreviations).",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "vendor": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "category": { "$ref": "#/$defs/category" },
+    "homepage": { "type": "string", "format": "uri", "pattern": "^https?://" },
+    "verified": {
+      "description": "true once a contributor has checked every claim in this file against real use or a linked source.",
+      "type": "boolean",
+      "default": false
+    },
+    "alternatives": {
+      "type": "array",
+      "minItems": 0,
+      "items": { "$ref": "#/$defs/alternativeLink" },
+      "uniqueItems": true
+    },
+    "wine": {
+      "description": "Curated context. The headline status is derived from reports at build time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": { "type": "string", "maxLength": 500 },
+        "appdb_url": { "type": "string", "format": "uri", "pattern": "^https?://" }
+      }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 80
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "accounting",
+        "audio",
+        "cad",
+        "development",
+        "engineering",
+        "graphics",
+        "office",
+        "printing",
+        "utilities",
+        "video",
+        "other"
+      ]
+    },
+    "formatList": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+._-]*$" },
+      "uniqueItems": true
+    },
+    "alternativeLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "fit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "fit": {
+          "description": "How well the alternative replaces the Windows app for typical use.",
+          "enum": ["full", "good", "partial", "minimal"]
+        },
+        "file_formats": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "import": { "$ref": "#/$defs/formatList" },
+            "export": { "$ref": "#/$defs/formatList" }
+          }
+        },
+        "shortcuts": {
+          "description": "How transferable keyboard shortcuts and muscle memory are.",
+          "enum": ["same", "similar", "different"]
+        },
+        "missing": {
+          "description": "Concrete features of the Windows app that the alternative lacks.",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 200 }
+        },
+        "notes": { "type": "string", "maxLength": 500 },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri", "pattern": "^https?://" }
+        }
+      }
+    }
+  }
+}

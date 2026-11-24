@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "report.schema.json",
+  "title": "Compatibility report",
+  "description": "One user report of running a Windows app on Linux. File: data/reports/<app-id>/<name>.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["app", "app_version", "runner", "distro", "status", "reporter", "date"],
+  "properties": {
+    "app": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "app_version": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "runner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "version"],
+      "properties": {
+        "type": { "enum": ["wine", "proton", "bottles", "crossover", "vm", "other"] },
+        "version": { "type": "string", "minLength": 1, "maxLength": 60 }
+      }
+    },
+    "distro": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "status": {
+      "description": "Same vocabulary as WineHQ/ProtonDB.",
+      "enum": ["platinum", "gold", "silver", "bronze", "borked"]
+    },
+    "tweaks": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "winetricks": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
+          "uniqueItems": true
+        },
+        "env": {
+          "type": "object",
+          "propertyNames": { "pattern": "^[A-Z_][A-Z0-9_]*$" },
+          "additionalProperties": { "type": "string" }
+        },
+        "windows_version": { "type": "string", "maxLength": 40 }
+      }
+    },
+    "notes": { "type": "string", "maxLength": 1000 },
+    "reporter": {
+      "description": "GitHub handle of the person who ran it.",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$"
+    },
+    "date": { "type": "string", "format": "date" }
+  }
+}

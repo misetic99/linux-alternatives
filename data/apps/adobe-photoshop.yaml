@@ -1,0 +1,20 @@
+# Seed entry: written from general knowledge, not yet verified. Please review and improve.
+id: adobe-photoshop
+name: Adobe Photoshop
+aliases: [Photoshop]
+vendor: Adobe
+category: graphics
+homepage: https://www.adobe.com/products/photoshop.html
+verified: false
+
+alternatives:
+  - id: gimp
+    fit: partial
+    file_formats:
+      import: [psd, png, jpg, tiff]
+      export: [psd, png, jpg, tiff]
+  - id: krita
+    fit: partial
+    file_formats:
+      import: [psd, png, jpg, tiff]
+      export: [psd, png, jpg, tiff]

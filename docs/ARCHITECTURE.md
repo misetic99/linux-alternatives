@@ -33,7 +33,7 @@ linux-alternatives/
 │  ├─ apps/                  # Windows apps, one file each     (autocad.yaml)
 │  ├─ alternatives/          # Linux apps, one file each       (freecad.yaml)
 │  ├─ reports/<app-id>/      # compatibility reports, one file per report
-│  └─ _template.yaml         # starting point for contributors
+│  └─ **/_template.yaml      # starting point per folder (ignored by the validator)
 ├─ schema/
 │  ├─ app.schema.json
 │  ├─ alternative.schema.json
@@ -50,8 +50,9 @@ linux-alternatives/
 │  └─ CODEOWNERS
 ├─ CONTRIBUTING.md
 ├─ CODE_OF_CONDUCT.md
-├─ LICENSE                   # code
-└─ LICENSE-DATA              # data
+├─ LICENSE                   # code (MIT)
+├─ LICENSE-DATA              # data (CC0 1.0)
+└─ LICENSING.md              # who is licensed under what, and why
 ```
 
 ## 4. Data model
@@ -110,7 +111,7 @@ erDiagram
 
 ### Aggregating reports
 
-The app's summary status is **derived** at build time from its reports (most recent and most common result for the latest app version), not typed by hand. A curated `wine.summary` text can still be written for context. This keeps the headline number honest as reports accumulate.
+The app's summary status is **derived** at build time from its reports (the most common status among its reports; ties go to the most recent report), not typed by hand. A curated `wine.summary` text can still be written for context. This keeps the headline number honest as reports accumulate.
 
 ### Identity and naming
 
@@ -124,7 +125,7 @@ The app's summary status is **derived** at build time from its reports (most rec
 flowchart LR
     Y[data/*.yaml] --> V[validate<br/>JSON Schema + rules]
     V --> B[build]
-    B --> J[dist/apps.json<br/>dist/alternatives.json<br/>dist/index.json]
+    B --> J[dist/api/v1/apps.json<br/>alternatives.json, index.json<br/>apps/&lt;id&gt;.json]
     J --> S[site/ - Astro + Pagefind]
     J --> N[packages/npm]
     J --> P[packages/pypi]
@@ -200,24 +201,25 @@ Alternatives considered: TOML (less familiar), a hosted database (cost, ops, loc
 
 ## 11. Licensing
 
-Proposed (to be decided before the first release):
+Decided (see [LICENSING.md](../LICENSING.md)):
 
-- **Code** (tools, site, packages): MIT.
-- **Data**: CC0 or CC BY-SA 4.0. CC0 maximises reuse by distros and tools; CC BY-SA keeps derived datasets open. This is the main decision to settle early, because it is hard to change once there are many contributors.
-- Contributions are accepted under the same terms (via a DCO sign-off or a short statement in `CONTRIBUTING.md`).
+- **Code** (tools, site, packages, docs): [MIT](../LICENSE).
+- **Data** (`data/`, `schema/`): [CC0 1.0](../LICENSE-DATA). The point is that distros, migration tools and websites can embed the data with no friction; CC0 has no attribution or share-alike requirement. This is hard to change once there are many contributors, so it was settled before the first external PR.
+- Contributions are accepted under the same terms, stated in `CONTRIBUTING.md` and the PR template (no CLA and no DCO sign-off for now).
+- Contributors must not copy text from other databases: facts are free, wording may not be.
 
 ## 12. Milestones
 
 | Milestone | Scope |
 | --- | --- |
-| **v0.1** | Schemas, `data/` skeleton, validate script, CI, 50–100 seed apps |
+| **v0.1** | Schemas, `data/` skeleton, validate script, CI (done); 50–100 seed apps (in progress) |
 | **v0.2** | Static site, issue templates, `good first issue` backlog |
 | **v0.3** | npm + PyPI packages, JSON API, public announcement |
 | **v1.0** | Stable schema, 20+ outside contributors, embeddable widget |
 
 ## 13. Open questions
 
-1. Data license: CC0 vs CC BY-SA 4.0.
+1. ~~Data license~~ Decided: CC0 for data, MIT for code.
 2. Final project name and org (the repo is currently `linux-alternatives`).
 3. Do we accept Wine reports without a reporter handle (anonymous), or require a GitHub identity?
 4. Scope of "professional" software at launch: which 5–6 categories to seed first?

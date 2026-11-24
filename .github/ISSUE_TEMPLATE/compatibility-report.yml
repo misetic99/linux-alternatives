@@ -1,0 +1,53 @@
+name: Compatibility report
+description: Tell us how a Windows app runs on Linux (Wine, Proton, Bottles, ...).
+title: "Report: "
+labels: ["report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Only report what you tested yourself. You can also add a report file directly with a pull request:
+        copy `data/reports/_template.yaml`.
+  - type: input
+    id: app
+    attributes:
+      label: App and version
+      placeholder: "AutoCAD 2024"
+    validations:
+      required: true
+  - type: input
+    id: runner
+    attributes:
+      label: Runner and version
+      placeholder: "Wine 9.0, Proton-GE 9-20, Bottles 51..."
+    validations:
+      required: true
+  - type: input
+    id: distro
+    attributes:
+      label: Linux distribution
+      placeholder: "Fedora 41"
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Result
+      options:
+        - platinum (perfect out of the box)
+        - gold (perfect after tweaks)
+        - silver (works, minor issues)
+        - bronze (runs, major issues)
+        - borked (does not work)
+    validations:
+      required: true
+  - type: textarea
+    id: tweaks
+    attributes:
+      label: Tweaks needed
+      description: winetricks verbs, environment variables, Windows version, DLL overrides.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: What worked and what did not.

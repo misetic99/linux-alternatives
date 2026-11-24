@@ -1,0 +1,28 @@
+# Copy this file to data/apps/<app-id>.yaml (lowercase, hyphens, e.g. "adobe-photoshop").
+# Files starting with "_" are ignored by the validator.
+# Run `npm run validate` before opening a PR.
+
+id: app-id                  # must equal the file name without ".yaml"
+name: App Name
+aliases: []                 # optional: other names people search for
+vendor: Vendor Name
+category: other             # accounting | audio | cad | development | engineering | graphics
+                            # | office | printing | utilities | video | other
+homepage: https://example.com
+verified: false             # set to true only if you checked every claim below
+
+alternatives:
+  - id: alternative-id      # must exist in data/alternatives/
+    fit: partial            # full | good | partial | minimal
+    file_formats:
+      import: []            # lowercase extensions, e.g. [dwg, dxf]
+      export: []
+    shortcuts: similar      # same | similar | different
+    missing: []             # concrete features the alternative lacks
+    notes: ""               # short, neutral, factual
+    sources: []             # links that back up your claims
+
+# Optional curated context. The headline Wine status is derived from reports.
+# wine:
+#   summary: One sentence of context.
+#   appdb_url: https://appdb.winehq.org/

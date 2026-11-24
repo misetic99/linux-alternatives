@@ -1,0 +1,15 @@
+# Seed entry: written from general knowledge, not yet verified. Please review and improve.
+id: microsoft-office
+name: Microsoft Office
+aliases: [Office, MS Office, Word, Excel, PowerPoint]
+vendor: Microsoft
+category: office
+homepage: https://www.microsoft.com/microsoft-365
+verified: false
+
+alternatives:
+  - id: libreoffice
+    fit: good
+    file_formats:
+      import: [docx, xlsx, pptx]
+      export: [docx, xlsx, pptx]

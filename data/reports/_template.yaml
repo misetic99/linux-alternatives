@@ -1,0 +1,23 @@
+# Copy this file to data/reports/<app-id>/<short-name>.yaml
+# e.g. data/reports/autocad/2024-wine-9-fedora-yourhandle.yaml
+# The folder name must equal the app id.
+
+app: app-id
+app_version: "2024"
+runner:
+  type: wine                # wine | proton | bottles | crossover | vm | other
+  version: "9.0"
+distro: Fedora 41
+status: gold                # platinum | gold | silver | bronze | borked
+                            # platinum: perfect out of the box
+                            # gold:     perfect after tweaks
+                            # silver:   works, minor issues
+                            # bronze:   runs, major issues
+                            # borked:   does not work
+tweaks:
+  winetricks: []            # e.g. [corefonts, vcrun2019]
+  env: {}                   # e.g. { WINEDLLOVERRIDES: "mscoree=d" }
+  windows_version: ""       # e.g. "Windows 10"
+notes: ""                   # what worked, what did not
+reporter: your-github-handle
+date: 2026-01-15            # the day you tested it

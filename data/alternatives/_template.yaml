@@ -1,0 +1,13 @@
+# Copy this file to data/alternatives/<id>.yaml (lowercase, hyphens, e.g. "freecad").
+# Describe each Linux application once here, then reference it from data/apps/*.yaml.
+
+id: alternative-id          # must equal the file name without ".yaml"
+name: Alternative Name
+homepage: https://example.org
+license: GPL-3.0-or-later   # SPDX identifier, or "proprietary"
+description: One short sentence.
+install:
+  - method: apt             # apt | dnf | pacman | flatpak | snap | appimage | download
+    ref: package-name
+  - method: flatpak
+    ref: org.example.App
