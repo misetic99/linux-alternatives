@@ -56,7 +56,13 @@ npm run check      # validate + test + build
 
 Layout: `data/` (the database), `schema/` (JSON Schemas), `tools/` (validate and build), `site/` (the website), `docs/` (architecture).
 
-Website rules: render community data with `textContent`, never `innerHTML`, and only build install commands from refs that match the safe pattern in `schema/alternative.schema.json`.
+Website rules:
+
+- Render community data with `textContent`, never `innerHTML`.
+- Only build install commands or script lines from refs that match the safe pattern in `schema/alternative.schema.json`, and strip control characters from names before they go into a script (see `site/plan-core.js`).
+- No inline `<script>`, `style=""` attributes or event-handler attributes, and no third-party resources: the production server sends a strict Content-Security-Policy. A test enforces this.
+- Pages share `site/partials/header.html` and `footer.html`. Put `<!--@header-->`, `<!--@footer-->` and `{{canonical}}` in a page, and set `<body data-page="name">` so the matching nav link is highlighted.
+- Keep logic that can be tested out of the DOM code (see `plan-core.js` and `tools/*.test.mjs`).
 Schema changes need a note in the PR on how existing data is affected.
 
 ## Licensing

@@ -3,42 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>linux-alternatives: Windows apps → Linux</title>
-  <meta name="description" content="Open database of Windows apps, their Linux alternatives and Wine/Proton compatibility.">
+  <title>linux-alternatives: find the Linux replacement for any Windows app</title>
+  <meta name="description" content="Open, community-driven database of Windows apps, their Linux alternatives with honest ratings, and real Wine and Proton compatibility reports.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="linux-alternatives">
+  <meta property="og:title" content="linux-alternatives: Windows apps → Linux">
+  <meta property="og:description" content="Find the Linux replacement for any Windows app, with honest ratings and real Wine/Proton reports. Open data, CC0.">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header class="hero">
+<body data-page="home">
+  <!--@header-->
+
+  <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Open database · CC0</p>
-      <h1>Coming from Windows?<br><span class="accent">Find what replaces your apps.</span></h1>
-      <p class="lead">Linux alternatives with honest ratings, plus real Wine and Proton compatibility reports. Built by the community, free to reuse.</p>
+      <p class="kicker">Open database · CC0 · community-driven</p>
+      <h1>Coming from Windows?<br><span class="grad">Find what replaces your apps.</span></h1>
+      <p class="lead">Linux alternatives with honest ratings, plus real Wine and Proton compatibility reports. Built by the community, free to reuse, no tracking.</p>
+
       <label class="search">
         <span class="sr">Search apps</span>
+        <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
         <input id="q" type="search" placeholder="Search Windows apps, e.g. AutoCAD, Photoshop, Excel…" autocomplete="off" autofocus>
       </label>
       <div id="chips" class="chips" role="group" aria-label="Filter by category"></div>
-    </div>
-  </header>
 
-  <main class="wrap">
+      <div class="btn-row">
+        <a class="btn" href="switch.html">Plan my switch <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="contribute.html">Add an app</a>
+      </div>
+
+      <div class="stats" id="stats" aria-label="Database size">
+        <p class="stat"><strong id="stat-apps">–</strong><span>Windows apps</span></p>
+        <p class="stat"><strong id="stat-alts">–</strong><span>Linux alternatives</span></p>
+        <p class="stat"><strong id="stat-reports">–</strong><span>compatibility reports</span></p>
+        <p class="stat"><strong id="stat-verified">–</strong><span>verified entries</span></p>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="wrap">
     <p id="count" class="count" aria-live="polite"></p>
     <div id="results" class="grid"></div>
     <p id="empty" class="empty" hidden>
-      Nothing found. <a href="https://github.com/misetic99/linux-alternatives/issues/new/choose">Request this app</a> or add it yourself, it takes one small file.
+      Nothing found. <a href="https://github.com/misetic99/linux-alternatives/issues/new/choose" rel="noopener">Request this app</a> or <a href="contribute.html">add it yourself</a>, it takes one small file.
     </p>
     <p id="error" class="empty" hidden>Could not load the database. Try reloading the page.</p>
+    <noscript><p class="empty">Search needs JavaScript. The raw data is available as <a href="api/v1/apps.json">JSON</a>.</p></noscript>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Why you can trust it</p>
+        <h2>Honest by design</h2>
+      </div>
+      <div class="grid-3">
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-shield"/></svg></div>
+          <h3>Ratings that admit gaps</h3>
+          <p>Every alternative says how well it replaces the original, which formats work and what is missing. Unchecked entries are labelled “unverified”.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-terminal"/></svg></div>
+          <h3>Real Wine &amp; Proton reports</h3>
+          <p>Reports name the app version, runner, distribution and the exact tweaks used. No report means “untested”, not “works”.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-database"/></svg></div>
+          <h3>Open and reusable</h3>
+          <p>Every entry is a small YAML file in Git. The whole dataset is CC0 and served as a JSON API that other tools can build on.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="wrap foot">
-    <p>
-      Data is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, code is MIT.
-      <a href="https://github.com/misetic99/linux-alternatives">Contribute on GitHub</a> ·
-      <a href="api/v1/index.json">JSON API</a>
-    </p>
-    <p class="fine">Product names belong to their owners. This project is not affiliated with any vendor. Entries marked “unverified” have not been checked yet.</p>
-  </footer>
-
+  <!--@footer-->
   <script src="app.js" defer></script>
 </body>
 </html>

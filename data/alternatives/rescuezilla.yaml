@@ -1,0 +1,10 @@
+# License: https://github.com/rescuezilla/rescuezilla/blob/master/src/apps/rescuezilla/debian/copyright
+# Download: https://rescuezilla.com/download
+id: rescuezilla
+name: Rescuezilla
+homepage: https://rescuezilla.com/
+license: GPL-3.0-or-later
+description: Disk imaging and restoration tool supplied as a bootable Linux environment.
+install:
+  - method: download
+    ref: https://rescuezilla.com/download

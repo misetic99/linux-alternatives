@@ -177,6 +177,39 @@ function matches(app, q) {
   return q.split(/\s+/).every((word) => haystack.includes(word));
 }
 
+function renderStats() {
+  const altIds = new Set();
+  let reports = 0;
+  let verified = 0;
+  for (const app of state.apps) {
+    for (const link of app.alternatives) altIds.add(link.id);
+    reports += (app.reports || []).length;
+    if (app.verified) verified += 1;
+  }
+  const set = (id, value) => {
+    const node = $(id);
+    if (node) node.textContent = String(value);
+  };
+  set("stat-apps", state.apps.length);
+  set("stat-alts", altIds.size);
+  set("stat-reports", reports);
+  set("stat-verified", verified);
+}
+
+// Deep links such as /?q=autocad. Skipped when the browser APIs are missing.
+function initialQuery() {
+  if (typeof location === "undefined" || typeof URLSearchParams === "undefined") return "";
+  return new URLSearchParams(location.search).get("q") || "";
+}
+
+function syncUrl() {
+  if (typeof history === "undefined" || typeof location === "undefined") return;
+  const q = state.query.trim();
+  try {
+    history.replaceState(null, "", q ? `?q=${encodeURIComponent(q)}` : location.pathname);
+  } catch { /* the URL is a convenience only */ }
+}
+
 function render() {
   const q = state.query.trim().toLowerCase();
   const list = state.apps.filter(
@@ -215,8 +248,11 @@ async function main() {
     $("error").hidden = false;
     return;
   }
+  renderStats();
   renderChips();
-  $("q").addEventListener("input", (e) => { state.query = e.target.value; render(); });
+  state.query = initialQuery();
+  $("q").value = state.query;
+  $("q").addEventListener("input", (e) => { state.query = e.target.value; syncUrl(); render(); });
   render();
 }
 

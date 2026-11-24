@@ -1,0 +1,10 @@
+# License: https://github.com/blender/blender/blob/main/release/license/license.md
+# Package: https://flathub.org/en/apps/org.blender.Blender
+id: blender
+name: Blender
+homepage: https://www.blender.org/
+license: GPL-3.0-or-later
+description: 3D creation suite with sculpting, animation, rendering and compositing tools.
+install:
+  - method: flatpak
+    ref: org.blender.Blender

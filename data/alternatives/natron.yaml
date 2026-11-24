@@ -1,0 +1,10 @@
+# License: https://github.com/NatronGitHub/Natron/blob/master/Gui/Resources/Metainfo/fr.natron.Natron.appdata.xml
+# Package: https://flathub.org/en/apps/fr.natron.Natron
+id: natron
+name: Natron
+homepage: https://natrongithub.github.io/
+license: GPL-2.0-or-later
+description: Node-based 2D compositor with keying, tracking and rotoscoping tools.
+install:
+  - method: flatpak
+    ref: fr.natron.Natron

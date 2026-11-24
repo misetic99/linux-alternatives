@@ -6,6 +6,7 @@ This repository uses two licenses, split by what the files are:
 | --- | --- | --- |
 | **Code**: scripts, tooling, site, packages, CI, docs | `tools/`, `site/`, `packages/`, `.github/`, `docs/`, `*.md` | [MIT](../LICENSE) |
 | **Data**: the database itself | `data/`, `schema/` | [CC0 1.0 Universal](../LICENSE-DATA) (public domain dedication) |
+| **Font**: Montserrat, self-hosted for the website | `site/fonts/` | [SIL Open Font License 1.1](../site/fonts/OFL.txt) |
 
 ## Why CC0 for the data
 

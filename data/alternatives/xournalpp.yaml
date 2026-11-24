@@ -1,0 +1,10 @@
+# License: https://github.com/xournalpp/xournalpp/blob/master/resources-templates/com.github.xournalpp.xournalpp.appdata.xml.in
+# Package: https://flathub.org/en/apps/com.github.xournalpp.xournalpp
+id: xournalpp
+name: Xournal++
+homepage: https://xournalpp.github.io/
+license: GPL-2.0-only
+description: Handwritten note editor with stylus input, PDF annotation and PDF export.
+install:
+  - method: flatpak
+    ref: com.github.xournalpp.xournalpp

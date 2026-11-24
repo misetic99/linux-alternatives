@@ -11,7 +11,9 @@ For every Windows application: what replaces it on Linux, how well, and whether 
 ![Data license](https://img.shields.io/badge/data-CC0-lightgrey)
 ![Data](https://img.shields.io/badge/data-YAML%20%2B%20JSON%20Schema-informational)
 
-[Browse the data](#-how-the-data-looks) · [Contribute](#-contribute-in-5-minutes) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](#-roadmap)
+### 🌐 [**Open the live site → linux-alternatives.itasel.org**](https://linux-alternatives.itasel.org)
+
+[Live site](https://linux-alternatives.itasel.org) · [Browse the data](#-how-the-data-looks) · [Contribute](#-contribute-in-5-minutes) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](#-roadmap)
 
 </div>
 
@@ -93,7 +95,7 @@ You do **not** need to write code.
 3. **Validate locally** (optional): `npm install && npm run validate`. CI runs the same check on every PR.
 4. **Open a pull request.** A maintainer reviews it, usually the same week.
 
-> The database currently contains a handful of **unverified seed entries** (`verified: false`) so the format can be exercised. They need your review.
+> The database currently contains **45 unverified seed entries** (`verified: false`). Fit ratings are initial estimates, not tested migration results. Check the sources and notes before relying on an entry.
 
 Just ran an app under Wine or Proton? Open a **compatibility report** using the issue template, or add a report file directly.
 
@@ -117,12 +119,25 @@ Requires Node.js 20+. `npm run build` writes the website and the static JSON API
 
 Expand an app's details on the site to see its official links and compatibility reports, newest first. Each report shows the tested app and runner versions, distribution, date, reporter, adjustments and notes. Alternative entries also expose their source links when provided.
 
+### The website
+
+| Page | What it does |
+| --- | --- |
+| **Search** (`/`) | Instant search and category filters, live database stats, deep links like `/?q=autocad` |
+| **Switch planner** (`/switch.html`) | Tick the Windows apps you use and get a personal Linux plan: best alternative per app, fit ratings, what is missing and a reviewable Flatpak install script. Runs fully in the browser, the plan is shareable as a link |
+| **About** (`/about.html`) | Why the project exists, how the data is built, what the ratings mean |
+| **Contribute** (`/contribute.html`) | The GitHub contribution guide in five steps, no coding required |
+| **Ideas** (`/ideas.html`) | Roadmap status and open ideas |
+| **For companies** (`/business.html`) | Use cases for teams and distributions, JSON API quick start, ways to get involved |
+
+The site is plain HTML, CSS and JavaScript (no framework). The build only adds the shared header and footer from `site/partials/`, canonical URLs, `sitemap.xml` and `robots.txt`. The look follows [itasel.org](https://itasel.org) (dark-first, gold accent, Montserrat), with a light theme for systems that prefer it. Set `SITE_URL` when building for a different domain: `SITE_URL=https://example.org npm run build`.
+
 ## 🌐 Hosting
 
 The website is plain static files, so it can be served from anywhere:
 
 - **GitHub Pages**: deployed automatically on merges to `main` (one-time setup: Settings → Pages → Source: *GitHub Actions*).
-- **Your own server**: ready-made Docker image, nginx config with strict security headers, and an optional rsync deploy workflow. The public instance is planned at **linux-alternatives.itasel.org**, so people who are not contributors can browse and search without a GitHub account.
+- **Your own server**: ready-made Docker image, nginx config with strict security headers, and an optional rsync deploy workflow. The public instance runs at **[linux-alternatives.itasel.org](https://linux-alternatives.itasel.org)**, so people who are not contributors can browse and search without a GitHub account.
 
 ```bash
 # Self-host with Docker (listens on 127.0.0.1:8080, put a TLS proxy in front)
@@ -136,10 +151,10 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 - [x] Project vision and architecture proposal
 - [x] **v0.1** Repository skeleton: `data/`, JSON Schemas, validation, build, CI on every PR
 - [x] Licenses (MIT for code, CC0 for data), contributing guide, issue and PR templates
-- [ ] **v0.1** Seed the database with the 50–100 most requested apps (25 unverified seeds so far)
+- [ ] **v0.1** Seed the database with the 50–100 most requested apps (45 unverified seeds so far)
 - [x] **v0.2** Static search site (deploys to GitHub Pages)
 - [x] **v0.2** Self-hosting kit (Docker, nginx, optional rsync deploy) for linux-alternatives.itasel.org
-- [ ] Go live on linux-alternatives.itasel.org
+- [x] Live on [linux-alternatives.itasel.org](https://linux-alternatives.itasel.org)
 - [ ] **v0.2** `good first issue` backlog
 - [ ] **v0.3** Published packages: `npm` and `PyPI` with a typed API
 - [ ] **v0.3** Public announcement (r/linux, Lemmy, distro forums)

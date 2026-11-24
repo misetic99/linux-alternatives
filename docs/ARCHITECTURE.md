@@ -40,6 +40,9 @@ linux-alternatives/
 │  └─ report.schema.json
 ├─ tools/                    # validate + build (JavaScript, Node)
 ├─ site/                     # static website (HTML, CSS, JavaScript)
+│  ├─ partials/              # shared header and footer, inlined at build time
+│  ├─ plan-core.js           # pure logic of the switch planner (unit tested)
+│  └─ fonts/                 # self-hosted Montserrat (SIL OFL)
 ├─ packages/
 │  ├─ npm/                   # @linux-alternatives/data
 │  └─ pypi/                  # linux-alternatives
@@ -152,7 +155,7 @@ flowchart LR
 
 | Consumer | How |
 | --- | --- |
-| Humans | Static site with instant search by app name, category, or alternative |
+| Humans | Static site with instant search by app name, category, or alternative, plus a client-side switch planner that turns a list of Windows apps into a plan and an install script. The selection lives only in the URL hash: nothing is uploaded or stored |
 | JS / TS tools | `npm i @linux-alternatives/data` with typed access and lookup helpers |
 | Python tools | `pip install linux-alternatives` |
 | Anything else | Raw JSON from the public site: `/api/v1/apps.json`, `/api/v1/apps/<id>.json` (CORS open to any origin on the self-hosted instance) |
@@ -198,7 +201,8 @@ flowchart LR
 | Data format | YAML | Friendliest for non-developers, supports comments |
 | Validation | JSON Schema (draft 2020-12) | Language-neutral; editors show inline errors |
 | Tooling | JavaScript on Node | Same ecosystem as the planned npm package and site |
-| Site | HTML, CSS and JavaScript | Fully static, client-side search with no server or framework |
+| Site | HTML, CSS and JavaScript | Fully static, client-side search with no server or framework. The build only inlines the shared header/footer and writes canonical URLs, `sitemap.xml` and `robots.txt` (`SITE_URL` sets the domain). No inline scripts or styles, so a strict CSP works |
+| Design | Tokens shared with itasel.org | Dark-first, gold accent, Montserrat; light theme via `prefers-color-scheme` |
 | Hosting | GitHub Pages and/or own server (nginx) | The output is plain static files, so any web server works. See [SELF_HOSTING.md](SELF_HOSTING.md) |
 | CI | GitHub Actions | Native to the repo |
 

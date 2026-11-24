@@ -1,0 +1,18 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: winzip
+name: WinZip
+vendor: WinZip
+category: utilities
+homepage: https://www.winzip.com/en/
+verified: false
+
+alternatives:
+  - id: peazip
+    fit: partial
+    file_formats:
+      import: [zip, 7z]
+      export: [zip, 7z]
+    notes: Suggested for creating and extracting archives. WinZip cloud integrations, encryption interoperability and backup workflows have not been tested.
+    sources:
+      - https://www.winzip.com/en/
+      - https://peazip.github.io/peazip-linux.html

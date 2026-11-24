@@ -1,0 +1,10 @@
+# License: https://github.com/KDE/k3b/blob/master/src/main.cpp
+# Package: https://sources.debian.org/src/k3b/
+id: k3b
+name: K3b
+homepage: https://apps.kde.org/k3b/
+license: GPL-2.0-or-later
+description: Optical disc authoring application with disc copying and audio CD extraction.
+install:
+  - method: apt
+    ref: k3b

@@ -1,0 +1,18 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: evernote
+name: Evernote
+vendor: Evernote
+category: office
+homepage: https://evernote.com/
+verified: false
+
+alternatives:
+  - id: joplin
+    fit: partial
+    file_formats:
+      import: [enex]
+    notes: Suggested for notebooks, attachments and web clipping. ENEX import is documented, with limitations for complex formatting and links between notes; migration has not been tested.
+    sources:
+      - https://evernote.com/
+      - https://joplinapp.org/
+      - https://joplinapp.org/help/apps/import_export/

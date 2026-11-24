@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ideas and roadmap: where linux-alternatives is going</title>
+  <meta name="description" content="What is done, what is planned and which ideas are open for discussion: packages, an embeddable widget, report tooling, Bottles and Lutris presets and more.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="linux-alternatives">
+  <meta property="og:title" content="Ideas and roadmap | linux-alternatives">
+  <meta property="og:description" content="What is done, what is planned and which ideas are open for discussion.">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="ideas">
+  <!--@header-->
+
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Ideas &amp; roadmap</p>
+      <h1>Where this is going,<br><span class="grad">and where you can steer it.</span></h1>
+      <p class="lead">The roadmap shows what is built and what is next. The ideas below are open for discussion and are not promises. Pick one, challenge it, or bring your own.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://github.com/misetic99/linux-alternatives/issues/new/choose" rel="noopener">Suggest an idea <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="contribute.html">Contribute</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="wrap">
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Roadmap</p>
+        <h2>Status of the project</h2>
+      </div>
+      <div class="grid-3">
+        <div class="feature"><span class="tag tag-done">Done</span><h3>Foundation</h3><p>Data model, JSON Schemas, validation tooling and CI that checks every pull request.</p></div>
+        <div class="feature"><span class="tag tag-done">Done</span><h3>Website and JSON API</h3><p>Searchable site with app details and reports, plus a static, versioned API under <code>/api/v1/</code>.</p></div>
+        <div class="feature"><span class="tag tag-done">Done</span><h3>Switch planner</h3><p>Personal Windows to Linux plan with fit ratings and a reviewable install script, entirely in the browser.</p></div>
+        <div class="feature"><span class="tag tag-done">Done</span><h3>Self-hosting kit</h3><p>Docker image, hardened nginx config and an optional deploy workflow for running your own copy.</p></div>
+        <div class="feature"><span class="tag tag-wip">In progress</span><h3>Seed the database</h3><p>Growing towards the 50 to 100 most requested apps. Most entries are still unverified and need your review.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned</span><h3>Packages</h3><p>Typed <code>npm</code> and <code>PyPI</code> packages so tools can depend on the data without calling the API.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned</span><h3>“Coming from Windows?” widget</h3><p>A small embeddable section for distributions, themes and onboarding apps, built from the same JSON.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned</span><h3>Good first issue backlog</h3><p>A steady list of small, well-described tasks for new contributors.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned</span><h3>Public launch</h3><p>Announcement on community forums once the first 50 apps are in and reviewed.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Open ideas</p>
+        <h2>Things we would love to explore</h2>
+        <p class="muted">None of these is committed. If one excites you, open an issue and let us shape it together.</p>
+      </div>
+      <div class="grid-3">
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-terminal"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>One-command compatibility report</h3>
+          <p>A small CLI that detects your distribution and Wine or Proton version, asks how it went and writes a ready-to-submit report file.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-zap"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Prefix presets for Bottles and Lutris</h3>
+          <p>Turn well-confirmed reports into importable presets with the right winetricks verbs and settings.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-list"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Team migration assessment</h3>
+          <p>Paste the list of installed programs from a Windows machine and get a readiness report for a whole team, computed locally in the browser.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-globe"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Translations</h3>
+          <p>Community translations of the interface and guidance, so people can find answers in their own language.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-database"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>File format matrix</h3>
+          <p>A browsable view of which formats each alternative reads and writes, for the question “can I still open my files?”.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-users"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Verification sprints</h3>
+          <p>Themed community days where people verify one category together, for example CAD or accounting, with reviewers per domain.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-search"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Browser extension</h3>
+          <p>On a Windows app’s download page, show its Linux alternatives. Offline-first and without tracking.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-shield"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Freshness checks</h3>
+          <p>A scheduled job that flags broken links and entries that have not been re-verified for a long time.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-code"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Software-center collections</h3>
+          <p>Curated “Replacements for your Windows apps” collections that distributions can ship in their app stores.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta">
+        <h2>Have a better idea?</h2>
+        <p>The best features of this project will come from people who actually switched, or tried to. Tell us what would have helped you.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/misetic99/linux-alternatives/issues/new/choose" rel="noopener">Open an issue</a>
+          <a class="btn btn-ghost" href="business.html">For companies &amp; distros</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!--@footer-->
+</body>
+</html>

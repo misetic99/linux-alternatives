@@ -16,7 +16,9 @@ Both use the same config: [`deploy/nginx.conf`](../deploy/nginx.conf) and [`depl
 - Serves the website and the JSON API (`/api/v1/...`), nothing else.
 - Sends a strict Content-Security-Policy (only same-origin scripts and styles), `nosniff`, no framing.
 - `/api/` is read-only (GET/HEAD/OPTIONS) and open to any origin (CORS `*`), so other tools can use the data from a browser.
-- Blocks dotfiles, disables directory listings, and answers `/healthz` for monitoring.
+- Blocks dotfiles, disables directory listings, serves a custom `404.html`, and answers `/healthz` for monitoring.
+- Caches the self-hosted font for a month; pages and the API revalidate quickly.
+- Canonical links, `sitemap.xml` and `robots.txt` use the build-time `SITE_URL`. It defaults to `https://linux-alternatives.itasel.org`. For another domain: `SITE_URL=https://example.org docker compose -f deploy/docker-compose.yml up -d --build` (Docker) or `SITE_URL=https://example.org npm run build` (plain server).
 - No cookies, no tracking, no external requests.
 
 ## Step 0: DNS

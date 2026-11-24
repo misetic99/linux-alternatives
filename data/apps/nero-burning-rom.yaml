@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: nero-burning-rom
+name: Nero Burning ROM
+aliases: [Nero]
+vendor: Nero
+category: utilities
+homepage: https://www.nero.com/eng/products/nero-burning-rom/
+verified: false
+
+alternatives:
+  - id: k3b
+    fit: partial
+    notes: Suggested for creating and copying optical discs and ripping audio CDs. Nero projects, disc protection and hardware-specific workflows have not been tested.
+    sources:
+      - https://www.nero.com/eng/products/nero-burning-rom/
+      - https://apps.kde.org/k3b/

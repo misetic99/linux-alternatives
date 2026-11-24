@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: autodesk-3ds-max
+name: Autodesk 3ds Max
+aliases: [3ds Max, 3D Studio Max]
+vendor: Autodesk
+category: graphics
+homepage: https://www.autodesk.com/products/3ds-max/overview
+verified: false
+
+alternatives:
+  - id: blender
+    fit: partial
+    notes: Suggested for 3D scene creation, animation and rendering. 3ds Max scene migration, scripts and plug-ins have not been tested.
+    sources:
+      - https://www.autodesk.com/products/3ds-max/overview
+      - https://github.com/blender/blender/blob/main/release/freedesktop/org.blender.Blender.metainfo.xml

@@ -1,0 +1,10 @@
+# License: https://github.com/laurent22/joplin/blob/dev/LICENSE
+# Package: https://flathub.org/en/apps/net.cozic.joplin_desktop
+id: joplin
+name: Joplin
+homepage: https://joplinapp.org/
+license: AGPL-3.0-or-later
+description: Note organizer with notebooks, attachments, Markdown editing and a web clipper.
+install:
+  - method: flatpak
+    ref: net.cozic.joplin_desktop

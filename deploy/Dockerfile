@@ -9,6 +9,9 @@ COPY schema ./schema
 COPY data ./data
 COPY tools ./tools
 COPY site ./site
+# Public URL used for canonical links and the sitemap.
+ARG SITE_URL=https://linux-alternatives.itasel.org
+ENV SITE_URL=$SITE_URL
 RUN npm run validate && npm run build
 
 FROM nginx:1.27-alpine

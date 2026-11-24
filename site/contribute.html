@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contribute on GitHub: add an app in 5 minutes</title>
+  <meta name="description" content="Help people switch to Linux. Add a Windows app, report Wine compatibility or verify an entry with one small YAML file and a pull request. No coding required.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="linux-alternatives">
+  <meta property="og:title" content="Contribute to linux-alternatives">
+  <meta property="og:description" content="Add an app, report compatibility or verify an entry. One small file, one pull request, no coding required.">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="contribute">
+  <!--@header-->
+
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Contribute on GitHub</p>
+      <h1>Your first open source<br><span class="grad">contribution takes 5 minutes.</span></h1>
+      <p class="lead">Every entry is one small YAML file. If you have used a Windows app and a Linux alternative, you already know enough to help thousands of people who are one app away from switching.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://github.com/misetic99/linux-alternatives" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg> Open the repository</a>
+        <a class="btn btn-ghost" href="https://github.com/misetic99/linux-alternatives/issues/new?template=add-an-app.yml" rel="noopener">Request an app</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="wrap">
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Ways to help</p>
+        <h2>Pick what suits you</h2>
+      </div>
+      <div class="grid-3">
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-list"/></svg></div>
+          <h3>Add an app</h3>
+          <p>Describe a Windows app and the Linux alternatives you know: how well they fit, which formats work, what is missing.</p>
+          <p><a href="https://github.com/misetic99/linux-alternatives/issues/new?template=add-an-app.yml" rel="noopener">Open an “Add an app” issue →</a></p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-terminal"/></svg></div>
+          <h3>Report compatibility</h3>
+          <p>Ran a Windows app under Wine, Proton or Bottles? Tell us the versions, the distribution and the tweaks that made it work.</p>
+          <p><a href="https://github.com/misetic99/linux-alternatives/issues/new?template=compatibility-report.yml" rel="noopener">Submit a report →</a></p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-check"/></svg></div>
+          <h3>Verify and fix</h3>
+          <p>Many entries start as “unverified”. If you know an app well, check it, correct what is wrong and add a source.</p>
+          <p><a href="https://github.com/misetic99/linux-alternatives/tree/main/data/apps" rel="noopener">Browse the entries →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Your first pull request</p>
+        <h2>Five steps, no code</h2>
+      </div>
+      <ol class="steps">
+        <li><strong>Fork the repository</strong><span>Click “Fork” on GitHub, or use the web editor to edit files directly.</span></li>
+        <li><strong>Copy the template</strong><span>Copy <code>data/apps/_template.yaml</code> to <code>data/apps/your-app.yaml</code>. The file name must match the <code>id</code> inside.</span></li>
+        <li><strong>Fill it in</strong><span>Use neutral, concrete facts. Link a source. Leave <code>verified: false</code> unless you checked everything.</span></li>
+        <li><strong>Check it (optional)</strong><span>Run <code>npm install &amp;&amp; npm run validate</code>. If you skip this, the same check runs automatically on your pull request.</span></li>
+        <li><strong>Open a pull request</strong><span>One app per pull request keeps reviews quick. A maintainer will take a look.</span></li>
+      </ol>
+
+      <p class="code-label">What an entry looks like (illustrative example)</p>
+<pre class="code"><code>id: example-cad
+name: Example CAD
+vendor: Example Corp
+category: cad
+homepage: https://example.com/cad
+verified: false
+
+alternatives:
+  - id: freecad
+    fit: partial            # full | good | partial | minimal
+    file_formats:
+      import: [dxf, step]
+      export: [dxf, step]
+    missing:
+      - Sheet-set manager
+    notes: Fine for 3D parametric work, weaker for 2D drafting.
+    sources:
+      - https://example.com/review</code></pre>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Ground rules</p>
+        <h2>What makes a good contribution</h2>
+      </div>
+      <ul class="checks">
+        <li><strong>Verify or cite.</strong> Only add what you tested yourself or can link to a source.</li>
+        <li><strong>Be concrete.</strong> “Cannot export DWG” beats “poor compatibility”.</li>
+        <li><strong>Stay neutral.</strong> Describe features, do not advertise or bash.</li>
+        <li><strong>Use your own words.</strong> Do not paste text from other databases or vendor marketing pages.</li>
+        <li><strong>One app per pull request.</strong> Small changes are reviewed fastest.</li>
+      </ul>
+      <p class="fine">By opening a pull request you agree that your contribution is licensed under MIT (code) and CC0 (data). Read the full <a href="https://github.com/misetic99/linux-alternatives/blob/main/CONTRIBUTING.md" rel="noopener">contributing guide</a>, the <a href="https://github.com/misetic99/linux-alternatives/blob/main/docs/CODE_OF_CONDUCT.md" rel="noopener">code of conduct</a> and the <a href="https://github.com/misetic99/linux-alternatives/blob/main/docs/LICENSING.md" rel="noopener">licensing notes</a>.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Why contribute</p>
+        <h2>Small effort, lasting value</h2>
+      </div>
+      <div class="grid-3">
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-users"/></svg></div>
+          <h3>Help people switch</h3>
+          <p>One honest entry can save someone hours of searching, or the decision to give up on Linux.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-code"/></svg></div>
+          <h3>Learn the PR flow</h3>
+          <p>A tiny, well-defined change is a friendly way to make your first pull request and see CI in action.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-database"/></svg></div>
+          <h3>Public, permanent credit</h3>
+          <p>Your commits stay in the project history, and compatibility reports carry your GitHub handle and the date.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">For developers</p>
+        <h2>Work on the tooling</h2>
+      </div>
+<pre class="code"><code>git clone https://github.com/misetic99/linux-alternatives.git
+cd linux-alternatives
+npm install
+npm run check   # validate data + tests + build the site and API
+npm run dev     # preview at http://localhost:4173</code></pre>
+      <p class="fine">Requires Node.js 20 or newer. The site is plain HTML, CSS and JavaScript with no framework, and the build only adds the shared header and footer.</p>
+    </section>
+
+    <section class="section">
+      <div class="cta">
+        <h2>Ready when you are</h2>
+        <p>Pick one app you know well and add it. Questions are welcome in the issues.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/misetic99/linux-alternatives" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg> Go to GitHub</a>
+          <a class="btn btn-ghost" href="ideas.html">See ideas &amp; roadmap</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!--@footer-->
+</body>
+</html>

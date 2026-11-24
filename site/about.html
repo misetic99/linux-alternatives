@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About the project: an open Windows to Linux database</title>
+  <meta name="description" content="Why linux-alternatives exists, how the data is built and rated, and the principles that keep it honest. Open data (CC0), open code (MIT).">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="linux-alternatives">
+  <meta property="og:title" content="About linux-alternatives">
+  <meta property="og:description" content="An open, community-built database that answers: what replaces my Windows app on Linux?">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="about">
+  <!--@header-->
+
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">About the project</p>
+      <h1>One missing app can stop<br><span class="grad">an entire switch to Linux.</span></h1>
+      <p class="lead">“What replaces X on Linux?” is asked every day on forums and in support chats. Games have a great answer in ProtonDB. Everything else (CAD, engineering software, accounting, print tools, niche professional apps) had no good open source of truth. This project is that source.</p>
+    </div>
+  </section>
+
+  <main id="main" class="wrap">
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">What it is</p>
+        <h2>Three questions, answered for every app</h2>
+      </div>
+      <div class="grid-3">
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-list"/></svg></div>
+          <h3>What replaces it?</h3>
+          <p>One or more Linux alternatives per Windows app, each with a fit rating, supported file formats, shortcut similarity and a list of what is missing.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-terminal"/></svg></div>
+          <h3>Does the original run?</h3>
+          <p>Wine and Proton reports from real users: app version, runner version, distribution, the tweaks they needed, and the result.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-code"/></svg></div>
+          <h3>Can my tool use it?</h3>
+          <p>Yes. Everything is published as a versioned JSON API under <code>/api/v1/</code>, free to use with no key and no attribution.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">How it works</p>
+        <h2>Git is the database</h2>
+        <p class="muted">Every app, alternative and report is a small YAML file. Contributors add files through pull requests, and automation checks every change before it can be merged.</p>
+      </div>
+      <ol class="flow">
+        <li>YAML files in Git</li>
+        <li>JSON Schema validation</li>
+        <li>Build</li>
+        <li>Website + JSON API</li>
+      </ol>
+      <div class="grid-2">
+        <div class="feature">
+          <h3>Reviewable</h3>
+          <p>Each change is a diff someone can read, question and revert. History shows who changed what and why.</p>
+        </div>
+        <div class="feature">
+          <h3>Machine-checked</h3>
+          <p>Schemas catch typos, unknown categories, missing alternatives and misplaced reports before a human ever looks at the pull request.</p>
+        </div>
+        <div class="feature">
+          <h3>Derived, not typed</h3>
+          <p>An app’s headline Wine status is calculated from its reports (the most common result, ties go to the newest), so the number stays honest as reports accumulate.</p>
+        </div>
+        <div class="feature">
+          <h3>Static and fast</h3>
+          <p>The site and the API are plain files. There is no backend to attack or to go down, and anyone can host a copy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Reading the ratings</p>
+        <h2>What the labels mean</h2>
+      </div>
+      <div class="grid-2">
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Fit</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><span class="badge f-full">Full</span></td><td>Covers essentially everything a typical user of the Windows app does.</td></tr>
+              <tr><td><span class="badge f-good">Good</span></td><td>Covers the common workflows; gaps only in advanced features.</td></tr>
+              <tr><td><span class="badge f-partial">Partial</span></td><td>Usable for some tasks; important features or formats are missing.</td></tr>
+              <tr><td><span class="badge f-minimal">Minimal</span></td><td>Covers only a small part of what the Windows app does.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Compatibility</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><span class="badge s-platinum">Platinum</span></td><td>Runs perfectly out of the box.</td></tr>
+              <tr><td><span class="badge s-gold">Gold</span></td><td>Perfect after some tweaks.</td></tr>
+              <tr><td><span class="badge s-silver">Silver</span></td><td>Works, with minor issues.</td></tr>
+              <tr><td><span class="badge s-bronze">Bronze</span></td><td>Runs, with major issues.</td></tr>
+              <tr><td><span class="badge s-borked">Borked</span></td><td>Does not work.</td></tr>
+              <tr><td><span class="badge s-untested">Untested</span></td><td>No reports yet. This is not a promise that it works.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Principles</p>
+        <h2>The rules that keep it useful</h2>
+      </div>
+      <ul class="checks">
+        <li><strong>Verify or cite.</strong> Claims need a source or a contributor who tested them. Everything else is marked “unverified”.</li>
+        <li><strong>Unknown is a valid answer.</strong> We would rather say “untested” than guess.</li>
+        <li><strong>Neutral and concrete.</strong> “Cannot export DWG” beats “poor compatibility”. No advertising, no flame wars.</li>
+        <li><strong>Own words.</strong> Facts are free; copying text from other databases or vendor pages is not allowed.</li>
+        <li><strong>No tracking.</strong> No cookies, no analytics, no third-party scripts on this site.</li>
+        <li><strong>Open forever.</strong> Data is CC0 and lives in Git, so it can always be forked.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Licensing and hosting</p>
+        <h2>Free to use, free to fork</h2>
+      </div>
+      <div class="grid-2">
+        <div class="feature">
+          <h3>Licenses</h3>
+          <p>Data (<code>data/</code>, <code>schema/</code>) is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener">CC0 1.0</a>: public domain, no attribution needed. Code is <a href="https://github.com/misetic99/linux-alternatives/blob/main/LICENSE" rel="noopener">MIT</a>. Contributions use the same terms.</p>
+        </div>
+        <div class="feature">
+          <h3>Hosting</h3>
+          <p>This site runs on <a href="https://itasel.org/" rel="noopener">ITASEL</a> infrastructure as plain static files. The repository also ships a Docker image and nginx config so anyone can host their own copy.</p>
+        </div>
+      </div>
+      <p class="fine">Product names belong to their owners. This project is not affiliated with or endorsed by any vendor.</p>
+    </section>
+
+    <section class="section">
+      <div class="cta">
+        <h2>Know an app that is missing?</h2>
+        <p>Adding one is a single small file, and you do not need to write code.</p>
+        <div class="btn-row">
+          <a class="btn" href="contribute.html">Contribute <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="./">Browse the database</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!--@footer-->
+</body>
+</html>

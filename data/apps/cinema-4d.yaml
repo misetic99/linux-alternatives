@@ -1,0 +1,16 @@
+# Initial fit estimate based on the linked documentation; not tested.
+id: cinema-4d
+name: Cinema 4D
+aliases: [C4D, Maxon Cinema 4D]
+vendor: Maxon
+category: graphics
+homepage: https://www.maxon.net/en/cinema-4d
+verified: false
+
+alternatives:
+  - id: blender
+    fit: partial
+    notes: Suggested for 3D scene creation, animation and rendering. Cinema 4D scene migration and motion graphics workflows have not been tested.
+    sources:
+      - https://www.maxon.net/en/cinema-4d
+      - https://github.com/blender/blender/blob/main/release/freedesktop/org.blender.Blender.metainfo.xml

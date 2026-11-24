@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>For companies and distributions: build on open migration data</title>
+  <meta name="description" content="Use the CC0 Windows to Linux database in migration planning, support tools and distribution onboarding. Versioned JSON API, no key, no attribution, no lock-in.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="linux-alternatives">
+  <meta property="og:title" content="For companies and distributions | linux-alternatives">
+  <meta property="og:description" content="Open, CC0 migration data with a versioned JSON API. Build planning tools, onboarding flows and support content on top of it.">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="business">
+  <!--@header-->
+
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">For companies, teams &amp; distributions</p>
+      <h1>Open migration data<br><span class="grad">you can build on.</span></h1>
+      <p class="lead">Moving a team or a product line to Linux always raises the same question: what happens to each application? This project keeps that answer in an open, versioned, machine-readable form, with no license strings attached.</p>
+      <div class="btn-row">
+        <a class="btn" href="#api">Try the API <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="https://github.com/misetic99/linux-alternatives/issues/new/choose" rel="noopener">Talk to us</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="wrap">
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Use cases</p>
+        <h2>Where open migration data helps</h2>
+      </div>
+      <div class="grid-3">
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-list"/></svg></div>
+          <h3>Migration planning</h3>
+          <p>IT teams and consultants can map the applications in use to alternatives, spot blockers early and estimate effort before a pilot.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-users"/></svg></div>
+          <h3>Distributions and onboarding</h3>
+          <p>Show newcomers a “Coming from Windows?” guide in installers, welcome apps and software centers, powered by the same data.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-terminal"/></svg></div>
+          <h3>Support and documentation</h3>
+          <p>Help desks and vendors that ship Linux can link answers to a single, neutral source instead of rewriting them.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="api">
+      <div class="section-head">
+        <p class="kicker">Quick start</p>
+        <h2>A static JSON API, no key required</h2>
+        <p class="muted">Files are served from <code>/api/v1/</code> with open CORS, so you can call them from a browser, a script or a build pipeline. <code>index.json</code> is a compact list for search, <code>apps.json</code> contains everything, and <code>apps/&lt;id&gt;.json</code> is one app.</p>
+      </div>
+
+      <p class="code-label">curl</p>
+<pre class="code"><code>curl -s https://linux-alternatives.itasel.org/api/v1/index.json</code></pre>
+
+      <p class="code-label">JavaScript</p>
+<pre class="code"><code>const url = "https://linux-alternatives.itasel.org/api/v1/apps/autocad.json";
+const app = await (await fetch(url)).json();
+console.log(app.alternatives.map((l) =&gt; `${l.alternative.name} (${l.fit})`));</code></pre>
+
+      <p class="code-label">Python</p>
+<pre class="code"><code>import json, urllib.request
+
+url = "https://linux-alternatives.itasel.org/api/v1/apps/autocad.json"
+app = json.load(urllib.request.urlopen(url))
+print([(l["alternative"]["name"], l["fit"]) for l in app["alternatives"]])</code></pre>
+
+      <p class="fine">Check the <code>verified</code> flag before presenting an entry as fact: many entries are still unverified community seeds. The schema is versioned with the path (<code>/api/v1/</code>), and breaking changes will bump the version.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Why it is safe to depend on</p>
+        <h2>Built to avoid lock-in</h2>
+      </div>
+      <ul class="checks">
+        <li><strong>CC0 data.</strong> Public domain: use it commercially, embed it, redistribute it, with no attribution requirement.</li>
+        <li><strong>MIT code.</strong> Tooling, site and deploy kit can be reused and modified freely.</li>
+        <li><strong>Forkable by design.</strong> All data lives in Git, so you can mirror or fork the whole dataset at any time.</li>
+        <li><strong>Self-hostable.</strong> The repository includes a Docker image and a hardened nginx configuration for running your own copy.</li>
+        <li><strong>Private by default.</strong> This site sets no cookies, runs no analytics and loads no third-party scripts.</li>
+        <li><strong>Transparent quality.</strong> Every entry says whether it is verified, and every compatibility result shows its versions and date.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="kicker">Get involved</p>
+        <h2>Ways organisations can help</h2>
+        <p class="muted">The project is at an early stage. There are no case studies yet, and we would rather say so than invent them. Here is what is useful today.</p>
+      </div>
+      <div class="grid-2">
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-database"/></svg></div>
+          <h3>Adopt a category</h3>
+          <p>Let your domain experts verify or add the applications in their field, such as CAD, accounting, printing or engineering, through small pull requests.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-terminal"/></svg></div>
+          <h3>Share real compatibility results</h3>
+          <p>Teams that already run Windows applications on Linux can contribute reports with versions and tweaks, the most valuable data in the project.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-code"/></svg></div>
+          <h3>Integrate and give feedback</h3>
+          <p>Build on the API and tell us what is missing in the schema or the endpoints. Typed npm and PyPI packages are planned.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-users"/></svg></div>
+          <h3>Support the project</h3>
+          <p>Reviewing time, hosting and sponsorship all help. Open an issue to start a conversation about what would work for you.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta">
+        <h2>Let’s make switching easier together</h2>
+        <p>Tell us how you would use the data, or what you would need before you could depend on it.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/misetic99/linux-alternatives/issues/new/choose" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-github"/></svg> Start a conversation</a>
+          <a class="btn btn-ghost" href="ideas.html">See the roadmap</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!--@footer-->
+</body>
+</html>

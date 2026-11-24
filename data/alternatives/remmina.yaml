@@ -1,0 +1,10 @@
+# License: https://gitlab.com/Remmina/Remmina/-/blob/master/README.md
+# Package: https://remmina.org/how-to-install-remmina/
+id: remmina
+name: Remmina
+homepage: https://remmina.org/
+license: GPL-2.0-or-later
+description: Remote connection client supporting protocols including RDP, SSH and VNC.
+install:
+  - method: flatpak
+    ref: org.remmina.Remmina

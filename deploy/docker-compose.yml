@@ -8,6 +8,8 @@ services:
     build:
       context: ..
       dockerfile: deploy/Dockerfile
+      args:
+        SITE_URL: ${SITE_URL:-https://linux-alternatives.itasel.org}
     image: linux-alternatives:latest
     restart: unless-stopped
     ports:

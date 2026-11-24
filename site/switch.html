@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Switch planner: your personal Windows to Linux plan</title>
+  <meta name="description" content="Pick the Windows apps you use and get a personal Linux switch plan with alternatives, honest fit ratings and an install script. Runs in your browser, nothing is uploaded.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="linux-alternatives">
+  <meta property="og:title" content="Switch planner: your Windows to Linux plan">
+  <meta property="og:description" content="Pick your Windows apps, get Linux alternatives, fit ratings and an install script. Private: runs in your browser.">
+  <meta property="og:url" content="{{canonical}}">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="switch">
+  <!--@header-->
+
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Switch planner</p>
+      <h1>Pick your Windows apps.<br><span class="grad">Get your Linux plan.</span></h1>
+      <p class="lead">Tick the programs you use today. You get the best known alternative for each, how well it fits, what is missing, and a ready-to-review install script. Everything runs in your browser: nothing is uploaded or stored, and you can share the plan as a link.</p>
+    </div>
+  </section>
+
+  <main id="main" class="wrap section">
+    <p id="error" class="empty" hidden>Could not load the database. Try reloading the page.</p>
+    <noscript><p class="empty">The planner needs JavaScript. You can still <a href="./">search the database</a>.</p></noscript>
+
+    <div class="planner" id="planner">
+      <section class="panel" aria-labelledby="pick-title">
+        <h2 id="pick-title">1. What do you use?</h2>
+        <p class="meta">Select every Windows app you rely on.</p>
+        <label class="search">
+          <span class="sr">Filter apps</span>
+          <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="pick-q" type="search" placeholder="Filter apps…" autocomplete="off">
+        </label>
+        <ul id="pick-list" class="pick-list"></ul>
+      </section>
+
+      <section class="panel plan-panel" aria-labelledby="plan-title" aria-live="polite">
+        <h2 id="plan-title">2. Your plan</h2>
+        <p id="summary" class="summary">Select apps on the left to build your plan.</p>
+        <progress id="meter" class="meter" max="100" value="0" aria-label="Share of selected apps with a known alternative"></progress>
+        <p id="breakdown" class="meta"></p>
+        <ol id="plan-list" class="plan-list"></ol>
+
+        <div class="plan-actions">
+          <button id="copy-script" class="btn btn-sm" type="button" disabled><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg> Copy install script</button>
+          <button id="copy-link" class="btn btn-sm btn-ghost" type="button" disabled>Copy share link</button>
+          <button id="clear" class="btn btn-sm btn-ghost" type="button" disabled>Clear</button>
+        </div>
+        <p id="status" class="status" role="status"></p>
+
+        <label class="code-label" for="script">Install script (review before running)</label>
+        <textarea id="script" class="script" readonly spellcheck="false" placeholder="Your script appears here."></textarea>
+        <p class="fine">Uses Flatpak and Flathub. Only package names that pass a strict safety check are included. Data comes from community entries that may be unverified, so check each app before you rely on it.</p>
+      </section>
+    </div>
+  </main>
+
+  <!--@footer-->
+  <script src="plan-core.js" defer></script>
+  <script src="switch.js" defer></script>
+</body>
+</html>
