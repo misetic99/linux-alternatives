@@ -21,17 +21,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  pages:
-    name: GitHub Pages
+  # Build and upload happen in their own job on purpose. deploy-pages looks the
+  # artifact up through the API, and right after an upload in the same job the
+  # lookup can return nothing ("No artifacts named github-pages were found").
+  # A separate job gives the artifact time to become visible.
+  build:
+    name: Build site
     if: ${{ github.ref_type == 'branch' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
 
@@ -54,6 +51,18 @@ jobs:
         with:
           path: dist
 
+  pages:
+    name: GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v5
 
