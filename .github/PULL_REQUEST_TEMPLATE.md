@@ -8,4 +8,4 @@
 - [ ] `npm run validate` passes (CI runs it too)
 - [ ] I verified the facts myself or linked a source
 - [ ] I did not copy text from other databases
-- [ ] I agree my contribution is licensed under [MIT (code) / CC0 (data)](../LICENSING.md)
+- [ ] I agree my contribution is licensed under [MIT (code) / CC0 (data)](../docs/LICENSING.md)

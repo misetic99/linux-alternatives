@@ -5,9 +5,10 @@
 const API = "api/v1/apps.json";
 const FIT_LABEL = { full: "Full replacement", good: "Good fit", partial: "Partial fit", minimal: "Minimal fit" };
 const STATUS_LABEL = {
-  platinum: "Wine: platinum", gold: "Wine: gold", silver: "Wine: silver",
-  bronze: "Wine: bronze", borked: "Wine: borked", untested: "Wine: untested",
+  platinum: "Compatibility: platinum", gold: "Compatibility: gold", silver: "Compatibility: silver",
+  bronze: "Compatibility: bronze", borked: "Compatibility: borked", untested: "Compatibility: untested",
 };
+const RUNNER_LABEL = { wine: "Wine", proton: "Proton", bottles: "Bottles", crossover: "CrossOver", vm: "Virtual machine", other: "Other runner" };
 const SAFE_REF = /^[A-Za-z0-9][A-Za-z0-9._+-]*$/;
 const INSTALL_CMD = {
   apt: (r) => `sudo apt install ${r}`,
@@ -33,6 +34,77 @@ function badge(text, className) {
 
 function isHttp(url) {
   return typeof url === "string" && /^https?:\/\//i.test(url);
+}
+
+function externalLink(label, url) {
+  const a = el("a", null, label);
+  a.href = url;
+  a.rel = "noopener noreferrer";
+  return a;
+}
+
+function renderSources(sources) {
+  const links = (sources || []).filter(isHttp);
+  if (!links.length) return null;
+  const details = el("details", "sources");
+  details.append(el("summary", null, `Sources (${links.length})`));
+  const list = el("ul");
+  for (const url of links) {
+    const item = el("li");
+    item.append(externalLink(url, url));
+    list.append(item);
+  }
+  details.append(list);
+  return details;
+}
+
+function renderReport(report) {
+  const item = el("li", "report");
+  item.append(el("h4", null, `Version ${report.app_version}`));
+  item.append(badge(`Result: ${report.status}`, `s-${report.status}`));
+  item.append(el("p", "meta", `${RUNNER_LABEL[report.runner.type] || report.runner.type} ${report.runner.version} · ${report.distro}`));
+  const attribution = el("p", "meta");
+  const date = el("time", null, report.date);
+  date.dateTime = report.date;
+  attribution.append(date, document.createTextNode(` · Reported by ${report.reporter}`));
+  item.append(attribution);
+
+  const tweaks = report.tweaks || {};
+  const adjustments = el("ul", "tweaks");
+  if (tweaks.windows_version) adjustments.append(el("li", null, `Windows version: ${tweaks.windows_version}`));
+  if (tweaks.winetricks?.length) adjustments.append(el("li", null, `Winetricks: ${tweaks.winetricks.join(", ")}`));
+  for (const [name, value] of Object.entries(tweaks.env || {})) {
+    const entry = el("li");
+    entry.append(el("code", null, `${name}=${value}`));
+    adjustments.append(entry);
+  }
+  if (adjustments.children.length) {
+    item.append(el("p", "report-label", "Reported adjustments"), adjustments);
+  }
+  if (report.notes) item.append(el("p", "report-notes", report.notes));
+  return item;
+}
+
+function renderDetails(app) {
+  const details = el("details", "app-details");
+  const reports = [...(app.reports || [])].sort((a, b) => b.date.localeCompare(a.date));
+  details.append(el("summary", null, `App details and reports (${reports.length})`));
+  if (app.aliases?.length) details.append(el("p", "meta", `Also known as: ${app.aliases.join(", ")}`));
+  const links = el("p", "detail-links");
+  if (isHttp(app.homepage)) links.append(externalLink("Official website", app.homepage));
+  if (isHttp(app.wine.appdb_url)) links.append(externalLink("WineHQ reference", app.wine.appdb_url));
+  if (links.children.length) details.append(links);
+
+  details.append(el("h3", null, "Compatibility reports"));
+  if (!reports.length) {
+    details.append(el("p", "meta", "No compatibility reports yet. Compatibility is untested."));
+  } else {
+    details.append(el("p", "meta", "Results apply to the listed app and runner versions. The headline status uses the most common result; ties use the newest report."));
+    const list = el("ol", "reports");
+    list.append(...reports.map(renderReport));
+    details.append(list);
+  }
+  return details;
 }
 
 function formats(link) {
@@ -69,6 +141,8 @@ function renderAlternative(link) {
     box.append(ul);
   }
   if (link.notes) box.append(el("p", null, link.notes));
+  const sources = renderSources(link.sources);
+  if (sources) box.append(sources);
 
   const install = (alt.install || []).find((i) => INSTALL_CMD[i.method] && SAFE_REF.test(i.ref));
   if (install) box.append(el("code", "cmd", INSTALL_CMD[install.method](install.ref)));
@@ -90,6 +164,7 @@ function renderCard(app) {
   if (app.wine.summary) card.append(el("p", "meta", app.wine.summary));
   if (app.alternatives.length === 0) card.append(el("p", "meta", "No alternatives listed yet."));
   for (const link of app.alternatives) card.append(renderAlternative(link));
+  card.append(renderDetails(app));
   return card;
 }
 

@@ -103,7 +103,7 @@ Ground rules:
 - Keep it neutral. No marketing language, no "X is better than Y" without specifics.
 - One app per PR keeps reviews fast.
 
-Details are in [CONTRIBUTING.md](CONTRIBUTING.md). Please also read our [Code of Conduct](CODE_OF_CONDUCT.md).
+Details are in [CONTRIBUTING.md](CONTRIBUTING.md). Please also read our [Code of Conduct](docs/CODE_OF_CONDUCT.md).
 
 ## 🛠️ Develop
 
@@ -115,6 +115,22 @@ npm run dev        # build and preview the website at http://localhost:4173
 
 Requires Node.js 20+. `npm run build` writes the website and the static JSON API to `dist/` (`api/v1/index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed. Merges to `main` deploy it to GitHub Pages.
 
+Expand an app's details on the site to see its official links and compatibility reports, newest first. Each report shows the tested app and runner versions, distribution, date, reporter, adjustments and notes. Alternative entries also expose their source links when provided.
+
+## 🌐 Hosting
+
+The website is plain static files, so it can be served from anywhere:
+
+- **GitHub Pages**: deployed automatically on merges to `main` (one-time setup: Settings → Pages → Source: *GitHub Actions*).
+- **Your own server**: ready-made Docker image, nginx config with strict security headers, and an optional rsync deploy workflow. The public instance is planned at **linux-alternatives.itasel.org**, so people who are not contributors can browse and search without a GitHub account.
+
+```bash
+# Self-host with Docker (listens on 127.0.0.1:8080, put a TLS proxy in front)
+docker compose -f deploy/docker-compose.yml up -d --build
+```
+
+Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTING.md](docs/SELF_HOSTING.md).
+
 ## 🗺️ Roadmap
 
 - [x] Project vision and architecture proposal
@@ -122,6 +138,8 @@ Requires Node.js 20+. `npm run build` writes the website and the static JSON API
 - [x] Licenses (MIT for code, CC0 for data), contributing guide, issue and PR templates
 - [ ] **v0.1** Seed the database with the 50–100 most requested apps (3 unverified seeds so far)
 - [x] **v0.2** Static search site (deploys to GitHub Pages)
+- [x] **v0.2** Self-hosting kit (Docker, nginx, optional rsync deploy) for linux-alternatives.itasel.org
+- [ ] Go live on linux-alternatives.itasel.org
 - [ ] **v0.2** `good first issue` backlog
 - [ ] **v0.3** Published packages: `npm` and `PyPI` with a typed API
 - [ ] **v0.3** Public announcement (r/linux, Lemmy, distro forums)
@@ -134,6 +152,8 @@ data/       ← the source of truth (YAML, one file per app / alternative / repo
 schema/     ← JSON Schema that every file must pass
 tools/      ← validate + build scripts (YAML → dist/api/v1/*.json)
 site/       ← static search website (plain HTML/CSS/JS, no build step)
+deploy/     ← self-hosting: Dockerfile, compose, nginx config
+docs/       ← architecture, self-hosting guide, licensing, code of conduct
 packages/   ← npm and PyPI wrappers            (planned)
 ```
 
@@ -144,7 +164,7 @@ Read the [full proposal](docs/ARCHITECTURE.md) for the data model, build pipelin
 - **Code** (tools, CI, docs): [MIT](LICENSE)
 - **Data** (`data/`, `schema/`): [CC0 1.0](LICENSE-DATA), public domain, free to reuse with no attribution
 
-Details and contributor terms are in [LICENSING.md](LICENSING.md). Product names belong to their owners; this project is not affiliated with any vendor.
+Details and contributor terms are in [docs/LICENSING.md](docs/LICENSING.md). Product names belong to their owners; this project is not affiliated with any vendor.
 
 ---
 

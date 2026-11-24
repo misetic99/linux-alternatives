@@ -1,6 +1,6 @@
 # Architecture proposal
 
-Status: **proposal**, open for discussion. Nothing described here is implemented yet.
+Status: **partially implemented**, open for discussion. Data validation, the JSON API and the static search site are implemented. Packages and the other planned services below are not yet available.
 
 ## 1. Goals and non-goals
 
@@ -38,21 +38,24 @@ linux-alternatives/
 │  ├─ app.schema.json
 │  ├─ alternative.schema.json
 │  └─ report.schema.json
-├─ tools/                    # validate + build (TypeScript, Node)
-├─ site/                     # static website (Astro + Pagefind)
+├─ tools/                    # validate + build (JavaScript, Node)
+├─ site/                     # static website (HTML, CSS, JavaScript)
 ├─ packages/
 │  ├─ npm/                   # @linux-alternatives/data
 │  └─ pypi/                  # linux-alternatives
+├─ deploy/                   # self-hosting: Dockerfile, compose, nginx config
 ├─ docs/
+│  ├─ ARCHITECTURE.md        # this file
+│  ├─ SELF_HOSTING.md        # run the site on your own server
+│  ├─ LICENSING.md           # who is licensed under what, and why
+│  └─ CODE_OF_CONDUCT.md
 ├─ .github/
 │  ├─ ISSUE_TEMPLATE/        # compatibility-report, add-an-app
-│  ├─ workflows/             # ci.yml, deploy-site.yml, release.yml
-│  └─ CODEOWNERS
+│  ├─ workflows/             # ci.yml, deploy-site.yml, deploy-server.yml
+│  └─ PULL_REQUEST_TEMPLATE.md
 ├─ CONTRIBUTING.md
-├─ CODE_OF_CONDUCT.md
 ├─ LICENSE                   # code (MIT)
-├─ LICENSE-DATA              # data (CC0 1.0)
-└─ LICENSING.md              # who is licensed under what, and why
+└─ LICENSE-DATA              # data (CC0 1.0)
 ```
 
 ## 4. Data model
@@ -126,10 +129,11 @@ flowchart LR
     Y[data/*.yaml] --> V[validate<br/>JSON Schema + rules]
     V --> B[build]
     B --> J[dist/api/v1/apps.json<br/>alternatives.json, index.json<br/>apps/&lt;id&gt;.json]
-    J --> S[site/ - Astro + Pagefind]
+    J --> S[site/ - HTML, CSS, JavaScript]
     J --> N[packages/npm]
     J --> P[packages/pypi]
     S --> GH[GitHub Pages]
+    S --> OWN[Own server<br/>linux-alternatives.itasel.org]
     N --> NPM[npm registry]
     P --> PYPI[PyPI]
 ```
@@ -151,7 +155,7 @@ flowchart LR
 | Humans | Static site with instant search by app name, category, or alternative |
 | JS / TS tools | `npm i @linux-alternatives/data` with typed access and lookup helpers |
 | Python tools | `pip install linux-alternatives` |
-| Anything else | Raw JSON from GitHub Pages: `/api/v1/apps.json`, `/api/v1/apps/<id>.json` |
+| Anything else | Raw JSON from the public site: `/api/v1/apps.json`, `/api/v1/apps/<id>.json` (CORS open to any origin on the self-hosted instance) |
 | Distros / themes | Embeddable "Coming from Windows?" widget built from the same JSON |
 
 The JSON API is versioned (`/api/v1/`). Breaking schema changes bump the major version.
@@ -183,8 +187,9 @@ flowchart LR
 
 - Reports carry reporter handle, date, and versions, so stale data is visible and can be aged out.
 - Entries older than a threshold are flagged "needs re-verification" on the site.
-- Only the schema fields are rendered, so free text is never executed as HTML.
+- The site renders app details, alternative source links and compatibility reports using `textContent`. Reports show the app and runner versions, distribution, date, reporter, adjustments and notes, sorted newest first. Adjustment values are displayed as text, not assembled into shell commands. Empty report lists are explicitly shown as untested.
 - No telemetry, no cookies, no third-party scripts on the site.
+- The self-hosted instance enforces this with a strict Content-Security-Policy (`script-src 'self'`, no inline code), `nosniff`, no framing, and read-only methods on `/api/`.
 
 ## 10. Tech choices
 
@@ -192,16 +197,16 @@ flowchart LR
 | --- | --- | --- |
 | Data format | YAML | Friendliest for non-developers, supports comments |
 | Validation | JSON Schema (draft 2020-12) | Language-neutral; editors show inline errors |
-| Tooling | TypeScript on Node | Same ecosystem as the npm package and site |
-| Site | Astro + Pagefind | Fully static, fast, client-side search with no server |
-| Hosting | GitHub Pages | Free, no ops |
+| Tooling | JavaScript on Node | Same ecosystem as the planned npm package and site |
+| Site | HTML, CSS and JavaScript | Fully static, client-side search with no server or framework |
+| Hosting | GitHub Pages and/or own server (nginx) | The output is plain static files, so any web server works. See [SELF_HOSTING.md](SELF_HOSTING.md) |
 | CI | GitHub Actions | Native to the repo |
 
 Alternatives considered: TOML (less familiar), a hosted database (cost, ops, lock-in), a Next.js site (heavier than needed).
 
 ## 11. Licensing
 
-Decided (see [LICENSING.md](../LICENSING.md)):
+Decided (see [LICENSING.md](LICENSING.md)):
 
 - **Code** (tools, site, packages, docs): [MIT](../LICENSE).
 - **Data** (`data/`, `schema/`): [CC0 1.0](../LICENSE-DATA). The point is that distros, migration tools and websites can embed the data with no friction; CC0 has no attribution or share-alike requirement. This is hard to change once there are many contributors, so it was settled before the first external PR.

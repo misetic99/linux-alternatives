@@ -61,8 +61,8 @@ Schema changes need a note in the PR on how existing data is affected.
 
 ## Licensing
 
-Code is MIT and data is CC0. See [LICENSING.md](LICENSING.md). By opening a PR you agree to these terms.
+Code is MIT and data is CC0. See [docs/LICENSING.md](docs/LICENSING.md). By opening a PR you agree to these terms.
 
 ## Conduct
 
-Be kind and assume good faith. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+Be kind and assume good faith. See [docs/CODE_OF_CONDUCT.md](docs/CODE_OF_CONDUCT.md).

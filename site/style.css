@@ -92,6 +92,22 @@ h1 { margin: 0 0 12px; font-size: clamp(30px, 6vw, 48px); line-height: 1.1; lett
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
 }
 
+summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.app-details { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.app-details[open] > summary { margin-bottom: 12px; }
+.app-details h3 { margin: 16px 0 8px; font-size: 16px; }
+.detail-links { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px; }
+.reports { list-style: none; margin: 0; padding: 0; }
+.report { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+.report h4 { margin: 0 0 6px; font-size: 14px; }
+.report .badge { margin-bottom: 6px; }
+.report-label { margin: 8px 0 4px; font-size: 14px; font-weight: 600; }
+.tweaks { margin: 0; padding-left: 18px; font-size: 14px; }
+.report-notes { margin: 8px 0 0; font-size: 14px; white-space: pre-wrap; }
+.sources { margin-top: 8px; overflow-wrap: anywhere; }
+.sources summary { color: var(--muted); font-weight: 500; }
+
 .empty { padding: 32px 0; text-align: center; color: var(--muted); }
 .foot { padding-top: 48px; padding-bottom: 48px; color: var(--muted); font-size: 14px; }
 .foot .fine { font-size: 13px; }

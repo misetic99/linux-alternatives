@@ -4,8 +4,8 @@ This repository uses two licenses, split by what the files are:
 
 | What | Where | License |
 | --- | --- | --- |
-| **Code**: scripts, tooling, site, packages, CI, docs | `tools/`, `site/`, `packages/`, `.github/`, `docs/`, `*.md` | [MIT](LICENSE) |
-| **Data**: the database itself | `data/`, `schema/` | [CC0 1.0 Universal](LICENSE-DATA) (public domain dedication) |
+| **Code**: scripts, tooling, site, packages, CI, docs | `tools/`, `site/`, `packages/`, `.github/`, `docs/`, `*.md` | [MIT](../LICENSE) |
+| **Data**: the database itself | `data/`, `schema/` | [CC0 1.0 Universal](../LICENSE-DATA) (public domain dedication) |
 
 ## Why CC0 for the data
 
