@@ -112,10 +112,13 @@ Details are in [CONTRIBUTING.md](CONTRIBUTING.md). Please also read our [Code of
 ```bash
 npm install
 npm run check      # validate data + run tests + build the site and JSON API
+npm run check:links # optional network check; writes JSON and Markdown reports to dist/reports/
 npm run dev        # build and preview the website at http://localhost:4173
 ```
 
 Requires Node.js 20+. `npm run build` writes the website and the static JSON API to `dist/` (`api/v1/index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed. Merges to `main` deploy it to GitHub Pages.
+
+`npm run check` stays offline. `npm run check:links` checks structured homepages, source links and download URLs; then `npm run build` includes that snapshot in `/api/v1/health.json` and the Data health page. Missing, mismatched and stale snapshots are labelled explicitly. The weekly workflow stores reports as artifacts, and deployments run a new link check before publishing. See [data health checks](docs/DATA_HEALTH.md) for status meanings and options.
 
 Open an app's details to compare alternatives, choose a distribution and see every sourced installation option. Native packages are labelled with their distribution and repository requirements; Flatpak, Snap, AppImage and project downloads show their prerequisites. Availability is not a tested support guarantee. Cards keep the same size while the full details and compatibility reports open in a dialog.
 
@@ -125,6 +128,7 @@ Open an app's details to compare alternatives, choose a distribution and see eve
 | --- | --- |
 | **Search** (`/`) | Instant search and category filters, live database stats, deep links like `/?q=autocad` |
 | **Switch planner** (`/switch.html`) | Tick the Windows apps you use and get a personal Linux plan: best alternative per app, fit ratings, what is missing and a reviewable Flatpak install script. Runs fully in the browser, the plan is shareable as a link |
+| **Data health** (`/health.html`) | Coverage by category, verification and source gaps, installation metadata and the latest included link-check snapshot |
 | **About** (`/about.html`) | Why the project exists, how the data is built, what the ratings mean |
 | **Contribute** (`/contribute.html`) | The GitHub contribution guide in five steps, no coding required |
 | **Ideas** (`/ideas.html`) | Roadmap status and open ideas |
@@ -155,11 +159,12 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 - [x] **v0.1 Foundation**: data model, JSON Schemas, validation, build, CI on every PR, MIT + CC0 licenses, contributing guide, issue and PR templates
 - [x] **v0.2 Website and hosting**: search, app details and reports, switch planner, project pages, JSON API, Docker/nginx kit, [live site](https://linux-alternatives.itasel.org), GitHub Pages on `main`, own-server deploy on version tags
 - [x] Sourced per-distribution install routes for every alternative
+- [x] Data health dashboard and scheduled source-link reports
 
 **Next**
 
-- [ ] **v0.3 Trust**: verify the first 25 apps, collect the first 10 compatibility reports, seed the professional niche (CAD, engineering, accounting, printing, audio), scheduled link checks, `good first issue` backlog, issue-to-PR automation for reports, `SECURITY.md`, code owners and branch/tag protection
-- [ ] **v0.4 Planner 2.0**: distribution-aware plans, more exports, team assessment from a pasted program list, data health page, compare view
+- [ ] **v0.3 Trust**: verify the first 25 apps, collect the first 10 compatibility reports, seed the professional niche (CAD, engineering, accounting, printing, audio), review source-link reports, `good first issue` backlog, issue-to-PR automation for reports, `SECURITY.md`, code owners and branch/tag protection
+- [ ] **v0.4 Planner 2.0**: distribution-aware plans, more exports, team assessment from a pasted program list, compare view
 - [ ] **v0.5 Distribution**: typed `npm` and `PyPI` packages published on tags, JSON Schema and feed for the API, citable data releases
 - [ ] **v0.6 Reach**: public announcement (r/linux, Lemmy, distro forums), translations, "Coming from Windows?" widget, browser extension
 - [ ] **v1.0 Stable**: stable schema, 150+ apps with at least half verified, 50+ reports, 20+ outside contributors, 2+ downstream consumers

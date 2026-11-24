@@ -1,0 +1,37 @@
+name: Check source links
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-link-checks
+  cancel-in-progress: false
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check:links
+      - run: npm run build
+      - name: Store link and health reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: source-link-checks
+          path: |
+            dist/reports/link-checks.json
+            dist/reports/link-checks.md
+            dist/api/v1/health.json
+          if-no-files-found: error
+          retention-days: 30

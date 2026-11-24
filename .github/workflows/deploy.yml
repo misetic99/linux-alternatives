@@ -42,6 +42,13 @@ jobs:
 
       - run: npm ci
       - run: npm run check
+      # Best effort: a slow or unreachable third-party site must never block a release.
+      # Without a report the health page simply shows no link snapshot.
+      - name: Check source availability for the health page
+        run: npm run check:links
+        continue-on-error: true
+        timeout-minutes: 15
+      - run: npm run build
 
       - uses: actions/upload-pages-artifact@v5
         with:
@@ -64,6 +71,13 @@ jobs:
 
       - run: npm ci
       - run: npm run check
+      # Best effort: a slow or unreachable third-party site must never block a release.
+      # Without a report the health page simply shows no link snapshot.
+      - name: Check source availability for the health page
+        run: npm run check:links
+        continue-on-error: true
+        timeout-minutes: 15
+      - run: npm run build
 
       - name: Sync dist/ to the server
         env:

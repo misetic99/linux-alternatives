@@ -159,10 +159,12 @@ flowchart LR
 1. YAML parses and passes the JSON Schema.
 2. `id` equals filename; ids are unique.
 3. Referential integrity: every `alternative_id` and report `app` exists.
-4. Links are well-formed (optional scheduled job checks that they are alive).
+4. Links are well-formed; a separate weekly job checks HTTP availability without making ordinary validation network-dependent.
 5. Formatting is normalised (sorted keys, consistent style) to keep diffs small.
 
 **Build outputs** are plain JSON, versioned together with the repo, and are never committed. CI generates them.
+
+The build also writes `/api/v1/health.json` for `health.html`: category coverage, verification and report counts, source gaps and installation metadata. An optional `dist/reports/link-checks.json` snapshot is read before regenerating the output, matched to the current deduplicated URL inventory and retained in the build. Missing, mismatched, invalid and stale snapshots are explicit states. `LINK_CHECK_REPORT` selects another input path. Deployments refresh link checks before their final build; the weekly read-only workflow stores reports as artifacts. See [DATA_HEALTH.md](DATA_HEALTH.md).
 
 ## 6. Consumption
 
@@ -202,7 +204,7 @@ flowchart LR
 ## 9. Quality and trust
 
 - Reports carry reporter handle, date, and versions, so stale data is visible and can be aged out.
-- Entries older than a threshold are flagged "needs re-verification" on the site.
+- The health dashboard exposes unverified entries and reports older than one year. Verification age remains unknown until the schema records verification dates.
 - The site renders app details, alternative source links and compatibility reports using `textContent`. Reports show the app and runner versions, distribution, date, reporter, adjustments and notes, sorted newest first. Adjustment values are displayed as text, not assembled into shell commands. Empty report lists are explicitly shown as untested.
 - No telemetry, no cookies, no third-party scripts on the site.
 - The self-hosted instance enforces this with a strict Content-Security-Policy (`script-src 'self'`, no inline code), `nosniff`, no framing, and read-only methods on `/api/`.

@@ -16,6 +16,7 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 | Install data | Sourced, per-distribution install routes for all alternatives (13 methods, from `apt` to `nix`, plus Flatpak, Snap, AppImage and project downloads) |
 | Hosting | GitHub Pages on `main`, own server (Docker, nginx, rsync) on version tags |
 | Governance basics | MIT + CC0, contributing guide, code of conduct, issue and PR templates |
+| Data health | Generated dashboard with category coverage, review queues and dated source-link snapshots; weekly reports and checks before deployment |
 
 **The data, honestly**
 
@@ -45,7 +46,7 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 1. **Credibility gap.** Nothing is verified and there are no reports. Announcing now would invite “this is all guesswork”, and a bad first impression is hard to undo.
 2. **Coverage skew.** Graphics, utilities and video are 70 of 100 apps. The niche that motivated the project (CAD, engineering, accounting, printing) has 7 apps in total, and printing none. That niche is also where open sources of truth are scarcest, so it is where we are most valuable.
 3. **Unused data.** Every alternative has rich per-distribution install routes, but the planner still only uses Flatpak.
-4. **Process gaps.** No scheduled link or freshness checks, no code owners, no security policy, no automation for compatibility reports, no way to tell who verified what and when.
+4. **Process gaps.** Weekly source-link checks and a data health dashboard are implemented. Code owners, a security policy, compatibility-report automation and verification dates are still missing.
 
 ## 3. How we prioritise
 
@@ -77,7 +78,7 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 | Verification sprint | Start with the most-searched apps. One category per sprint |
 | Seed the professional niche | Candidates to investigate, not claims: Revit, Rhino, ArchiCAD, LTspice, ANSYS, Sage 50, Tally, BarTender, NiceLabel, large-format and label printing tools |
 | First compatibility reports | Ask people who already run Windows apps on Linux. Start with apps that have known Wine users |
-| Link and freshness checker | Scheduled workflow that checks `homepage` and `sources` URLs and flags entries not verified for a long time. Opens issues instead of failing builds |
+| Link and freshness checker | HTTP link checks, weekly report artifacts and deployment snapshots are implemented. Verification-age tracking and issue automation remain planned; blocked and temporary requests require separate review |
 | Contributor on-ramp | A script that turns unverified entries into well-described `good first issue` texts. Issue-form to pull-request automation for reports, so non-Git users can contribute |
 | Repository hygiene | `SECURITY.md`, Dependabot for GitHub Actions and npm, `CODEOWNERS`, labels (`good first issue`, `new-app`, `report`, `verification`), branch and tag protection |
 
@@ -88,7 +89,7 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 - **Distribution-aware plan.** Pick a distribution (kept in the URL hash with the apps) and prefer native packages or Flatpak. Show only routes with sourced availability for that distribution, and say plainly when none is known. Commands are built only from refs that pass the schema’s safe pattern, `download` and `appimage` stay links, and nothing ever downloads and runs.
 - **More exports.** Shell script, Markdown checklist, JSON, and a print-friendly view.
 - **Team assessment.** Paste the output of `winget list` or an installed-programs export and match it locally against app names and aliases. Unmatched programs become “help add this app” links. Nothing leaves the browser.
-- **Data health page.** Coverage by category, verified share, stale entries, apps without alternatives. Generated at build time.
+- **Data health page (implemented).** Category coverage, verified share, source gaps, apps without alternatives and dated link checks. Generated at build time; verification age remains unknown until verification dates are recorded.
 - **Compare view.** Two alternatives side by side: fit, formats, missing features, install routes.
 
 **Exit criteria:** distribution-aware plans for at least the ten most common distributions in the data; the team assessment handles a real `winget list` export; the new code has unit tests like the rest.

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data health: coverage, verification and source links</title>
+  <meta name="description" content="See catalog coverage, verified entries, compatibility reports and the latest available source-link checks for linux-alternatives.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="health">
+  <!--@header-->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Data health</p>
+      <h1>A clear view of<br><span class="grad">what needs checking.</span></h1>
+      <p class="lead">Coverage, verification and source availability, calculated from the catalog. Missing evidence stays visible.</p>
+      <p id="health-updated" class="fine" aria-live="polite">Loading catalog metrics…</p>
+      <div id="health-stats" class="stats" aria-label="Catalog metrics"></div>
+    </div>
+  </section>
+  <main id="main" class="wrap">
+    <p id="health-error" class="empty" hidden>Could not load the data health report. Try reloading the page.</p>
+    <noscript><p class="empty">The dashboard needs JavaScript. Read the <a href="api/v1/health.json">health report as JSON</a>.</p></noscript>
+    <div id="health-content" hidden>
+      <section class="section">
+        <div class="section-head">
+          <p class="kicker">Coverage</p>
+          <h2>Every category, including the gaps</h2>
+          <p id="category-summary" class="muted"></p>
+        </div>
+        <div class="table-wrap">
+          <table class="table health-table">
+            <caption class="sr">Application coverage by category</caption>
+            <thead><tr><th scope="col">Category</th><th scope="col">Apps</th><th scope="col">Verified</th><th scope="col">Reports</th><th scope="col">Alternatives</th></tr></thead>
+            <tbody id="health-categories"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <p class="kicker">Review queue</p>
+          <h2>Where a contribution helps</h2>
+          <p class="muted">An unverified comparison or a missing source is a request for review, not proof that the information is wrong.</p>
+        </div>
+        <div id="health-review" class="grid-2"></div>
+        <p id="health-freshness" class="fine"></p>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <p class="kicker">Source availability</p>
+          <h2>Latest included link check</h2>
+          <p id="link-summary" class="muted"></p>
+          <p class="fine">Only HTTP 404 and 410 responses are labelled broken. Blocked requests, rate limits and network failures need a separate review. A reachable page does not verify software compatibility or package contents.</p>
+        </div>
+        <div id="link-counts" class="health-link-counts"></div>
+        <div class="catalog-toolbar">
+          <label for="link-filter">Show links</label>
+          <select id="link-filter" disabled><option value="review">Needing review</option><option value="all">All checked links</option></select>
+          <p id="link-list-count" class="fine" aria-live="polite"></p>
+        </div>
+        <ul id="health-links" class="health-links"></ul>
+        <button id="more-links" class="btn btn-ghost btn-sm" type="button" hidden>Show more links</button>
+      </section>
+      <section class="section">
+        <div class="cta">
+          <h2>Help turn a source into evidence</h2>
+          <p>Review an entry, add a missing source, or submit a report from a setup you tested.</p>
+          <div class="btn-row"><a class="btn" href="contribute.html">How to contribute</a><a class="btn btn-ghost" href="api/v1/health.json">Health report JSON</a></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <!--@footer-->
+  <script src="health.js" defer></script>
+</body>
+</html>

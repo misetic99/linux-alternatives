@@ -289,6 +289,24 @@ summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 .script { width: 100%; min-height: 150px; margin-top: 8px; padding: 12px 14px; resize: vertical; font: 13px/1.55 var(--mono); color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); }
 .status { min-height: 1.4em; margin: 4px 0 0; font-size: 13px; color: var(--accent); }
 
+/* ---------- Data health ---------- */
+.health-table progress { min-width: 90px; max-width: 260px; }
+.health-table th[scope="row"] { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 14px; }
+.health-review summary { font-size: 15px; }
+.health-review > p, .health-review > ul { margin-top: 14px; }
+.health-queue { max-height: 360px; overflow-y: auto; }
+.health-queue li { padding: 4px 0; }
+.health-queue .fine { margin-left: 12px; }
+.health-link-counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.health-link-counts strong { font-size: 26px; }
+.health-links { list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 12px; }
+.health-link { padding: 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg-2); min-width: 0; }
+.health-link > a, .health-link > span:not(.badge) { display: block; margin-top: 10px; overflow-wrap: anywhere; font-size: 14px; }
+.link-ok { color: var(--full); }
+.link-redirected { color: var(--platinum); }
+.link-broken, .link-invalid { color: var(--borked); }
+.link-blocked, .link-temporary, .link-timeout, .link-unreachable, .link-http_error { color: var(--partial); }
+
 /* ---------- Footer ---------- */
 .site-footer { margin-top: 56px; padding: 48px 0 40px; background: var(--bg-2); border-top: 1px solid var(--line); }
 .foot-grid { display: grid; gap: 32px; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; }

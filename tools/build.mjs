@@ -2,8 +2,10 @@
 // Build dist/ (JSON API) from data/. dist/ is generated and never committed.
 import fs from "node:fs";
 import path from "node:path";
-import { REPO_ROOT, buildDist } from "./lib.mjs";
+import { REPO_ROOT, buildDist, loadData } from "./lib.mjs";
 import { normaliseSiteUrl, renderPage, sitemap, robots } from "./site-build.mjs";
+import { collectLinks, reportMarkdown } from "./links.mjs";
+import { buildHealth } from "./health.mjs";
 
 const dataDir = path.join(REPO_ROOT, "data");
 const outDir = path.join(REPO_ROOT, "dist", "api", "v1");
@@ -17,6 +19,19 @@ try {
   process.exit(1);
 }
 
+// Read the optional network snapshot before replacing the generated output.
+const reportPath = process.env.LINK_CHECK_REPORT
+  ? path.resolve(process.env.LINK_CHECK_REPORT)
+  : path.join(REPO_ROOT, "dist", "reports", "link-checks.json");
+let linkReport = null;
+if (fs.existsSync(reportPath)) {
+  try { linkReport = JSON.parse(fs.readFileSync(reportPath, "utf8")); }
+  catch { linkReport = { report_version: 0 }; }
+}
+const inventory = collectLinks(loadData(dataDir).entries);
+const appSchema = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "schema", "app.schema.json"), "utf8"));
+const health = buildHealth(result, appSchema.$defs.category.enum, inventory, { report: linkReport });
+
 fs.rmSync(path.join(REPO_ROOT, "dist"), { recursive: true, force: true });
 fs.mkdirSync(path.join(outDir, "apps"), { recursive: true });
 
@@ -26,7 +41,13 @@ const write = (file, value) =>
 write("index.json", result.index);
 write("apps.json", result.apps);
 write("alternatives.json", result.alternatives);
+write("health.json", health);
 for (const app of result.apps) write(`apps/${app.id}.json`, app);
+if (linkReport) {
+  fs.mkdirSync(path.join(REPO_ROOT, "dist", "reports"), { recursive: true });
+  fs.writeFileSync(path.join(REPO_ROOT, "dist", "reports", "link-checks.json"), JSON.stringify(linkReport, null, 2) + "\n");
+  if (health.links.counts) fs.writeFileSync(path.join(REPO_ROOT, "dist", "reports", "link-checks.md"), reportMarkdown(health.links));
+}
 
 // The static website is served next to the API, so relative URLs work on GitHub Pages.
 const siteDir = path.join(REPO_ROOT, "site");
