@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ideas and roadmap: where linux-alternatives is going</title>
-  <meta name="description" content="What is done, what is planned and which ideas are open for discussion: packages, an embeddable widget, report tooling, Bottles and Lutris presets and more.">
+  <meta name="description" content="Trust before reach: the plan to verify the data, fill the professional niche, build a distribution-aware planner and publish packages, plus open ideas you can shape.">
   <meta name="theme-color" content="#0b0b0c">
   <link rel="canonical" href="{{canonical}}">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="linux-alternatives">
   <meta property="og:title" content="Ideas and roadmap | linux-alternatives">
-  <meta property="og:description" content="What is done, what is planned and which ideas are open for discussion.">
+  <meta property="og:description" content="Trust before reach: the plan and the open ideas for the open Windows to Linux database.">
   <meta property="og:url" content="{{canonical}}">
   <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="style.css">
@@ -23,10 +23,10 @@
     <div class="wrap">
       <p class="kicker">Ideas &amp; roadmap</p>
       <h1>Where this is going,<br><span class="grad">and where you can steer it.</span></h1>
-      <p class="lead">The roadmap shows what is built and what is next. The ideas below are open for discussion and are not promises. Pick one, challenge it, or bring your own.</p>
+      <p class="lead">The roadmap shows what is built and what comes next. The ideas below are open for discussion and are not promises. Pick one, challenge it, or bring your own.</p>
       <div class="btn-row">
         <a class="btn" href="https://github.com/misetic99/linux-alternatives/issues/new/choose" rel="noopener">Suggest an idea <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-ghost" href="contribute.html">Contribute</a>
+        <a class="btn btn-ghost" href="https://github.com/misetic99/linux-alternatives/blob/main/docs/ROADMAP.md" rel="noopener">Read the full roadmap</a>
       </div>
     </div>
   </section>
@@ -34,19 +34,32 @@
   <main id="main" class="wrap">
     <section class="section">
       <div class="section-head">
+        <p class="kicker">Where we honestly are</p>
+        <h2>Plenty of seeds, not yet proven</h2>
+        <p class="muted">The database already covers many apps, and every alternative lists sourced install routes per distribution. But the entries are still community seeds: <strong>none is verified yet and there are no compatibility reports</strong> (the live numbers are on the <a href="./">search page</a>). Our rule is trust before reach, so we fix that first and announce afterwards.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
         <p class="kicker">Roadmap</p>
-        <h2>Status of the project</h2>
+        <h2>What is done and what is next</h2>
       </div>
       <div class="grid-3">
-        <div class="feature"><span class="tag tag-done">Done</span><h3>Foundation</h3><p>Data model, JSON Schemas, validation tooling and CI that checks every pull request.</p></div>
-        <div class="feature"><span class="tag tag-done">Done</span><h3>Website and JSON API</h3><p>Searchable site with app details and reports, plus a static, versioned API under <code>/api/v1/</code>.</p></div>
-        <div class="feature"><span class="tag tag-done">Done</span><h3>Switch planner</h3><p>Personal Windows to Linux plan with fit ratings and a reviewable install script, entirely in the browser.</p></div>
-        <div class="feature"><span class="tag tag-done">Done</span><h3>Self-hosting kit</h3><p>Docker image, hardened nginx config and an optional deploy workflow for running your own copy.</p></div>
-        <div class="feature"><span class="tag tag-wip">In progress</span><h3>Seed the database</h3><p>Growing towards the 50 to 100 most requested apps. Most entries are still unverified and need your review.</p></div>
-        <div class="feature"><span class="tag tag-planned">Planned</span><h3>Packages</h3><p>Typed <code>npm</code> and <code>PyPI</code> packages so tools can depend on the data without calling the API.</p></div>
-        <div class="feature"><span class="tag tag-planned">Planned</span><h3>“Coming from Windows?” widget</h3><p>A small embeddable section for distributions, themes and onboarding apps, built from the same JSON.</p></div>
-        <div class="feature"><span class="tag tag-planned">Planned</span><h3>Good first issue backlog</h3><p>A steady list of small, well-described tasks for new contributors.</p></div>
-        <div class="feature"><span class="tag tag-planned">Planned</span><h3>Public launch</h3><p>Announcement on community forums once the first 50 apps are in and reviewed.</p></div>
+        <div class="feature"><span class="tag tag-done">Done · v0.1</span><h3>Foundation</h3><p>Data model, JSON Schemas, validation tooling and CI that checks every pull request.</p></div>
+        <div class="feature"><span class="tag tag-done">Done · v0.2</span><h3>Website, planner and API</h3><p>Search with app details and reports, the switch planner, project pages and a static, versioned JSON API under <code>/api/v1/</code>.</p></div>
+        <div class="feature"><span class="tag tag-done">Done</span><h3>Install routes per distribution</h3><p>Every alternative lists installation routes with sources, so “unknown” is never confused with “unsupported”.</p></div>
+        <div class="feature"><span class="tag tag-done">Done</span><h3>Self-hosting and releases</h3><p>Docker image and hardened nginx config. Pushes to main update GitHub Pages, version tags publish to our own server.</p></div>
+
+        <div class="feature"><span class="tag tag-wip">In progress · v0.3</span><h3>Verify the seeds</h3><p>Define what “verified” means, require an independent reviewer, and verify the most-searched apps first. Target: 25 verified apps.</p></div>
+        <div class="feature"><span class="tag tag-wip">In progress · v0.3</span><h3>Fill the professional niche</h3><p>CAD, engineering, accounting, printing and audio are still thin. Target: at least five apps in each before we announce.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned · v0.3</span><h3>First compatibility reports</h3><p>Real Wine, Proton and Bottles results with versions and tweaks. Target: 10 reports from at least 3 people.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned · v0.3</span><h3>Trust tooling</h3><p>Scheduled link and freshness checks, a generated <code>good first issue</code> backlog, report automation for non-Git users, a security policy, code owners and protected branches and tags.</p></div>
+
+        <div class="feature"><span class="tag tag-planned">Planned · v0.4</span><h3>Planner 2.0</h3><p>Pick your distribution and get native or Flatpak routes with sources, more export formats, a team assessment from a pasted program list, a data health page and a compare view.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned · v0.5</span><h3>Packages and citable releases</h3><p>Typed <code>npm</code> and <code>PyPI</code> packages published on tags, a JSON Schema and feed for the API, and data releases with a DOI.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned · v0.6</span><h3>Reach</h3><p>Public announcement once the data deserves it, translations, an embeddable “Coming from Windows?” widget and a browser extension.</p></div>
+        <div class="feature"><span class="tag tag-planned">Planned · v1.0</span><h3>Stable</h3><p>Stable schema, 150+ apps with at least half verified, 50+ reports, 20+ outside contributors and two downstream projects using the data.</p></div>
       </div>
     </section>
 
@@ -70,16 +83,16 @@
           <p>Turn well-confirmed reports into importable presets with the right winetricks verbs and settings.</p>
         </div>
         <div class="feature">
-          <div class="icon"><svg class="ic"><use href="#i-list"/></svg></div>
+          <div class="icon"><svg class="ic"><use href="#i-check"/></svg></div>
           <span class="tag tag-idea">Idea</span>
-          <h3>Team migration assessment</h3>
-          <p>Paste the list of installed programs from a Windows machine and get a readiness report for a whole team, computed locally in the browser.</p>
+          <h3>Package availability bot</h3>
+          <p>A scheduled job that checks that each listed package still exists in its distribution’s repository, and opens an issue when it does not.</p>
         </div>
         <div class="feature">
-          <div class="icon violet"><svg class="ic"><use href="#i-globe"/></svg></div>
+          <div class="icon violet"><svg class="ic"><use href="#i-list"/></svg></div>
           <span class="tag tag-idea">Idea</span>
-          <h3>Translations</h3>
-          <p>Community translations of the interface and guidance, so people can find answers in their own language.</p>
+          <h3>Migration playbooks</h3>
+          <p>Checklists beyond single apps, such as “moving a CAD workflow” or “moving a small accounting setup”, built on the data and written by people who did it.</p>
         </div>
         <div class="feature">
           <div class="icon"><svg class="ic"><use href="#i-database"/></svg></div>
@@ -91,25 +104,43 @@
           <div class="icon violet"><svg class="ic"><use href="#i-users"/></svg></div>
           <span class="tag tag-idea">Idea</span>
           <h3>Verification sprints</h3>
-          <p>Themed community days where people verify one category together, for example CAD or accounting, with reviewers per domain.</p>
+          <p>Themed community days where people verify one category together, with a domain reviewer for each, for example CAD or accounting.</p>
         </div>
         <div class="feature">
-          <div class="icon"><svg class="ic"><use href="#i-search"/></svg></div>
+          <div class="icon"><svg class="ic"><use href="#i-terminal"/></svg></div>
           <span class="tag tag-idea">Idea</span>
-          <h3>Browser extension</h3>
-          <p>On a Windows app’s download page, show its Linux alternatives. Offline-first and without tracking.</p>
+          <h3>Printers, scanners and drivers</h3>
+          <p>Notes on peripherals and vendor tools, not just applications, because a missing driver can block a switch as surely as a missing app.</p>
         </div>
         <div class="feature">
-          <div class="icon"><svg class="ic"><use href="#i-shield"/></svg></div>
+          <div class="icon violet"><svg class="ic"><use href="#i-shield"/></svg></div>
           <span class="tag tag-idea">Idea</span>
-          <h3>Freshness checks</h3>
-          <p>A scheduled job that flags broken links and entries that have not been re-verified for a long time.</p>
+          <h3>Honest fallback guides</h3>
+          <p>When an app truly cannot be replaced or run, document the virtual machine route and its caveats instead of pretending it does not exist.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-globe"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Distribution landing pages</h3>
+          <p>A page per distribution, such as “coming to Fedora from Windows”, using only routes that are sourced for that distribution.</p>
         </div>
         <div class="feature">
           <div class="icon violet"><svg class="ic"><use href="#i-code"/></svg></div>
           <span class="tag tag-idea">Idea</span>
           <h3>Software-center collections</h3>
           <p>Curated “Replacements for your Windows apps” collections that distributions can ship in their app stores.</p>
+        </div>
+        <div class="feature">
+          <div class="icon"><svg class="ic"><use href="#i-users"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Contributor credits</h3>
+          <p>Show, with consent, who verified an entry and when, so careful reviewers get visible credit and readers can judge freshness.</p>
+        </div>
+        <div class="feature">
+          <div class="icon violet"><svg class="ic"><use href="#i-search"/></svg></div>
+          <span class="tag tag-idea">Idea</span>
+          <h3>Accessibility audit</h3>
+          <p>Regular screen-reader and keyboard testing of the site and planner, with the results published and fixed in the open.</p>
         </div>
       </div>
     </section>

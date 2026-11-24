@@ -1,0 +1,15 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: foxit-pdf-reader
+name: Foxit PDF Reader
+aliases: [Foxit Reader]
+vendor: Foxit
+category: office
+homepage: https://www.foxit.com/pdf-reader/
+verified: false
+alternatives:
+  - id: okular
+    fit: partial
+    notes: Suggested for viewing and annotating PDF documents. Foxit form, signature and collaboration workflows have not been tested.
+    sources:
+      - https://www.foxit.com/pdf-reader/
+      - https://okular.kde.org/

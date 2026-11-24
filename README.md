@@ -95,7 +95,7 @@ You do **not** need to write code.
 3. **Validate locally** (optional): `npm install && npm run validate`. CI runs the same check on every PR.
 4. **Open a pull request.** A maintainer reviews it, usually the same week.
 
-> The database currently contains **95 unverified seed entries** (`verified: false`). Fit ratings are initial estimates, not tested migration results. Check the sources and notes before relying on an entry.
+> The database currently contains **100 unverified seed entries** (`verified: false`). Fit ratings are initial estimates, not tested migration results. Check the sources and notes before relying on an entry.
 
 Just ran an app under Wine or Proton? Open a **compatibility report** using the issue template, or add a report file directly.
 
@@ -148,17 +148,23 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 
 ## 🗺️ Roadmap
 
-- [x] Project vision and architecture proposal
-- [x] **v0.1** Repository skeleton: `data/`, JSON Schemas, validation, build, CI on every PR
-- [x] Licenses (MIT for code, CC0 for data), contributing guide, issue and PR templates
-- [ ] **v0.1** Seed the database with the 50–100 most requested apps (95 unverified seeds so far; review still needed)
-- [x] **v0.2** Static search site (deploys to GitHub Pages)
-- [x] **v0.2** Self-hosting kit (Docker, nginx, optional rsync deploy) for linux-alternatives.itasel.org
-- [x] Live on [linux-alternatives.itasel.org](https://linux-alternatives.itasel.org)
-- [ ] **v0.2** `good first issue` backlog
-- [ ] **v0.3** Published packages: `npm` and `PyPI` with a typed API
-- [ ] **v0.3** Public announcement (r/linux, Lemmy, distro forums)
-- [ ] **v1.0** 20+ outside contributors, stable schema, "Coming from Windows?" widget for distros and themes
+**Guiding idea: trust before reach.** Today the database has about 100 apps and 41 alternatives with sourced install routes per distribution, but **no verified entries and no compatibility reports yet**. We fix that before we announce anything. The full plan, exit criteria and metrics are in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
+
+**Done**
+
+- [x] **v0.1 Foundation**: data model, JSON Schemas, validation, build, CI on every PR, MIT + CC0 licenses, contributing guide, issue and PR templates
+- [x] **v0.2 Website and hosting**: search, app details and reports, switch planner, project pages, JSON API, Docker/nginx kit, [live site](https://linux-alternatives.itasel.org), GitHub Pages on `main`, own-server deploy on version tags
+- [x] Sourced per-distribution install routes for every alternative
+
+**Next**
+
+- [ ] **v0.3 Trust**: verify the first 25 apps, collect the first 10 compatibility reports, seed the professional niche (CAD, engineering, accounting, printing, audio), scheduled link checks, `good first issue` backlog, issue-to-PR automation for reports, `SECURITY.md`, code owners and branch/tag protection
+- [ ] **v0.4 Planner 2.0**: distribution-aware plans, more exports, team assessment from a pasted program list, data health page, compare view
+- [ ] **v0.5 Distribution**: typed `npm` and `PyPI` packages published on tags, JSON Schema and feed for the API, citable data releases
+- [ ] **v0.6 Reach**: public announcement (r/linux, Lemmy, distro forums), translations, "Coming from Windows?" widget, browser extension
+- [ ] **v1.0 Stable**: stable schema, 150+ apps with at least half verified, 50+ reports, 20+ outside contributors, 2+ downstream consumers
+
+Have an idea? See the [ideas page](https://linux-alternatives.itasel.org/ideas.html) or open an issue.
 
 ## 🏗️ Architecture at a glance
 

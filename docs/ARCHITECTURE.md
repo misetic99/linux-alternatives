@@ -49,6 +49,7 @@ linux-alternatives/
 ├─ deploy/                   # self-hosting: Dockerfile, compose, nginx config
 ├─ docs/
 │  ├─ ARCHITECTURE.md        # this file
+│  ├─ ROADMAP.md             # plan, exit criteria, metrics, risks
 │  ├─ SELF_HOSTING.md        # run the site on your own server
 │  ├─ LICENSING.md           # who is licensed under what, and why
 │  └─ CODE_OF_CONDUCT.md
@@ -231,17 +232,29 @@ Decided (see [LICENSING.md](LICENSING.md)):
 
 ## 12. Milestones
 
-| Milestone | Scope |
-| --- | --- |
-| **v0.1** | Schemas, `data/` skeleton, validate script, CI (done); 50–100 seed apps (in progress) |
-| **v0.2** | Static site, issue templates, `good first issue` backlog |
-| **v0.3** | npm + PyPI packages, JSON API, public announcement |
-| **v1.0** | Stable schema, 20+ outside contributors, embeddable widget |
+The detailed plan, exit criteria, metrics and risks live in [ROADMAP.md](ROADMAP.md). Summary:
+
+| Milestone | Scope | State |
+| --- | --- | --- |
+| **v0.1** Foundation | Schemas, `data/` skeleton, validation, build, CI | Done |
+| **v0.2** Website and hosting | Static site, switch planner, JSON API, Docker/nginx kit, tag-based deploys, per-distro install data | Done |
+| **v0.3** Trust | Verified entries, first compatibility reports, professional niche seeded, link checks, contributor on-ramp, repo hygiene | Next |
+| **v0.4** Planner 2.0 | Distribution-aware plans, exports, team assessment, data health page, compare view | Planned |
+| **v0.5** Distribution | npm + PyPI packages on tags, API schema and feed, citable releases | Planned |
+| **v0.6** Reach | Public announcement, translations, widget, browser extension | Planned |
+| **v1.0** Stable | Stable schema, 150+ apps, half verified, 20+ outside contributors | Planned |
+
+Order matters: the public announcement moved from v0.3 to v0.6 so that it happens after the data has been verified.
 
 ## 13. Open questions
 
 1. ~~Data license~~ Decided: CC0 for data, MIT for code.
 2. Final project name and org (the repo is currently `linux-alternatives`).
 3. Do we accept Wine reports without a reporter handle (anonymous), or require a GitHub identity?
-4. Scope of "professional" software at launch: which 5–6 categories to seed first?
+4. ~~Scope of "professional" software~~ Decided: CAD, engineering, accounting, printing and audio, with at least 5 apps each before the announcement (see [ROADMAP.md](ROADMAP.md)).
 5. Do we link to or import from existing sources (WineHQ AppDB, ProtonDB) and under what terms?
+6. What does `verified: true` require, and do we add a `verified_on` date to the schema? Proposal: every claim checked against a cited source or by testing, reviewed by someone other than the author.
+7. Release naming: semver tags for tooling and the site, CalVer for published data packages, or one scheme for both?
+8. How do we keep install data fresh as distribution repositories change (scheduled availability checks, or contributor reports only)?
+
+More open questions are tracked in [ROADMAP.md](ROADMAP.md#8-open-questions).

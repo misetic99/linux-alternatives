@@ -1,0 +1,15 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: nch-videopad
+name: VideoPad
+aliases: [NCH VideoPad, VideoPad Video Editor]
+vendor: NCH Software
+category: video
+homepage: https://www.nchsoftware.com/videopad/index.html
+verified: false
+alternatives:
+  - id: kdenlive
+    fit: partial
+    notes: Suggested for timeline video editing, effects and titles. VideoPad project migration, presets and specialized workflows have not been tested.
+    sources:
+      - https://www.nchsoftware.com/videopad/index.html
+      - https://docs.kdenlive.org/en/getting_started/introduction.html

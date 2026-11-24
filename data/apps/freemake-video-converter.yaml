@@ -1,0 +1,15 @@
+# Initial fit estimate based on the linked sources; migration has not been tested.
+id: freemake-video-converter
+name: Freemake Video Converter
+vendor: Freemake
+category: video
+homepage: https://www.freemake.com/free_video_converter/
+verified: false
+alternatives:
+  - id: handbrake
+    fit: partial
+    notes: Suggested for converting video files and queueing encodes. Freemake presets, disc authoring and specialized workflows have not been tested.
+    sources:
+      - https://www.freemake.com/downloads/
+      - https://www.freemake.com/freemake_video_converter_changelog/
+      - https://handbrake.fr/features.php
