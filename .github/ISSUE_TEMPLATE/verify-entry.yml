@@ -1,0 +1,50 @@
+name: Verify an entry
+description: Provide sources, test results or corrections for an existing unverified app.
+title: "Verify entry: "
+labels: ["verification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Start with one app or claim you know. Partial corrections are welcome and do not mark the whole entry verified.
+        Follow the [review guide](https://github.com/misetic99/linux-alternatives/blob/main/docs/VERIFICATION.md).
+        For an actual Wine/Proton test, use the separate Compatibility report form.
+  - type: input
+    id: app
+    attributes:
+      label: App id or data file
+      description: Identify the existing entry, not only the Linux alternative.
+      placeholder: "autocad or data/apps/autocad.yaml"
+    validations:
+      required: true
+  - type: textarea
+    id: claims
+    attributes:
+      label: Claims checked and proposed corrections
+      description: Identify each field and describe what the evidence supports or contradicts. Note what remains unchecked.
+      placeholder: "Alternative, field, current claim, proposed correction, remaining unknowns."
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sources or reproducible tests
+      description: Link direct documentation or describe test steps and the observed result for each claim. A homepage alone is not evidence of a feature.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Versions, environment and date checked
+      description: For tests, include app and alternative versions, distribution/release and architecture where relevant, steps and date. For documentation checks, give the documented version or release and the date checked. Say explicitly when a version is unknown.
+    validations:
+      required: true
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review expectations
+      options:
+        - label: I used my own wording and included no private test files or credentials.
+          required: true
+        - label: I understand that an independent reviewer must check the complete app entry before it can be marked verified.
+          required: true

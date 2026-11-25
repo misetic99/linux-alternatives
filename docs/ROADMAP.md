@@ -1,6 +1,6 @@
 # Roadmap
 
-Status as of **24 November 2026**. This is the single source of truth for the plan. The README, the architecture document and the website's “Ideas” page summarise it. Dates are deliberately absent: milestones are done when their exit criteria are met, not when a calendar says so.
+Status as of **25 November 2026**. This is the single source of truth for the plan. The README, the architecture document and the website's “Ideas” page summarise it. Dates are deliberately absent: milestones are done when their exit criteria are met, not when a calendar says so.
 
 **Guiding idea: trust before reach.** A database of guesses is worse than no database. We grow the audience only after the data deserves it.
 
@@ -17,6 +17,7 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 | Hosting | GitHub Pages and own server (Docker, nginx, rsync), both published only when a version tag is pushed |
 | Governance basics | MIT + CC0, contributing guide, code of conduct, issue and PR templates |
 | Data health | Generated dashboard with category coverage, review queues and dated source-link snapshots; weekly reports and checks before deployment |
+| Verification on-ramp | Local issue-draft generator with claim and install-route context, evidence form and independent-review guide; no automatic issue publication |
 
 **The data, honestly**
 
@@ -46,7 +47,7 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 1. **Credibility gap.** Nothing is verified and there are no reports. Announcing now would invite “this is all guesswork”, and a bad first impression is hard to undo.
 2. **Coverage skew.** Graphics, utilities and video are 70 of 100 apps. The niche that motivated the project (CAD, engineering, accounting, printing) has 7 apps in total, and printing none. That niche is also where open sources of truth are scarcest, so it is where we are most valuable.
 3. **Unused data.** Every alternative has rich per-distribution install routes, but the planner still only uses Flatpak.
-4. **Process gaps.** Weekly source-link checks and a data health dashboard are implemented. Code owners, a security policy, compatibility-report automation and verification dates are still missing.
+4. **Process gaps.** Weekly source-link checks, a data health dashboard and local verification-task drafts are implemented. A review guide requires evidence and independent review; `SECURITY.md`, `CODEOWNERS`, Dependabot and a local compatibility-report drafting tool are in the repository. Still missing: actual reviews, repository settings (branch and tag protection, private vulnerability reporting, labels) and verification dates.
 
 ## 3. How we prioritise
 
@@ -74,13 +75,13 @@ Status as of **24 November 2026**. This is the single source of truth for the pl
 
 | Item | Notes |
 | --- | --- |
-| Verification policy | Define what `verified: true` means (every claim checked against a cited source or by testing) and require a second reviewer. Decide whether to add `verified_on` (date) to the schema so freshness can be measured |
+| Verification policy | [Review guide](VERIFICATION.md) implemented: evidence for every app claim and a reviewer other than the change author, with date and outcome in the pull request. Decide whether to add `verified_on` to the schema so freshness can be measured |
 | Verification sprint | Start with the most-searched apps. One category per sprint |
 | Seed the professional niche | Candidates to investigate, not claims: Revit, Rhino, ArchiCAD, LTspice, ANSYS, Sage 50, Tally, BarTender, NiceLabel, large-format and label printing tools |
 | First compatibility reports | Ask people who already run Windows apps on Linux. Start with apps that have known Wine users |
 | Link and freshness checker | HTTP link checks, weekly report artifacts and deployment snapshots are implemented. Verification-age tracking and issue automation remain planned; blocked and temporary requests require separate review |
-| Contributor on-ramp | A script that turns unverified entries into well-described `good first issue` texts. Issue-form to pull-request automation for reports, so non-Git users can contribute |
-| Repository hygiene | `SECURITY.md`, Dependabot for GitHub Actions and npm, `CODEOWNERS`, labels (`good first issue`, `new-app`, `report`, `verification`), branch and tag protection |
+| Contributor on-ramp | Local `tasks:verification` generator and evidence issue form implemented. Maintainers review drafts before publishing; no issues are created automatically. `report:draft` turns a compatibility-report issue into a validated draft file for a maintainer to review. Deliberately offline and manual: a bot that parses untrusted issue text and opens pull requests would need write access, so full automation stays a later decision |
+| Repository hygiene | In the repository: `SECURITY.md`, Dependabot for GitHub Actions and npm, `CODEOWNERS`, issue-template contact links. Still to do in GitHub settings: labels (`good first issue`, `new-app`, `report`, `verification`), branch and tag protection, private vulnerability reporting |
 
 ### v0.4 Planner 2.0
 

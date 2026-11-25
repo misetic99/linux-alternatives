@@ -10,6 +10,7 @@ Thanks for helping! Most contributions are a single small YAML file. You do not 
 | Add a Linux alternative | Copy `data/alternatives/_template.yaml` to `data/alternatives/<id>.yaml` |
 | Report that an app runs (or not) | Open a *Compatibility report* issue, or copy `data/reports/_template.yaml` to `data/reports/<app-id>/<name>.yaml` |
 | Fix wrong information | Edit the file and open a PR, linking a source |
+| Verify an existing entry | Follow the [review guide](docs/VERIFICATION.md), or open a *Verify an entry* issue with evidence |
 | Improve tooling | See [Development](#development) |
 
 ## Adding an app step by step
@@ -35,7 +36,7 @@ Same vocabulary as WineHQ and ProtonDB: `platinum` (perfect out of the box), `go
 
 ## Data rules
 
-- **Verify or cite.** Only add what you tested or can link to a source. Unsure? Leave `verified: false`.
+- **Verify or cite.** Only add what you tested or can link to a source. New entries and incomplete reviews stay `verified: false`. Mark an entry verified only after evidence covers every claim and a reviewer other than the change author has checked it; see the [review guide](docs/VERIFICATION.md).
 - **Stay neutral.** Describe features, do not advertise. No "best", "amazing", or "X sucks".
 - **Be concrete.** "Cannot export DWG" beats "poor compatibility".
 - **Use your own words.** Do not paste text from other databases or vendor marketing pages.
@@ -55,16 +56,22 @@ The metadata fields are optional and all previously committed entries remain val
 
 Requires Node.js 20 or newer.
 
-```bash
+```powershell
 npm install
 npm run validate   # check data/ against schema/ and cross-file rules
 npm test           # unit tests for the tooling
 npm run build      # generate dist/ (website + api/v1/*.json), never committed
 npm run dev        # build, then preview the website at http://localhost:4173
 npm run check      # validate + test + build
+npm run tasks:verification -- --category cad --limit 5  # local review drafts; run after the build
+npm run report:draft -- issue.md --reporter some-handle  # maintainers: issue text to a draft report file
 ```
 
 Layout: `data/` (the database), `schema/` (JSON Schemas), `tools/` (validate and build), `site/` (the website), `docs/` (architecture).
+
+`tasks:verification` writes Markdown and JSON drafts to `dist/review/`, without opening issues or changing data. Each draft includes current claims, sources and a review checklist. Filters accept an exact `--app` id, a `--category`, and a positive `--limit`. Builds replace `dist/`; regenerate drafts afterwards. See [reviewing catalog entries](docs/VERIFICATION.md) for the complete workflow.
+
+**Handling a compatibility report issue (maintainers).** Save the issue body to a file and run `npm run report:draft -- issue.md --reporter <issue author's handle> --date <date of the test>`. The tool matches the app against the catalog, reads the runner, result and tweaks, and writes a draft to `dist/review/report-draft.yaml` with a suggested path. It is offline, never touches `data/`, and builds the YAML as data (never by pasting issue text), validating it against the report schema. Reporter and date come from you, not from the issue text. Unstructured tweak text is kept in `notes`. Review the draft against the issue, copy it into `data/reports/<app-id>/` yourself, run `npm run check` and open a pull request.
 
 Website rules:
 

@@ -53,8 +53,9 @@
         <div class="feature">
           <div class="icon"><svg class="ic"><use href="#i-check"/></svg></div>
           <h3>Verify and fix</h3>
-          <p>Many entries start as “unverified”. If you know an app well, check it, correct what is wrong and add a source.</p>
-          <p><a href="https://github.com/misetic99/linux-alternatives/tree/main/data/apps" rel="noopener">Browse the entries →</a></p>
+          <p>Start with an app you know: check a claim, correct it and add evidence. The full entry stays unverified until every claim has evidence and an independent reviewer has checked it.</p>
+          <p><a href="https://github.com/misetic99/linux-alternatives/issues/new?template=verify-entry.yml" rel="noopener">Submit verification evidence →</a></p>
+          <p><a href="https://github.com/misetic99/linux-alternatives/blob/main/docs/VERIFICATION.md" rel="noopener">Read the review guide →</a></p>
         </div>
       </div>
     </section>
@@ -67,8 +68,8 @@
       <ol class="steps">
         <li><strong>Fork the repository</strong><span>Click “Fork” on GitHub, or use the web editor to edit files directly.</span></li>
         <li><strong>Copy the template</strong><span>Copy <code>data/apps/_template.yaml</code> to <code>data/apps/your-app.yaml</code>. The file name must match the <code>id</code> inside.</span></li>
-        <li><strong>Fill it in</strong><span>Use neutral, concrete facts. Link a source. Leave <code>verified: false</code> unless you checked everything.</span></li>
-        <li><strong>Check it (optional)</strong><span>Run <code>npm install &amp;&amp; npm run validate</code>. If you skip this, the same check runs automatically on your pull request.</span></li>
+        <li><strong>Fill it in</strong><span>Use neutral, concrete facts. Link a source. New entries stay <code>verified: false</code>; an independent reviewer must check the complete entry before it is marked verified.</span></li>
+        <li><strong>Check it (optional)</strong><span>Run <code>npm install</code>, then <code>npm run validate</code>. If you skip this, the same check runs automatically on your pull request.</span></li>
         <li><strong>Open a pull request</strong><span>One app per pull request keeps reviews quick. A maintainer will take a look.</span></li>
       </ol>
 
@@ -142,7 +143,7 @@ cd linux-alternatives
 npm install
 npm run check   # validate data + tests + build the site and API
 npm run dev     # preview at http://localhost:4173</code></pre>
-      <p class="fine">Requires Node.js 20 or newer. The site is plain HTML, CSS and JavaScript with no framework, and the build only adds the shared header and footer.</p>
+      <p class="fine">Requires Node.js 20 or newer. Generate local review drafts after building with <code>npm run tasks:verification -- --category cad --limit 5</code>. They are written to <code>dist/review/</code>; builds and the preview command replace that directory. The site is plain HTML, CSS and JavaScript with no framework.</p>
     </section>
 
     <section class="section">

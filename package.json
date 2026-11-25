@@ -12,7 +12,9 @@
     "dev": "npm run build && node tools/serve.mjs",
     "test": "node --test \"tools/*.test.mjs\"",
     "check": "npm run validate && npm test && npm run build",
-    "check:links": "node tools/check-links.mjs"
+    "check:links": "node tools/check-links.mjs",
+    "tasks:verification": "node tools/review-tasks.mjs",
+    "report:draft": "node tools/report-draft.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1",

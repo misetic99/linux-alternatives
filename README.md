@@ -120,6 +120,8 @@ Requires Node.js 20+. `npm run build` writes the website and the static JSON API
 
 `npm run check` stays offline. `npm run check:links` checks structured homepages, source links and download URLs; then `npm run build` includes that snapshot in `/api/v1/health.json` and the Data health page. Missing, mismatched and stale snapshots are labelled explicitly. The weekly workflow stores reports as artifacts, and deployments run a new link check before publishing. See [data health checks](docs/DATA_HEALTH.md) for status meanings and options.
 
+`npm run tasks:verification` writes issue drafts for unverified apps to `dist/review/verification.md` and `.json`. Each draft includes the current claims, source gaps, installation metadata and an independent-review checklist. It opens no issues and changes no data. Builds replace `dist/`, so generate drafts afterwards. See the [review guide](docs/VERIFICATION.md) for filters and evidence requirements.
+
 Open an app's details to compare alternatives, choose a distribution and see every sourced installation option. Native packages are labelled with their distribution and repository requirements; Flatpak, Snap, AppImage and project downloads show their prerequisites. Availability is not a tested support guarantee. Cards keep the same size while the full details and compatibility reports open in a dialog.
 
 ### The website
@@ -160,10 +162,11 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 - [x] **v0.2 Website and hosting**: search, app details and reports, switch planner, project pages, JSON API, Docker/nginx kit, [live site](https://linux-alternatives.itasel.org), GitHub Pages and own-server deploy on version tags
 - [x] Sourced per-distribution install routes for every alternative
 - [x] Data health dashboard and scheduled source-link reports
+- [x] Local verification-task drafts, review guide and evidence issue form
 
 **Next**
 
-- [ ] **v0.3 Trust**: verify the first 25 apps, collect the first 10 compatibility reports, seed the professional niche (CAD, engineering, accounting, printing, audio), review source-link reports, `good first issue` backlog, issue-to-PR automation for reports, `SECURITY.md`, code owners and branch/tag protection
+- [ ] **v0.3 Trust**: verify the first 25 apps, collect the first 10 compatibility reports, seed the professional niche (CAD, engineering, accounting, printing, audio), review source-link reports, publish reviewed contribution tasks (generator and report-draft tool are in place), and finish the repository settings (labels, branch/tag protection, private vulnerability reporting; `SECURITY.md`, code owners and Dependabot are done)
 - [ ] **v0.4 Planner 2.0**: distribution-aware plans, more exports, team assessment from a pasted program list, compare view
 - [ ] **v0.5 Distribution**: typed `npm` and `PyPI` packages published on tags, JSON Schema and feed for the API, citable data releases
 - [ ] **v0.6 Reach**: public announcement (r/linux, Lemmy, distro forums), translations, "Coming from Windows?" widget, browser extension

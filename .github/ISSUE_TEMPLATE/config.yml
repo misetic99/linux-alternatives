@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/misetic99/linux-alternatives/security/advisories/new
+    about: Please report vulnerabilities privately, not in a public issue. See SECURITY.md.
+  - name: Read the contributing guide
+    url: https://github.com/misetic99/linux-alternatives/blob/main/CONTRIBUTING.md
+    about: How to add an app, report compatibility or verify an entry.

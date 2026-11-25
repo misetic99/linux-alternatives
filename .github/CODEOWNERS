@@ -1,0 +1,12 @@
+# Code owners are requested for review automatically on pull requests.
+# With a single maintainer everything maps to one owner. As domain reviewers
+# join, add lines for their categories, for example:
+#   /data/apps/autocad.yaml   @cad-reviewer
+# Do not enable "Require review from Code Owners" in branch protection until
+# there is a second maintainer, or the owner cannot merge their own changes.
+
+*                    @misetic99
+/data/               @misetic99
+/schema/             @misetic99
+/.github/            @misetic99
+/deploy/             @misetic99
