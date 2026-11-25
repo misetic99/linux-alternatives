@@ -19,9 +19,15 @@
     "category": { "$ref": "#/$defs/category" },
     "homepage": { "type": "string", "format": "uri", "pattern": "^https?://" },
     "verified": {
-      "description": "true once a contributor has checked every claim in this file against real use or a linked source.",
+      "description": "true after evidence for every claim has passed independent review; requires verified_on.",
       "type": "boolean",
       "default": false
+    },
+    "verified_on": {
+      "description": "UTC date of the latest complete independent review (YYYY-MM-DD). Only present when verified is true.",
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
     },
     "alternatives": {
       "type": "array",
@@ -39,6 +45,13 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": { "required": ["verified"], "properties": { "verified": { "const": true } } },
+      "then": { "properties": { "verified_on": {} }, "required": ["verified_on"] },
+      "else": { "properties": { "verified_on": false } }
+    }
+  ],
   "$defs": {
     "slug": {
       "type": "string",

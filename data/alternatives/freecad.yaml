@@ -1,7 +1,8 @@
+# License: SPDX headers in the project source, e.g. https://github.com/FreeCAD/FreeCAD/blob/main/src/App/Application.cpp
 id: freecad
 name: FreeCAD
 homepage: https://www.freecad.org
-license: LGPL-2.0-or-later
+license: LGPL-2.1-or-later
 description: Parametric 3D CAD modeler.
 install:
   - method: apt

@@ -30,10 +30,10 @@ test("snapshot counts are recomputed and old checks remain visibly stale", () =>
   assert.equal(linkSnapshot(inventory, report({ checked_at: "2026-11-01T12:00:00Z" }), now).state, "stale");
 });
 
-test("health metrics include empty categories and actionable review queues without guessing verification age", () => {
+test("health metrics include empty categories and actionable review queues", () => {
   const dataset = {
     apps: [
-      { id: "one", name: "One", category: "graphics", verified: true, alternatives: [{ id: "a", sources: [] }], reports: [{ date: "2025-01-01" }] },
+      { id: "one", name: "One", category: "graphics", verified: true, verified_on: "2026-11-24", alternatives: [{ id: "a", sources: [] }], reports: [{ date: "2025-01-01" }] },
       { id: "two", name: "Two", category: "graphics", verified: false, alternatives: [], reports: [] },
     ],
     alternatives: [{ id: "a", name: "Alternative", install: [{ method: "apt", ref: "a" }] }],
@@ -47,6 +47,35 @@ test("health metrics include empty categories and actionable review queues witho
   assert.deepEqual(health.review.without_comparison_sources.map((app) => app.id), ["one"]);
   assert.equal(health.review.incomplete_install_metadata.length, 1);
   assert.equal(health.review.reports_over_one_year_old, 1);
-  assert.equal(health.review.verification_dates, "not_recorded");
+  assert.equal(health.review.verification_dates, "recorded");
+  assert.equal(health.review.latest_verification, "2026-11-24");
+  assert.deepEqual(health.review.verifications_over_one_year_old, []);
   assert.equal(health.links.counts, null);
+});
+
+test("verification age uses UTC dates and the 365-day boundary, ordered oldest first", () => {
+  const dataset = {
+    apps: [
+      ["boundary", "2025-11-24"], ["older-b", "2025-11-23"], ["older-a", "2025-11-23"],
+      ["oldest", "2024-02-29"], ["today", "2026-11-24"],
+    ].map(([id, verified_on]) => ({ id, name: id, category: "other", verified: true, verified_on, alternatives: [] })),
+    alternatives: [],
+  };
+  for (const time of ["2026-11-24T00:00:00Z", "2026-11-24T23:59:59Z"]) {
+    const health = buildHealth(dataset, ["other"], [], { now: new Date(time) });
+    assert.deepEqual(health.review.verifications_over_one_year_old.map((app) => [app.id, app.verified_on]), [
+      ["oldest", "2024-02-29"], ["older-a", "2025-11-23"], ["older-b", "2025-11-23"],
+    ]);
+    assert.equal(health.review.latest_verification, "2026-11-24");
+    assert.equal(health.counts.verified_apps, 5);
+    assert.equal(dataset.apps.every((app) => app.verified), true);
+  }
+});
+
+test("empty and entirely unverified catalogs have no verification age", () => {
+  for (const apps of [[], [{ id: "seed", name: "Seed", category: "other", verified: false, alternatives: [] }]]) {
+    const health = buildHealth({ apps, alternatives: [] }, ["other"], [], { now });
+    assert.equal(health.review.latest_verification, null);
+    assert.deepEqual(health.review.verifications_over_one_year_old, []);
+  }
 });

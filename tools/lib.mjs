@@ -83,7 +83,7 @@ export function loadData(dataDir) {
 }
 
 /** Validate a data directory. Returns an array of human-readable error strings. */
-export function validateData(dataDir) {
+export function validateData(dataDir, { now = new Date() } = {}) {
   const validators = loadSchemas();
   const { entries, errors } = loadData(dataDir);
 
@@ -99,6 +99,9 @@ export function validateData(dataDir) {
       continue;
     }
     valid.push(entry);
+    if (kind === "app" && data.verified_on > now.toISOString().slice(0, 10)) {
+      errors.push(`${file}: verified_on must not be in the future (UTC)`);
+    }
     const base = path.basename(file, ".yaml");
     if (kind === "app" || kind === "alternative") {
       if (data.id !== base) errors.push(`${file}: id "${data.id}" must equal the file name "${base}"`);

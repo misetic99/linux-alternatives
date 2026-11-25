@@ -38,6 +38,7 @@ const HealthUI = (() => {
       const row = el("li");
       row.append(appLinks ? link(item.name, `./?q=${encodeURIComponent(item.name)}`) : el("span", null, item.name));
       if (item.category) row.append(el("span", "fine", item.category));
+      if (item.verified_on) row.append(el("span", "fine", `Verified: ${item.verified_on}`));
       list.append(row);
     }
     box.append(list);
@@ -94,9 +95,13 @@ const HealthUI = (() => {
       reviewList("Comparisons needing sources", review.without_comparison_sources, true),
       reviewList("Apps without alternatives", review.without_alternatives, true),
       reviewList("Unverified entries", review.unverified, true),
+      reviewList("Verifications more than one year old", review.verifications_over_one_year_old, true),
       reviewList("Incomplete installation metadata", review.incomplete_install_metadata, false),
     );
-    $("health-freshness").textContent = `Verification dates are not recorded, so verification age is unknown. ${review.reports_over_one_year_old} compatibility reports are more than one year old.${review.latest_report ? ` Latest report: ${review.latest_report}.` : " No compatibility reports have been submitted."}`;
+    const verification = review.latest_verification
+      ? `Latest complete review: ${review.latest_verification}. Verifications older than one year (365 days): ${review.verifications_over_one_year_old.length}. Age is measured at build time; older reviews need attention but remain verified.`
+      : "No complete independent reviews have been recorded.";
+    $("health-freshness").textContent = `${verification} ${review.reports_over_one_year_old} compatibility reports are more than one year old.${review.latest_report ? ` Latest report: ${review.latest_report}.` : " No compatibility reports have been submitted."}`;
     const snapshot = data.links;
     const messages = {
       missing: "No link-check results are available for this catalog. Source availability is unknown.",

@@ -95,7 +95,7 @@ You do **not** need to write code.
 3. **Validate locally** (optional): `npm install && npm run validate`. CI runs the same check on every PR.
 4. **Open a pull request.** A maintainer reviews it, usually the same week.
 
-> The database currently contains **100 unverified seed entries** (`verified: false`). Fit ratings are initial estimates, not tested migration results. Check the sources and notes before relying on an entry.
+> The database currently contains **109 unverified seed entries** (`verified: false`). Fit ratings are initial estimates, not tested migration results. Check the sources and notes before relying on an entry.
 
 Just ran an app under Wine or Proton? Open a **compatibility report** using the issue template, or add a report file directly.
 
@@ -118,7 +118,7 @@ npm run dev        # build and preview the website at http://localhost:4173
 
 Requires Node.js 20+. `npm run build` writes the website and the static JSON API to `dist/` (`api/v1/index.json`, `apps.json`, `alternatives.json`, `apps/<id>.json`). `dist/` is generated and never committed. Version tags (`v*`) build and deploy it; pushes to `main` do not.
 
-`npm run check` stays offline. `npm run check:links` checks structured homepages, source links and download URLs; then `npm run build` includes that snapshot in `/api/v1/health.json` and the Data health page. Missing, mismatched and stale snapshots are labelled explicitly. The weekly workflow stores reports as artifacts, and deployments run a new link check before publishing. See [data health checks](docs/DATA_HEALTH.md) for status meanings and options.
+`npm run check` stays offline. `npm run check:links` checks structured homepages, source links and download URLs; then `npm run build` includes that snapshot in `/api/v1/health.json` and the Data health page. Missing, mismatched and stale snapshots are labelled explicitly. Verified entries require the complete independent review's UTC date in `verified_on`; the dashboard lists reviews older than 365 days. The weekly workflow stores reports as artifacts, and deployments run a new link check before publishing. See [data health checks](docs/DATA_HEALTH.md) for status meanings and options.
 
 `npm run tasks:verification` writes issue drafts for unverified apps to `dist/review/verification.md` and `.json`. Each draft includes the current claims, source gaps, installation metadata and an independent-review checklist. It opens no issues and changes no data. Builds replace `dist/`, so generate drafts afterwards. See the [review guide](docs/VERIFICATION.md) for filters and evidence requirements.
 
@@ -154,7 +154,7 @@ Step-by-step guide, including DNS, HTTPS and automatic deploys: [docs/SELF_HOSTI
 
 ## 🗺️ Roadmap
 
-**Guiding idea: trust before reach.** Today the database has about 100 apps and 41 alternatives with sourced install routes per distribution, but **no verified entries and no compatibility reports yet**. We fix that before we announce anything. The full plan, exit criteria and metrics are in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
+**Guiding idea: trust before reach.** Today the database has about 110 apps and 43 alternatives with sourced install routes per distribution, but **no verified entries and no compatibility reports yet**. We fix that before we announce anything. The full plan, exit criteria and metrics are in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
 
 **Done**
 

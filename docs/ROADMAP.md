@@ -23,8 +23,8 @@ Status as of **25 November 2026**. This is the single source of truth for the pl
 
 | Metric | Now | Comment |
 | --- | --- | --- |
-| Windows apps | 100 | Seeds from general knowledge with source links |
-| Linux alternatives | 41 | All with sourced install routes |
+| Windows apps | 109 | Seeds with source links; none tested |
+| Linux alternatives | 43 | All with sourced install routes |
 | **Verified entries** | **0** | Every entry is still `verified: false` |
 | **Compatibility reports** | **0** | Every app shows “untested” |
 | Outside contributors | 0 | |
@@ -36,18 +36,18 @@ Status as of **25 November 2026**. This is the single source of truth for the pl
 | video | 18 | |
 | development | 10 | |
 | office | 9 | |
-| cad | 5 | |
-| audio | 4 | thin |
-| engineering | 1 | thin |
-| accounting | 1 | thin |
-| printing | 0 | **missing** |
+| cad | 7 | |
+| audio | 5 | |
+| engineering | 2 | thin (goal: 5) |
+| accounting | 3 | thin (goal: 5) |
+| printing | 3 | thin (goal: 5) |
 
 ## 2. What the numbers tell us
 
 1. **Credibility gap.** Nothing is verified and there are no reports. Announcing now would invite “this is all guesswork”, and a bad first impression is hard to undo.
-2. **Coverage skew.** Graphics, utilities and video are 70 of 100 apps. The niche that motivated the project (CAD, engineering, accounting, printing) has 7 apps in total, and printing none. That niche is also where open sources of truth are scarcest, so it is where we are most valuable.
+2. **Coverage skew.** Graphics, utilities and video are 70 of 109 apps. The niche that motivated the project (CAD, engineering, accounting, printing) has 15 apps in total, up from 7, but engineering, accounting and printing are still below the goal of five. That niche is also where open sources of truth are scarcest, so it is where we are most valuable.
 3. **Unused data.** Every alternative has rich per-distribution install routes, but the planner still only uses Flatpak.
-4. **Process gaps.** Weekly source-link checks, a data health dashboard and local verification-task drafts are implemented. A review guide requires evidence and independent review; `SECURITY.md`, `CODEOWNERS`, Dependabot and a local compatibility-report drafting tool are in the repository. Still missing: actual reviews, repository settings (branch and tag protection, private vulnerability reporting, labels) and verification dates.
+4. **Process gaps.** Weekly source-link checks, a data health dashboard and local verification-task drafts are implemented. A review guide requires evidence and independent review; `verified_on` dates and a freshness queue, `SECURITY.md`, `CODEOWNERS`, Dependabot and a local compatibility-report drafting tool are in the repository. Still missing: actual reviews and repository settings (branch and tag protection, private vulnerability reporting, labels).
 
 ## 3. How we prioritise
 
@@ -75,11 +75,11 @@ Status as of **25 November 2026**. This is the single source of truth for the pl
 
 | Item | Notes |
 | --- | --- |
-| Verification policy | [Review guide](VERIFICATION.md) implemented: evidence for every app claim and a reviewer other than the change author, with date and outcome in the pull request. Decide whether to add `verified_on` to the schema so freshness can be measured |
+| Verification policy | [Review guide](VERIFICATION.md) implemented: evidence for every app claim and a reviewer other than the change author. Verified apps require `verified_on`, the UTC date of complete review; evidence and reviewer identity stay in the pull request. The health dashboard lists reviews more than 365 days old |
 | Verification sprint | Start with the most-searched apps. One category per sprint |
-| Seed the professional niche | Candidates to investigate, not claims: Revit, Rhino, ArchiCAD, LTspice, ANSYS, Sage 50, Tally, BarTender, NiceLabel, large-format and label printing tools |
+| Seed the professional niche | Started: Revit, Archicad, Proteus, TallyPrime, Quicken, BarTender, NiceLabel, ZebraDesigner and Cubase were added as unverified seeds, each with the vendor page and a source that backs the one claim made about the alternative. Still needed to reach five per category: engineering (2 of 5), accounting (3 of 5) and printing (3 of 5). Candidates still to investigate, not claims: Rhino, LTspice, ANSYS, Sage 50, large-format and RIP printing tools. Skipped so far because no usable source could be fetched: LTspice, Sound Forge, Pro Tools, Sage 50 |
 | First compatibility reports | Ask people who already run Windows apps on Linux. Start with apps that have known Wine users |
-| Link and freshness checker | HTTP link checks, weekly report artifacts and deployment snapshots are implemented. Verification-age tracking and issue automation remain planned; blocked and temporary requests require separate review |
+| Link and freshness checker | HTTP link checks, weekly report artifacts, deployment snapshots and verification-age tracking are implemented. Issue automation remains planned; blocked and temporary requests require separate review |
 | Contributor on-ramp | Local `tasks:verification` generator and evidence issue form implemented. Maintainers review drafts before publishing; no issues are created automatically. `report:draft` turns a compatibility-report issue into a validated draft file for a maintainer to review. Deliberately offline and manual: a bot that parses untrusted issue text and opens pull requests would need write access, so full automation stays a later decision |
 | Repository hygiene | In the repository: `SECURITY.md`, Dependabot for GitHub Actions and npm, `CODEOWNERS`, issue-template contact links. Still to do in GitHub settings: labels (`good first issue`, `new-app`, `report`, `verification`), branch and tag protection, private vulnerability reporting |
 
@@ -90,7 +90,7 @@ Status as of **25 November 2026**. This is the single source of truth for the pl
 - **Distribution-aware plan.** Pick a distribution (kept in the URL hash with the apps) and prefer native packages or Flatpak. Show only routes with sourced availability for that distribution, and say plainly when none is known. Commands are built only from refs that pass the schema’s safe pattern, `download` and `appimage` stay links, and nothing ever downloads and runs.
 - **More exports.** Shell script, Markdown checklist, JSON, and a print-friendly view.
 - **Team assessment.** Paste the output of `winget list` or an installed-programs export and match it locally against app names and aliases. Unmatched programs become “help add this app” links. Nothing leaves the browser.
-- **Data health page (implemented).** Category coverage, verified share, source gaps, apps without alternatives and dated link checks. Generated at build time; verification age remains unknown until verification dates are recorded.
+- **Data health page (implemented).** Category coverage, verified share, source gaps, apps without alternatives, dated link checks and a queue of complete reviews older than 365 days. Generated at build time; no complete reviews have been recorded yet.
 - **Compare view.** Two alternatives side by side: fit, formats, missing features, install routes.
 
 **Exit criteria:** distribution-aware plans for at least the ten most common distributions in the data; the team assessment handles a real `winget list` export; the new code has unit tests like the rest.
@@ -142,10 +142,10 @@ All of the following, held for a few months:
 
 | Metric | Now | v0.3 target | v1.0 target |
 | --- | --- | --- | --- |
-| Apps | 100 | 120+ | 150+ |
+| Apps | 109 | 120+ | 150+ |
 | Verified share | 0% | 25+ apps | 50%+ |
 | Compatibility reports | 0 | 10+ | 50+ |
-| Categories with 5+ apps | 6 of 10 | 10 of 10 | 10 of 10 |
+| Categories with 5+ apps | 7 of 10 | 10 of 10 | 10 of 10 |
 | Outside contributors | 0 | 3+ | 20+ |
 | Dead source links | unknown | 0 | 0 |
 | Downstream consumers | 0 | 0 | 2+ |

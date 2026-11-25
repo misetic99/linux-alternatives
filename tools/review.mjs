@@ -96,7 +96,7 @@ function draft(appEntry, alternatives, reports) {
     "- [ ] A reviewer other than the change author has checked the evidence and recorded the outcome in the pull request.",
     "- [ ] Leave verified: false until the complete app entry has evidence and independent review. Partial fixes do not verify the remaining claims.",
     "",
-    "The verified flag describes the app entry. It does not certify all distributions or replace version-specific compatibility reports. Record the review date and evidence in the pull request; the data schema currently has no verification-date field.",
+    "The verified flag describes the app entry. It does not certify all distributions or replace version-specific compatibility reports. After complete independent review, set verified: true and verified_on to the review's UTC date (YYYY-MM-DD). Keep evidence and reviewer identity in the pull request. When returning an entry to verified: false, remove verified_on.",
     "",
   );
   return lines.join("\n");

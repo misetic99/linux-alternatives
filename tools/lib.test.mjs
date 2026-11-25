@@ -113,6 +113,32 @@ test("bad dates are rejected", () => {
   assert.ok(validateData(dir).length > 0);
 });
 
+test("verification requires a complete review date and never accepts a date on an unverified entry", () => {
+  const now = new Date("2026-11-25T00:01:00Z");
+  const errorsFor = (fields) => validateData(makeData({
+    "alternatives/foo.yaml": ALT,
+    "apps/bar.yaml": APP + fields,
+  }), { now });
+  for (const fields of ["", "verified: false\n", "verified: true\nverified_on: 2026-11-25\n", "verified: true\nverified_on: 2024-02-29\n"]) {
+    assert.deepEqual(errorsFor(fields), [], fields);
+  }
+  for (const fields of [
+    "verified: true\n",
+    "verified_on: 2026-11-25\n",
+    "verified: false\nverified_on: 2026-11-25\n",
+    ...["yesterday", "2026-02-29", "2026-13-01", "2026-11-25T00:00:00Z", "2026-1-1"].map((date) => `verified: true\nverified_on: '${date}'\n`),
+  ]) {
+    assert.ok(errorsFor(fields).length > 0, fields);
+  }
+  assert.ok(errorsFor("verified: true\nverified_on: 2026-11-26\n").some((error) => error.includes("must not be in the future (UTC)")));
+});
+
+test("full API documents preserve the independent review date without dating unverified entries", () => {
+  const dataset = (fields) => makeData({ "alternatives/foo.yaml": ALT, "apps/bar.yaml": APP + fields });
+  assert.equal(buildDist(dataset("verified: true\nverified_on: 2024-02-29\n")).apps[0].verified_on, "2024-02-29");
+  assert.equal(Object.hasOwn(buildDist(dataset("verified: false\n")).apps[0], "verified_on"), false);
+});
+
 test("invalid YAML and bad file names are reported, not thrown", () => {
   const dir = makeData({ "apps/broken.yaml": "a: [", "apps/Bad Name.yaml": "x: 1" });
   const errors = validateData(dir);

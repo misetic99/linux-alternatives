@@ -1,0 +1,22 @@
+# License and package: https://flathub.org/en/apps/org.ardour.Ardour
+id: ardour
+name: "Ardour"
+homepage: https://ardour.org/
+license: GPL-2.0-or-later
+description: "Digital audio workstation for recording, editing and mixing."
+install:
+  - method: flatpak
+    ref: org.ardour.Ardour
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.ardour.Ardour
+      - https://flathub.org/en/setup
+    notes: "Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture."
+  - method: download
+    ref: https://ardour.org/download.html
+    distros:
+      - any
+    sources:
+      - https://ardour.org/download.html
+    notes: "Official project downloads or installation instructions. Select a Linux package for your distribution and architecture; some projects provide source builds rather than universal binaries."

@@ -9,7 +9,8 @@ vendor: Vendor Name
 category: other             # accounting | audio | cad | development | engineering | graphics
                             # | office | printing | utilities | video | other
 homepage: https://example.com
-verified: false             # set to true only if you checked every claim below
+verified: false             # true only after complete independent review (docs/VERIFICATION.md)
+# verified_on: YYYY-MM-DD   # required only when verified is true; review date in UTC
 
 alternatives:
   - id: alternative-id      # must exist in data/alternatives/

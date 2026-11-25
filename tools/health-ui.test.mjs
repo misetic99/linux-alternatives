@@ -31,7 +31,7 @@ const fixture = (links = {}) => ({
   generated_at: "2026-11-24T12:00:00Z",
   counts: { apps: 1, alternatives: 1, verified_apps: 0, verified_percent: 0, reports: 0, apps_with_reports: 0, install_routes: 1, sourced_install_routes: 1, unique_urls: 1, covered_categories: 0, target_categories: 2 },
   categories: [{ id: "printing", apps: 0, verified: 0, reports: 0, alternatives: 0 }],
-  review: { without_comparison_sources: [], without_alternatives: [], unverified: [{ id: "x", name: '<img src=x onerror="alert(1)">', category: "office" }], incomplete_install_metadata: [], reports_over_one_year_old: 0, latest_report: null },
+  review: { without_comparison_sources: [], without_alternatives: [], unverified: [{ id: "x", name: '<img src=x onerror="alert(1)">', category: "office" }], incomplete_install_metadata: [], reports_over_one_year_old: 0, latest_report: null, verifications_over_one_year_old: [], latest_verification: null },
   links: { state: "missing", results: [], counts: null, ...links },
 });
 function find(node, tag) { return [...(node.tagName === tag ? [node] : []), ...node.nodes.flatMap((child) => find(child, tag))]; }
@@ -46,6 +46,19 @@ test("dashboard exposes empty categories and missing evidence without interpreti
   assert.match(nodes["health-review"].textContent, /<img src=x/);
   assert.equal(find(nodes["health-review"], "img").length, 0);
   assert.match(find(nodes["health-review"], "a")[0].href, /^\.\/\?q=%3Cimg/);
+  assert.match(nodes["health-freshness"].textContent, /No complete independent reviews/);
+});
+
+test("dashboard shows dated review queues and explains the freshness threshold", async () => {
+  const data = fixture();
+  data.review.latest_verification = "2026-11-24";
+  data.review.verifications_over_one_year_old = [{ id: "old", name: "Old entry", category: "office", verified_on: "2025-01-01" }];
+  const nodes = await render(data);
+  assert.match(nodes["health-freshness"].textContent, /Latest complete review: 2026-11-24/);
+  assert.match(nodes["health-freshness"].textContent, /Verifications older than one year \(365 days\): 1/);
+  assert.match(nodes["health-freshness"].textContent, /remain verified/);
+  assert.match(nodes["health-review"].textContent, /Verifications more than one year old \(1\).*Old entryofficeVerified: 2025-01-01/);
+  assert.ok(find(nodes["health-review"], "a").some((node) => node.href === "./?q=Old%20entry"));
 });
 
 test("link review is paginated and can be filtered to a specific result", async () => {

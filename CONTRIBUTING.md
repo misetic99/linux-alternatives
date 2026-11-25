@@ -37,6 +37,7 @@ Same vocabulary as WineHQ and ProtonDB: `platinum` (perfect out of the box), `go
 ## Data rules
 
 - **Verify or cite.** Only add what you tested or can link to a source. New entries and incomplete reviews stay `verified: false`. Mark an entry verified only after evidence covers every claim and a reviewer other than the change author has checked it; see the [review guide](docs/VERIFICATION.md).
+- **Date complete reviews.** `verified: true` requires `verified_on: YYYY-MM-DD`, the UTC date of the complete independent review. Dates must be valid calendar dates and cannot be in the future. Remove `verified_on` when returning an entry to `verified: false`. Existing unverified entries need no changes; previously verified entries must supply their actual review date before validation passes. Never substitute a build or import date.
 - **Stay neutral.** Describe features, do not advertise. No "best", "amazing", or "X sucks".
 - **Be concrete.** "Cannot export DWG" beats "poor compatibility".
 - **Use your own words.** Do not paste text from other databases or vendor marketing pages.

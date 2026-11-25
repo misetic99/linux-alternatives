@@ -1,0 +1,15 @@
+# License and package: https://flathub.org/en/apps/org.gnome.glabels-3
+id: glabels
+name: "gLabels"
+homepage: https://glabels.org/
+license: GPL-3.0-or-later
+description: "Label and business card designer with barcode support."
+install:
+  - method: flatpak
+    ref: org.gnome.glabels-3
+    distros:
+      - any
+    sources:
+      - https://flathub.org/en/apps/org.gnome.glabels-3
+      - https://flathub.org/en/setup
+    notes: "Requires Flatpak and the Flathub repository. This is a cross-distribution runtime option, not vendor certification or a guarantee for every architecture."

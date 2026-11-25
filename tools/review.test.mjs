@@ -47,6 +47,8 @@ test("drafts retain comparison claims, install scopes, sources and report refere
   assert.match(task.body, /Compatibility report files: 1/);
   assert.match(task.body, /reviewer other than the change author/);
   assert.match(task.body, /Leave verified: false/);
+  assert.match(task.body, /verified_on to the review's UTC date/);
+  assert.match(task.body, /remove verified_on/);
   assert.doesNotMatch(task.body, /\[x\]/i);
   assert.deepEqual(task.labels, ["verification", "good first issue"]);
 });

@@ -2,7 +2,9 @@
 
 The dashboard at `health.html` reads the generated `/api/v1/health.json`. Metrics come from the current YAML catalog and schema categories, including categories with no entries. The review queues identify unverified apps, comparisons without source links, apps without alternatives and incomplete installation metadata.
 
-Verification dates are not part of the current schema, so the dashboard does not guess the age of verification. Compatibility report dates are available: the dashboard shows the latest report date and counts reports older than one year. Reachable source pages do not verify feature, migration or package claims, and no check changes `verified` flags or compatibility ratings.
+Verified app entries require `verified_on`, the UTC date of the latest complete independent review. The dashboard shows the latest date and a queue of reviews more than 365 days old, ordered oldest first. Age is measured from UTC midnight on the build date, so a review exactly 365 days old is not yet queued. Older reviews remain verified until a reviewer identifies unsupported claims; age alone does not change data. With no complete reviews, the dashboard says so. Compatibility report dates are also available: the dashboard shows the latest report date and counts reports older than one year. Reachable source pages do not verify feature, migration or package claims, and no check changes `verified` flags or compatibility ratings.
+
+In `/api/v1/health.json`, `review.verification_dates` is `recorded`, `review.latest_verification` is a date or `null`, and `review.verifications_over_one_year_old` contains app ids, names, categories and review dates. Full app API documents preserve `verified_on`; unverified entries omit it. These metrics describe the catalog at build time and update on the next build.
 
 ## Run locally
 

@@ -206,8 +206,8 @@ flowchart LR
 ## 9. Quality and trust
 
 - Reports carry reporter handle, date, and versions, so stale data is visible and can be aged out.
-- The health dashboard exposes unverified entries and reports older than one year. Verification age remains unknown until the schema records verification dates.
-- The [review guide](VERIFICATION.md) requires evidence for every app claim and review by someone other than the change author before setting `verified: true`. Review dates, scope and outcomes stay in the pull request for now; partial reviews and unsupported claims remain unverified. Validators cannot establish factual accuracy or reviewer independence.
+- The health dashboard exposes unverified entries, reports older than one year and complete reviews more than 365 days old. Verification age uses UTC dates at build time; age alone does not change the verified flag. The latest review date is also shown, or an explicit absence of complete reviews.
+- The [review guide](VERIFICATION.md) requires evidence for every app claim and review by someone other than the change author before setting `verified: true`. The app schema requires `verified_on` only for verified entries: a valid calendar date of that complete review, never in the future (UTC). Full app API documents preserve it. Reviewer identity, evidence, scope and outcomes stay in the pull request; partial reviews and unsupported claims remain unverified and omit the date. Existing unverified data needs no migration; previously verified external entries must add the actual review date. Validators cannot establish factual accuracy or reviewer independence.
 - The site renders app details, alternative source links and compatibility reports using `textContent`. Reports show the app and runner versions, distribution, date, reporter, adjustments and notes, sorted newest first. Adjustment values are displayed as text, not assembled into shell commands. Empty report lists are explicitly shown as untested.
 - No telemetry, no cookies, no third-party scripts on the site.
 - The self-hosted instance enforces this with a strict Content-Security-Policy (`script-src 'self'`, no inline code), `nosniff`, no framing, and read-only methods on `/api/`.
@@ -258,7 +258,7 @@ Order matters: the public announcement moved from v0.3 to v0.6 so that it happen
 3. Do we accept Wine reports without a reporter handle (anonymous), or require a GitHub identity?
 4. ~~Scope of "professional" software~~ Decided: CAD, engineering, accounting, printing and audio, with at least 5 apps each before the announcement (see [ROADMAP.md](ROADMAP.md)).
 5. Do we link to or import from existing sources (WineHQ AppDB, ProtonDB) and under what terms?
-6. Do we add a `verified_on` date to the schema? The review guide now requires evidence for every claim and independent review, recorded in the pull request. Machine-readable verification dates remain planned.
+6. ~~Machine-readable verification dates~~ Implemented: `verified_on` is required for verified apps, with a freshness queue in the health dashboard. Independent review evidence and reviewer identity remain in the pull request.
 7. Release naming: semver tags for tooling and the site, CalVer for published data packages, or one scheme for both?
 8. How do we keep install data fresh as distribution repositories change (scheduled availability checks, or contributor reports only)?
 

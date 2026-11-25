@@ -1,0 +1,15 @@
+# Initial fit estimate based on the linked pages; not tested.
+id: nicelabel
+name: "NiceLabel"
+vendor: "Loftware"
+category: printing
+homepage: https://www.nicelabel.com/
+verified: false
+
+alternatives:
+  - id: glabels
+    fit: partial
+    notes: "Suggested for designing and printing labels with barcodes. NiceLabel document migration, printer-driver integration and database-driven printing have not been tested."
+    sources:
+      - https://www.nicelabel.com/
+      - https://glabels.org/

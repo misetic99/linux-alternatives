@@ -32,6 +32,8 @@ export function linkSnapshot(inventory, report, now = new Date()) {
 export function buildHealth({ apps, alternatives }, categories, inventory, { report = null, now = new Date() } = {}) {
   const brief = (app) => ({ id: app.id, name: app.name, category: app.category });
   const verified = apps.filter((app) => app.verified).length;
+  const today = Date.parse(now.toISOString().slice(0, 10));
+  const verifications = apps.filter((app) => app.verified && app.verified_on);
   const reports = apps.flatMap((app) => app.reports || []);
   const installationRoutes = alternatives.flatMap((alt) => alt.install);
   const completeRoute = (route) => !!(route.distros?.length && route.sources?.length && route.notes);
@@ -62,7 +64,12 @@ export function buildHealth({ apps, alternatives }, categories, inventory, { rep
       incomplete_install_metadata: alternatives.filter((alt) => alt.install.some((route) => !completeRoute(route))).map((alt) => ({ id: alt.id, name: alt.name })),
       reports_over_one_year_old: reports.filter((report) => now.getTime() - Date.parse(report.date) > 365 * DAY).length,
       latest_report: reports.map((report) => report.date).sort().at(-1) || null,
-      verification_dates: "not_recorded",
+      verification_dates: "recorded",
+      verifications_over_one_year_old: verifications
+        .filter((app) => today - Date.parse(app.verified_on) > 365 * DAY)
+        .map((app) => ({ ...brief(app), verified_on: app.verified_on }))
+        .sort((a, b) => a.verified_on.localeCompare(b.verified_on) || a.id.localeCompare(b.id)),
+      latest_verification: verifications.map((app) => app.verified_on).sort().at(-1) || null,
     },
     links: linkSnapshot(inventory, report, now),
   };

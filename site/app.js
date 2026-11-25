@@ -218,6 +218,7 @@ function openApp(app) {
   const body = el("div", "dialog-body");
   body.append(el("p", "meta", `${app.vendor} · ${app.category}`));
   if (!app.verified) body.append(el("p", "fine", "Unverified comparison. Review sources and migration notes."));
+  else body.append(el("p", "fine", `Last complete independent review: ${app.verified_on}.`));
   const controls = el("div", "catalog-toolbar dialog-toolbar");
   const label = el("label", null, "Installation options for");
   label.htmlFor = "detail-distro";
